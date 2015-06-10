@@ -19,9 +19,9 @@
 */
 
 // prevent this file from being accessed directly
-if (!defined('WB_PATH')) die(header('Location: index.php'));
+if (!defined('LEPTON_PATH')) die(header('Location: index.php'));
 
-require_once(WB_PATH.'/framework/functions.php');
+require_once(LEPTON_PATH.'/framework/summary.functions.php');
 
 //setup styles to help id errors
 echo '
@@ -267,7 +267,7 @@ $query_0=$database->query("SELECT * FROM `".TABLE_PREFIX."mod_download_gallery_g
 	}
 
 // update .htaccess file in /media/download_gallery folder 
-include_once(WB_PATH.'/modules/download_gallery/functions.php');
+include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
 make_dl_dir();
 
 ?>

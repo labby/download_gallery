@@ -5,18 +5,18 @@
 
 require('../../config.php');
 $update_when_modified = true; // Tells script to update when this page was last updated
-require(WB_PATH.'/modules/admin.php');
+require(LEPTON_PATH.'/modules/admin.php');
 
 // Load Language file
 if(LANGUAGE_LOADED) {
-	if(!file_exists(WB_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php')) {
-		require_once(WB_PATH.'/modules/download_gallery/languages/EN.php');
+	if(!file_exists(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php')) {
+		require_once(LEPTON_PATH.'/modules/download_gallery/languages/EN.php');
 	} else {
-		require_once(WB_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php');
+		require_once(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php');
 	}
 }
 
-require(WB_PATH.'/framework/functions.php');
+require(LEPTON_PATH.'/framework/summary.functions.php');
 
 $fileext_id = '';
 if (isset($_POST['fileext_id'])) {
@@ -28,7 +28,7 @@ if (isset($_POST['fileext_id'])) {
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<title><?php echo $DGTEXT['MOD_TITLE']; ?></title>
-		<link href="<?php echo WB_URL; ?>/admin/interface/stylesheet.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo LEPTON_URL; ?>/admin/interface/stylesheet.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
 		.modify_section {
 			margin-left	: 10px;

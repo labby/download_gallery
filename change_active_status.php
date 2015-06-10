@@ -24,7 +24,7 @@ elseif($status == 0) $status = 1;
 
 // Include WB admin wrapper script
 $update_when_modified = true; // Tells script to update when this page was last updated
-require(WB_PATH.'/modules/admin.php');
+require(LEPTON_PATH.'/modules/admin.php');
 
 // change FILE STATUS?
 if (isset($fID) && is_numeric($fID))

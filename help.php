@@ -11,7 +11,7 @@ if (file_exists('../../config.php')) {
 }
 
 // Include WB admin wrapper script
-require(WB_PATH.'/modules/admin.php');
+require(LEPTON_PATH.'/modules/admin.php');
 
 // STEP 2:	Display the help page.
 ?>

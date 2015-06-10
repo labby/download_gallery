@@ -7,7 +7,7 @@
  
  
 // prevent this file from being accessed directly
-if (!defined('WB_PATH')) die(header('Location: index.php'));
+if (!defined('LEPTON_PATH')) die(header('Location: index.php'));
 
 // General Functions (used in multiple files)
 // General:			Function to be used later in the code
@@ -96,11 +96,11 @@ if(!function_exists('init_fields')){
 
 if(!function_exists('make_dl_dir')){
 	function make_dl_dir() {
-	   make_dir(WB_PATH.MEDIA_DIRECTORY.'/download_gallery/');
+	   make_dir(LEPTON_PATH.MEDIA_DIRECTORY.'/download_gallery/');
 	
 	   // add .htaccess file to /media/download_gallery folder if not already exist
-	   if (!file_exists(WB_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess')
-		  or (filesize(WB_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess') < 90))
+	   if (!file_exists(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess')
+		  or (filesize(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess') < 90))
 	   {
 		  // create a .htaccess file to prevent execution of PHP, HMTL files
 		  $content = <<< EOT
@@ -116,10 +116,10 @@ if(!function_exists('make_dl_dir')){
 	Options -Indexes -ExecCGI
 EOT;
 	
-		  $handle = fopen(WB_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess', 'w');
+		  $handle = fopen(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess', 'w');
 		  fwrite($handle, $content);
 		  fclose($handle);
-		  change_mode(WB_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess', 'file');
+		  change_mode(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess', 'file');
 	   };
 	}
 }
@@ -137,7 +137,7 @@ if(!function_exists('dg_change_position')){
 	
 		global $ordering, $page_id, $section_id;
 			
-		$baselink = WB_URL.'/modules/download_gallery/move_%s.php?page_id=%d&amp;section_id=%d&amp;';
+		$baselink = LEPTON_URL.'/modules/download_gallery/move_%s.php?page_id=%d&amp;section_id=%d&amp;';
 		
 		if($table == 'file'){
 		

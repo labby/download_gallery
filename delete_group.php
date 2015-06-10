@@ -23,7 +23,7 @@ if(!isset($_GET['group_id']) OR !is_numeric($_GET['group_id'])) {
 
 // Include WB admin wrapper script
 $update_when_modified = true; // Tells script to update when this page was last updated
-require(WB_PATH.'/modules/admin.php');
+require(LEPTON_PATH.'/modules/admin.php');
 
 //move all fiels in group to no group
 $database->query("UPDATE ".TABLE_PREFIX."mod_download_gallery_files SET group_id = '0',  active = '0' WHERE group_id = '$group_id' AND section_id = '$section_id'");
@@ -32,7 +32,7 @@ $database->query("UPDATE ".TABLE_PREFIX."mod_download_gallery_files SET group_id
 $database->query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_groups WHERE group_id = '$group_id' AND section_id = '$section_id'");
 
 // Include the ordering class
-require(WB_PATH.'/framework/class.order.php');			
+require(LEPTON_PATH.'/framework/class.order.php');			
 // Initialize order object 
 $order = new order(TABLE_PREFIX."mod_download_gallery_groups", 'position', 'group_id', 'section_id');
 // reorder all groups in this section_id

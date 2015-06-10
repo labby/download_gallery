@@ -11,10 +11,10 @@
 		(there is no such methode in the 'order' class
  */
 require('../../config.php');
-require_once(WB_PATH.'/framework/functions.php');
+require_once(LEPTON_PATH.'/framework/summary.functions.php');
 $update_when_modified = true; 					// Tells script to update when this page was last updated
-require(WB_PATH.'/modules/admin.php');			// Include WB admin wrapper script
-include_once(WB_PATH.'/modules/download_gallery/functions.php');
+require(LEPTON_PATH.'/modules/admin.php');			// Include WB admin wrapper script
+include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
 
 // Get id
 $id = ''; $file_id = '';
@@ -34,7 +34,7 @@ $fileext = '';
 
 // Validate all fields
 if($admin->get_post('title') == '' AND $admin->get_post('url') == '') {
-	$admin->print_error($MESSAGE['GENERIC']['FILL_IN_ALL'], WB_URL.'/modules/download_gallery/modify_file.php?page_id='.$page_id.'&section_id='.$section_id.'&file_id='.$id);
+	$admin->print_error($MESSAGE['GENERIC']['FILL_IN_ALL'], LEPTON_URL.'/modules/download_gallery/modify_file.php?page_id='.$page_id.'&section_id='.$section_id.'&file_id='.$id);
 } else {
 	$title = $admin->add_slashes(htmlspecialchars($admin->get_post('title')));
 	$description = 	$admin->add_slashes($admin->get_post('description'));
@@ -58,11 +58,11 @@ if ((isset($_FILES['file']['tmp_name'])) AND ($_FILES['file']['tmp_name'] != '')
 	$filename = trim($_FILES['file']['name']);
 	$path_parts = pathinfo($filename);
 	$fileext = strtolower($path_parts['extension']);
-	$new_filename = WB_PATH.MEDIA_DIRECTORY.'/download_gallery/'.$filename;
+	$new_filename = LEPTON_PATH.MEDIA_DIRECTORY.'/download_gallery/'.$filename;
 
 	// Work-out what the link should be
-	$file_link = WB_URL.MEDIA_DIRECTORY.'/download_gallery/'.$filename;
-	if($overwrite=="yes" or !file_exists(WB_PATH.MEDIA_DIRECTORY.'/download_gallery/' .$filename)) {
+	$file_link = LEPTON_URL.MEDIA_DIRECTORY.'/download_gallery/'.$filename;
+	if($overwrite=="yes" or !file_exists(LEPTON_PATH.MEDIA_DIRECTORY.'/download_gallery/' .$filename)) {
 		// Upload file
 		move_uploaded_file($_FILES['file']['tmp_name'], $new_filename);
 		change_mode($new_filename);
@@ -106,7 +106,7 @@ if ((isset($_POST['delete_file']) AND $_POST['delete_file'] != '')or(isset($_POS
 	$dups=$query_duplicates->numRows();
 	//only delete the file if there is 1 database entry (not used on multiple sections)
 	if(($dups==1)and (isset($_POST['delete_file']))) {
-		$file = WB_PATH.MEDIA_DIRECTORY.'/download_gallery/' . $fname;
+		$file = LEPTON_PATH.MEDIA_DIRECTORY.'/download_gallery/' . $fname;
 		if(file_exists($file) AND is_writable($file)) {
 			unlink($file);
 		}
@@ -162,7 +162,7 @@ if($group==0){
 } else {
 
 	// Include the ordering class
-	require(WB_PATH.'/framework/class.order.php');			
+	require(LEPTON_PATH.'/framework/class.order.php');			
 	// Initialize order object 
 	$order = new order(TABLE_PREFIX."mod_download_gallery_files", 'position', 'file_id', 'group_id');
 	// reorder all groups in this group_id
@@ -171,10 +171,10 @@ if($group==0){
 	
 // Check if there is a db error, otherwise say successful
 if($database->is_error()) {
-	$admin->print_error($database->get_error(), WB_URL.'/modules/download_gallery/modify_file.php?page_id='.$page_id.'&section_id='.$section_id.'&file_id='.$id);
+	$admin->print_error($database->get_error(), LEPTON_URL.'/modules/download_gallery/modify_file.php?page_id='.$page_id.'&section_id='.$section_id.'&file_id='.$id);
 } else {
 	if((isset($_POST['delete_file']) AND $_POST['delete_file'] != '')or(isset($_POST['delete_file2']) AND $_POST['delete_file2'] != '')) {
-		$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/download_gallery/modify_file.php?page_id='.$page_id.'&section_id='.$section_id.'&file_id='.$file_id);
+		$admin->print_success($TEXT['SUCCESS'], LEPTON_URL.'/modules/download_gallery/modify_file.php?page_id='.$page_id.'&section_id='.$section_id.'&file_id='.$file_id);
 	} else {
 		$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 	}

@@ -7,8 +7,8 @@ require('../../config.php');
 
 // Include WB admin wrapper script
 $update_when_modified = true; // Tells script to update when this page was last updated
-require(WB_PATH.'/modules/admin.php');
-include_once(WB_PATH.'/modules/download_gallery/functions.php');
+require(LEPTON_PATH.'/modules/admin.php');
+include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
 
 // This code removes any php tags and adds slashes
 $friendly = array('&lt;', '&gt;', '?php');

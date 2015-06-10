@@ -22,8 +22,8 @@
 */
 
 // prevent this file from being accessed directly
-if (!defined('WB_PATH')) die(header('Location: index.php'));
-include_once(WB_PATH.'/modules/download_gallery/functions.php');
+if (!defined('LEPTON_PATH')) die(header('Location: index.php'));
+include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
 
 // STEP 0:	initialize some variables
 $page_id = (int) $page_id;

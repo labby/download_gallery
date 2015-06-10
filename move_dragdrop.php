@@ -54,7 +54,7 @@ if(!isset($_POST['action']) || !isset($_POST['row']) ){
 			
 		} //endforeach 
 		
-		echo '<img src="'.WB_URL.'/modules/bakery/images/ajax-loader.gif" alt="" border="0" />';
+		echo '<img src="'.LEPTON_URL.'/modules/bakery/images/ajax-loader.gif" alt="" border="0" />';
 		
 	}
 } 

@@ -18,22 +18,22 @@
 */
 
 // prevent this file from being accessed directly
-if (!defined('WB_PATH')) die(header('Location: index.php'));
+if (!defined('LEPTON_PATH')) die(header('Location: index.php'));
 
-include_once(WB_PATH.'/modules/download_gallery/functions.php');
+include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
 
 if(LANGUAGE_LOADED) {
 	// check if module language file exists for the language set by the user (e.g. DE, EN)
-	if(!file_exists(WB_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php')) 
-			require_once(WB_PATH .'/modules/download_gallery/languages/EN.php');
-	else 	require_once(WB_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php');
+	if(!file_exists(LEPTON_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php')) 
+			require_once(LEPTON_PATH .'/modules/download_gallery/languages/EN.php');
+	else 	require_once(LEPTON_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php');
 }
 
 // load frontend.css if the template forgot it:
 if((!function_exists('register_frontend_modfiles') || !defined('MOD_FRONTEND_CSS_REGISTERED')) &&
-     file_exists(WB_PATH .'/modules/download_gallery/frontend.css')) {
+     file_exists(LEPTON_PATH .'/modules/download_gallery/frontend.css')) {
         echo '<style type="text/css">';
-        include(WB_PATH .'/modules/download_gallery/frontend.css');
+        include(LEPTON_PATH .'/modules/download_gallery/frontend.css');
         echo "\n</style>\n";
 }
 
@@ -333,7 +333,7 @@ if($num_files > 0) {
 				//else echo "<!-- DEBUG could not open uri $uri -->\n";
 			} else {
                 //echo "<!-- DEBUG filelink: $filelink -->\n";
-                $filelink = (strpos($file['link'], '\\')===0) ? $file['link'] : WB_PATH.str_replace(WB_URL,'',$file['link']);
+                $filelink = (strpos($file['link'], '\\')===0) ? $file['link'] : LEPTON_PATH.str_replace(LEPTON_URL,'',$file['link']);
 				$unixtime = filemtime($filelink);
 				$filesize = filesize($filelink);
 			}
@@ -379,7 +379,7 @@ if($num_files > 0) {
 
 		// workout Extension ICON => [FTIMAGE]
 
-		$unknown_icon = WB_URL.'/modules/download_gallery/images/unknown.gif';	
+		$unknown_icon = LEPTON_URL.'/modules/download_gallery/images/unknown.gif';	
 		if($ext_icon = $database->get_one(sprintf("SELECT `file_image` FROM `%s` WHERE FIND_IN_SET( '%s', `extensions` ) > 0 ", 
 												$DG_PREFIX."_file_ext", $file['extension']))){
 			$ext_icon = str_replace('unknown.gif', $ext_icon, $unknown_icon);	
@@ -415,7 +415,7 @@ if($num_files > 0) {
 			
 			'[TITLE]' 		=> $file['title'], 
 			'[DESCRIPTION]' => $dldescription , 
-			'[LINK]' 		=> WB_URL . '/modules/download_gallery/dlc.php?file=' .$file['file_id'].'&amp;id='.$file['modified_when'], 
+			'[LINK]' 		=> LEPTON_URL . '/modules/download_gallery/dlc.php?file=' .$file['file_id'].'&amp;id='.$file['modified_when'], 
 			'[EXT]' 		=> $file['extension'], 
 			'[POS]' 		=> $file['position'], 
 			'[SIZE]' 		=> $size, 
@@ -449,7 +449,7 @@ echo "</form>\n";
 
 //display upload link if setting is set to allow this
 if($settings['userupload'] ==1 ||	($settings['userupload']==2 && isset($_SESSION['USER_ID']) && $_SESSION['USER_ID'] != "" && is_numeric($_SESSION['USER_ID']))){
-	echo '<a href="'.WB_URL.'/modules/download_gallery/dluser_add.php?sid='.$section_id.'&amp;pid='.$page_id.'">'.$DGTEXT['UPLOADFILE']. '</a>';
+	echo '<a href="'.LEPTON_URL.'/modules/download_gallery/dluser_add.php?sid='.$section_id.'&amp;pid='.$page_id.'">'.$DGTEXT['UPLOADFILE']. '</a>';
 }
 
 //$time_end = microtime_float();

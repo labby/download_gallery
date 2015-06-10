@@ -28,8 +28,8 @@
  */
  
 require('../../config.php');
-require(WB_PATH.'/modules/admin.php');				// Include WB admin wrapper script
-require(WB_PATH.'/framework/class.order.php');		// Include the ordering class
+require(LEPTON_PATH.'/modules/admin.php');				// Include WB admin wrapper script
+require(LEPTON_PATH.'/framework/class.order.php');		// Include the ordering class
 
 // STEP 0:	initialize some variables
 $page_id = intval($page_id);
@@ -54,9 +54,9 @@ $file_id = $database->get_one("SELECT LAST_INSERT_ID()");
 
 // Say that a new record has been added, then redirect to modify page
 if($database->is_error()) {
-	$admin->print_error($database->get_error(), WB_URL.'/modules/download_gallery/modify_file.php?page_id='.$page_id.'&section_id='.$section_id.'&file_id='.$file_id);
+	$admin->print_error($database->get_error(), LEPTON_URL.'/modules/download_gallery/modify_file.php?page_id='.$page_id.'&section_id='.$section_id.'&file_id='.$file_id);
 } else {
-	$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/download_gallery/modify_file.php?page_id='.$page_id.'&section_id='.$section_id.'&file_id='.$file_id.'&group_id='.$group_id);
+	$admin->print_success($TEXT['SUCCESS'], LEPTON_URL.'/modules/download_gallery/modify_file.php?page_id='.$page_id.'&section_id='.$section_id.'&file_id='.$file_id.'&group_id='.$group_id);
 }
 
 // Print admin footer

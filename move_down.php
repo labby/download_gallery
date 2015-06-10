@@ -32,8 +32,8 @@ if(!isset($_GET['file_id']) OR !is_numeric($_GET['file_id'])) {
 
 }
 
-require(WB_PATH.'/modules/admin.php');				// Include WB admin wrapper script
-require(WB_PATH.'/framework/class.order.php');			// Include the ordering class
+require(LEPTON_PATH.'/modules/admin.php');				// Include WB admin wrapper script
+require(LEPTON_PATH.'/framework/class.order.php');			// Include the ordering class
 
 // Create new order object and reorder
 $order = new order($table, 'position', $id_field, $common_field);

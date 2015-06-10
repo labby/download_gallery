@@ -7,13 +7,13 @@
 */
  
 require('../../config.php');
-require(WB_PATH.'/framework/functions.php');
-require(WB_PATH.'/framework/class.wb.php');
+require(LEPTON_PATH.'/framework/summary.functions.php');
+require(LEPTON_PATH.'/framework/class.wb.php');
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(WB_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php')) 
-		require_once(WB_PATH .'/modules/download_gallery/languages/EN.php');
-else 	require_once(WB_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php');
+if(!file_exists(LEPTON_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php')) 
+		require_once(LEPTON_PATH .'/modules/download_gallery/languages/EN.php');
+else 	require_once(LEPTON_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php');
 
 
 $file = ''; 

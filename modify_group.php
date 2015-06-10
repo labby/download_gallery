@@ -19,7 +19,7 @@ if(!isset($_GET['group_id']) OR !is_numeric($_GET['group_id'])) {
 }
 
 // Include WB admin wrapper script
-require(WB_PATH.'/modules/admin.php');
+require(LEPTON_PATH.'/modules/admin.php');
 
 // Get header and footer
 $query_content = $database->query("SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_groups WHERE group_id = '$group_id' and page_id = '$page_id'");
@@ -27,7 +27,7 @@ $fetch_content = $query_content->fetchRow();
 
 ?>
 
-<form name="modify" action="<?php echo WB_URL; ?>/modules/download_gallery/save_group.php" method="post" style="margin: 0;">
+<form name="modify" action="<?php echo LEPTON_URL; ?>/modules/download_gallery/save_group.php" method="post" style="margin: 0;">
 
 <input type="hidden" name="section_id" value="<?php echo $section_id; ?>" />
 <input type="hidden" name="page_id" value="<?php echo $page_id; ?>" />

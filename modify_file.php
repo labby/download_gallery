@@ -23,14 +23,14 @@ else
 $preselected_group = (isset($_GET['group_id']) && is_numeric($_GET['group_id'])) ? intval($_GET['group_id']) : 0;
 
 // Include WB admin wrapper script
-require(WB_PATH.'/modules/admin.php');
-require(WB_PATH.'/framework/functions.php');
+require(LEPTON_PATH.'/modules/admin.php');
+require(LEPTON_PATH.'/framework/summary.functions.php');
 
 if(LANGUAGE_LOADED) {
-	require_once(WB_PATH.'/modules/download_gallery/languages/EN.php');
-	if(!file_exists(WB_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php')) {
+	require_once(LEPTON_PATH.'/modules/download_gallery/languages/EN.php');
+	if(!file_exists(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php')) {
 		} else {
-		require_once(WB_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php');
+		require_once(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php');
 	}
 }
 
@@ -51,17 +51,17 @@ if($fname == '') {
   $remotelink = '';
 }
 
-if (!defined('WYSIWYG_EDITOR') OR WYSIWYG_EDITOR=="none" OR !file_exists(WB_PATH.'/modules/'.WYSIWYG_EDITOR.'/include.php')) {
+if (!defined('WYSIWYG_EDITOR') OR WYSIWYG_EDITOR=="none" OR !file_exists(LEPTON_PATH.'/modules/'.WYSIWYG_EDITOR.'/include.php')) {
 	function show_wysiwyg_editor($name,$id,$content,$width,$height) {
 		echo '<textarea name="'.$name.'" id="'.$id.'" style="width: '.$width.'; height: '.$height.';">'.$content.'</textarea>';
 	}
 } else {
 	$id_list=array("content");
-	require(WB_PATH.'/modules/'.WYSIWYG_EDITOR.'/include.php');
+	require(LEPTON_PATH.'/modules/'.WYSIWYG_EDITOR.'/include.php');
 }
 ?>
 
-<form name="modify" action="<?php echo WB_URL; ?>/modules/download_gallery/save_file.php" method="post" enctype="multipart/form-data" style="margin: 0;">
+<form name="modify" action="<?php echo LEPTON_URL; ?>/modules/download_gallery/save_file.php" method="post" enctype="multipart/form-data" style="margin: 0;">
 
 	<input type="hidden" name="section_id" value="<?php echo $section_id; ?>" />
 	<input type="hidden" name="page_id" value="<?php echo $page_id; ?>" />
@@ -91,7 +91,7 @@ if (!defined('WYSIWYG_EDITOR') OR WYSIWYG_EDITOR=="none" OR !file_exists(WB_PATH
 			<th><?php echo $DGTEXT['LOKALFILE']; ?>:</th>
 			<td valign="top">
 				<?php
-					if(file_exists(WB_PATH.MEDIA_DIRECTORY.'/download_gallery/' .$fname )) :
+					if(file_exists(LEPTON_PATH.MEDIA_DIRECTORY.'/download_gallery/' .$fname )) :
 				?>
 					<b><?php echo $fname; ?></b>&nbsp;&nbsp;
 						<input type="checkbox" name="delete_file" id="delete_file" value="true" /><?php echo $TEXT['DELETE']; ?>
@@ -116,8 +116,8 @@ if (!defined('WYSIWYG_EDITOR') OR WYSIWYG_EDITOR=="none" OR !file_exists(WB_PATH
 					<select name="existingfile" style="width: 99%;">
 					<option value=''>&nbsp;</option>
 					<?php
-					$folder_list=directory_list(WB_PATH.MEDIA_DIRECTORY);
-					array_push($folder_list,WB_PATH.MEDIA_DIRECTORY);
+					$folder_list=directory_list(LEPTON_PATH.MEDIA_DIRECTORY);
+					array_push($folder_list,LEPTON_PATH.MEDIA_DIRECTORY);
 					sort($folder_list);
 					foreach($folder_list AS $name) {
 						$file_list=file_list($name);
@@ -125,7 +125,7 @@ if (!defined('WYSIWYG_EDITOR') OR WYSIWYG_EDITOR=="none" OR !file_exists(WB_PATH
 						foreach($file_list AS $filename) {
 							$thumb_count=substr_count($filename, '/thumbs/');
 							if($thumb_count==0){
-								echo "<option value='".WB_URL.str_replace(WB_PATH,'',$filename)."'>".str_replace(WB_PATH.MEDIA_DIRECTORY,'',$filename)."</option>\n";
+								echo "<option value='".LEPTON_URL.str_replace(LEPTON_PATH,'',$filename)."'>".str_replace(LEPTON_PATH.MEDIA_DIRECTORY,'',$filename)."</option>\n";
 							}
 							$thumb_count="";
 						}

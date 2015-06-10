@@ -19,20 +19,20 @@
 */
 
 // prevent this file from being accessed directly
-if (!defined('WB_PATH')) die(header('Location: index.php'));
+if (!defined('LEPTON_PATH')) die(header('Location: index.php'));
 
 require('info.php');
 
 // Include WB functions file
-@require_once(WB_PATH.'/framework/functions.php');
+@require_once(LEPTON_PATH.'/framework/summary.functions.php');
 
 // Include DownloadGallery functions file
 @require_once('functions.php');
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(WB_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php')) 
-		require_once(WB_PATH .'/modules/download_gallery/languages/EN.php');
-else 	require_once(WB_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php');
+if(!file_exists(LEPTON_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php')) 
+		require_once(LEPTON_PATH .'/modules/download_gallery/languages/EN.php');
+else 	require_once(LEPTON_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php');
 
 
 // STEP 0:	initialize some variables
@@ -40,7 +40,7 @@ $page_id 	= intval( $page_id );
 $section_id = intval( $section_id );
 
 $IMAGES 		= THEME_URL.'/images';
-$MODULE_URL 	= WB_URL.'/modules/download_gallery';
+$MODULE_URL 	= LEPTON_URL.'/modules/download_gallery';
 $DG_ICONS 		= $MODULE_URL.'/images';
 $MODULE_PREFIX = TABLE_PREFIX."mod_download_gallery";
 
@@ -96,8 +96,8 @@ $list[0] = array(
 			
 			);
 
-$file_link_pattern = WB_URL.'/modules/download_gallery/%s.php?page_id='.$page_id.'&amp;section_id='.$section_id.'&amp;file_id=%d';
-$group_link_pattern = WB_URL.'/modules/download_gallery/%s.php?page_id='.$page_id.'&amp;section_id='.$section_id.'&amp;group_id=%d';
+$file_link_pattern = LEPTON_URL.'/modules/download_gallery/%s.php?page_id='.$page_id.'&amp;section_id='.$section_id.'&amp;file_id=%d';
+$group_link_pattern = LEPTON_URL.'/modules/download_gallery/%s.php?page_id='.$page_id.'&amp;section_id='.$section_id.'&amp;group_id=%d';
 $add_file ='<a href="'.$MODULE_URL.'/add_file.php?page_id='.$page_id.'&amp;section_id='.$section_id.'&amp;group_id=%d" title="'.$TEXT['ADD'].' '.$TEXT['FILE'].'">
 			<img src="'.$DG_ICONS.'/add_child.png" alt="" />
 			</a>';

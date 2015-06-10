@@ -22,7 +22,7 @@
 */
   
 // prevent this file from being accessed directly
-if (!defined('WB_PATH')) die(header('Location: index.php'));
+if (!defined('LEPTON_PATH')) die(header('Location: index.php'));
 
 // STEP 0:	initialize some variables
 $page_id = (int) $page_id;
@@ -46,7 +46,7 @@ if($query_files->numRows() > 0) {
 		$dups=$query_duplicates->numRows();
 		//only delete the file if there is 1 database entry (not used on multiple sections)
 		if($dups==1){
-			$file = WB_PATH.MEDIA_DIRECTORY.'/download_gallery/' . $fname;
+			$file = LEPTON_PATH.MEDIA_DIRECTORY.'/download_gallery/' . $fname;
 			if(file_exists($file) AND is_writable($file)) { 
 				unlink($file);
 			}

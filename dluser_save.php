@@ -20,13 +20,13 @@
 
 // Include config file
 require('../../config.php');
-//require(WB_PATH.'/modules/admin.php');				// Include WB admin wrapper script
-require_once(WB_PATH.'/framework/class.order.php');		// Include the ordering class
+//require(LEPTON_PATH.'/modules/admin.php');				// Include WB admin wrapper script
+require_once(LEPTON_PATH.'/framework/class.order.php');		// Include the ordering class
 
-include_once(WB_PATH.'/modules/download_gallery/functions.php');
+include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
 
 // Include admin class
-require_once(WB_PATH.'/framework/class.admin.php');
+require_once(LEPTON_PATH.'/framework/class.admin.php');
 $admin = new admin('Start', 'start', false, false);
 
 if (isset($_GET['sid'])) {
@@ -41,10 +41,10 @@ $query_settings = $database->query("SELECT * FROM ".TABLE_PREFIX."mod_download_g
 $settings = $query_settings->fetchRow();
 $use_captcha = $settings['use_captcha']; 
 
-require_once(WB_PATH.'/framework/functions.php');
+require_once(LEPTON_PATH.'/framework/summary.functions.php');
 $userupload = $settings['userupload'];
 if($userupload=="0" or $section_id==0 or $page_id==0){
-	header('Location: '.WB_URL.'/pages/');
+	header('Location: '.LEPTON_URL.'/pages/');
 	exit;
 }
 
@@ -112,9 +112,9 @@ if(isset($captcha_error)) {
 		
 		// we only want downloads via the gallery, so add some random part to the file name
 		$new_fn = $path_parts['filename'].'_'.rand(10000, 99999).'.'.$fileext;
-		$new_filename = WB_PATH.MEDIA_DIRECTORY.'/download_gallery/'.$new_fn;
+		$new_filename = LEPTON_PATH.MEDIA_DIRECTORY.'/download_gallery/'.$new_fn;
 		// Work-out what the link should be
-		$file_link = WB_URL.MEDIA_DIRECTORY.'/download_gallery/'.$new_fn;
+		$file_link = LEPTON_URL.MEDIA_DIRECTORY.'/download_gallery/'.$new_fn;
 		
 		if (!file_exists($new_filename)) {
 			// Upload file

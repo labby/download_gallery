@@ -8,25 +8,25 @@ require('../../config.php');
 // check if this file was invoked by the expected module file
 $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
 
-if ($referer && strpos($referer, WB_URL . '/modules/download_gallery/modify_settings.php') === false) {
+if ($referer && strpos($referer, LEPTON_URL . '/modules/download_gallery/modify_settings.php') === false) {
 	die(header('Location: ../../index.php'));
 }
 
 // include the admin wrapper script
 $update_when_modified = true; // Tells script to update when this page was last updated
-require(WB_PATH . '/modules/admin.php');
+require(LEPTON_PATH . '/modules/admin.php');
 $admin = new admin('Pages', '', false, false);
 
 // Load Language file
 if(LANGUAGE_LOADED) {
-	if(!file_exists(WB_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php')) {
-		require_once(WB_PATH.'/modules/download_gallery/languages/EN.php');
+	if(!file_exists(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php')) {
+		require_once(LEPTON_PATH.'/modules/download_gallery/languages/EN.php');
 	} else {
-		require_once(WB_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php');
+		require_once(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php');
 	}
 }
 
-require(WB_PATH.'/framework/functions.php');
+require(LEPTON_PATH.'/framework/summary.functions.php');
 
 if (isset($_GET['fileext_id'])) {
 	$fileext_id = (int) $_GET['fileext_id'];
@@ -41,7 +41,7 @@ $extdetails 	= $query_fileext->fetchRow();
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<title><?php echo $DGTEXT['MOD_TITLE']; ?></title>
-		<link href="<?php echo WB_URL; ?>/admin/interface/stylesheet.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo LEPTON_URL; ?>/admin/interface/stylesheet.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
 		.modify_section {
 			margin-left	: 10px;
@@ -84,7 +84,7 @@ $extdetails 	= $query_fileext->fetchRow();
 			<h1><?php echo $DGTEXT['MOD_FILE_EXT']; ?></h1>
 			<p><?php echo $DGTEXT['MOD_TXT']; ?></p>
 			
-			<form name="modify_file_ext" method="post" action="<?php echo WB_URL; ?>/modules/download_gallery/save_extsettings.php" onsubmit="return validateForm(this);" >
+			<form name="modify_file_ext" method="post" action="<?php echo LEPTON_URL; ?>/modules/download_gallery/save_extsettings.php" onsubmit="return validateForm(this);" >
 				<input type="hidden" name="section_id" value="<?php echo $section_id; ?>" />
 				<input type="hidden" name="page_id" value="<?php echo $page_id; ?>" />
 				<input type="hidden" name="fileext_id" value="<?php echo $extdetails['fileext_id']; ?>" />

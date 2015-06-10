@@ -1,6 +1,6 @@
 <!-- BEGIN main_block -->
 <div class="{MODULE_DIR} upload">
-<form name="upload "action="{WB_URL}/modules/download_gallery/dluser_save.php?sid={SECTION_ID}&amp;pid={PAGE_ID}"
+<form name="upload "action="{LEPTON_URL}/modules/download_gallery/dluser_save.php?sid={SECTION_ID}&amp;pid={PAGE_ID}"
 	method="post" enctype="multipart/form-data" >
 <table align="center">
 	<tr>

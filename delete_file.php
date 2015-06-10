@@ -23,7 +23,7 @@ if(!isset($_GET['file_id']) OR !is_numeric($_GET['file_id'])) {
 }
 
 $update_when_modified = true; // Tells script to update when this page was last updated
-require(WB_PATH.'/modules/admin.php');
+require(LEPTON_PATH.'/modules/admin.php');
 
 // STEP 1:	Get post details
 $query_details = $database->query("SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE file_id = '$file_id' and page_id = '$page_id'");
@@ -46,7 +46,7 @@ $dups=$query_duplicates->numRows();
 //only delete the file if there is 1 database entry (not used on multiple sections)
 if($dups==1){
 	// STEP 2:	Delete any files if they exists
-	$file = WB_PATH.MEDIA_DIRECTORY.'/download_gallery/' . $fname;
+	$file = LEPTON_PATH.MEDIA_DIRECTORY.'/download_gallery/' . $fname;
 	if(file_exists($file) AND is_writable($file)) {
 		unlink($file);
 	}
@@ -68,7 +68,7 @@ if($group_id == 0){
 } else {
 
 	// Include the ordering class
-	require(WB_PATH.'/framework/class.order.php');			
+	require(LEPTON_PATH.'/framework/class.order.php');			
 	// Initialize order object 
 	$order = new order(TABLE_PREFIX."mod_download_gallery_files", 'position', 'file_id', 'group_id');
 	// reorder all groups in this group_id
@@ -78,7 +78,7 @@ if($group_id == 0){
 
 // STEP 5:	Check if there is a db error, otherwise say successful
 if($database->is_error()) {
-	$admin->print_error($database->get_error(), WB_URL.'/modules/modify_post.php?page_id='.$page_id.'&file_id='.$file_id);
+	$admin->print_error($database->get_error(), LEPTON_URL.'/modules/modify_post.php?page_id='.$page_id.'&file_id='.$file_id);
 } else {
 	$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 }

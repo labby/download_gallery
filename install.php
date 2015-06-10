@@ -22,7 +22,7 @@
 */
 
 // prevent this file from being accessed directly
-if (!defined('WB_PATH')) die(header('Location: index.php'));
+if (!defined('LEPTON_PATH')) die(header('Location: index.php'));
 
 $database->query("DROP TABLE IF EXISTS `".TABLE_PREFIX."mod_download_gallery_files`");
 $mod_dl_gallery = 'CREATE TABLE `'.TABLE_PREFIX.'mod_download_gallery_files` ( '
@@ -138,8 +138,8 @@ $database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_settings (sec
 $database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_groups (section_id,page_id) VALUES ('0', '0')");
 
 //Add folder for the files
-require_once(WB_PATH.'/framework/functions.php');
-include_once(WB_PATH.'/modules/download_gallery/functions.php');
+require_once(LEPTON_PATH.'/framework/summary.functions.php');
+include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
 make_dl_dir();
 
 ?>

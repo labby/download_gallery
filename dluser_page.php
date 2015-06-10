@@ -19,13 +19,13 @@
 */
 
 // prevent this file from being accessed directly
-if (!defined('WB_PATH')) die(header('Location: index.php'));
+if (!defined('LEPTON_PATH')) die(header('Location: index.php'));
 
 // obtain module directory
 $mod_dir = basename(dirname(__FILE__));
 
 // include the module language file depending on the backend language of the current user
-@include_once(WB_PATH . '/framework/module.functions.php');
+@include_once(LEPTON_PATH . '/framework/summary.module_edit_css.php');
 if (!@include(get_module_language_file($mod_dir))) return;
 
 // STEP 1:	get the Settings for this Section
@@ -40,7 +40,7 @@ if($settings['userupload'] == 0 || ($settings['userupload'] == 2 && (!isset($_SE
 }
 
 // include template parser class and set template
-require_once(WB_PATH . '/include/phplib/template.inc');
+require_once(LEPTON_PATH . '/include/phplib/template.inc');
 $tpl = new Template(dirname(__FILE__) . '/');
 // define how to handle unknown variables (default:='remove', during development use 'keep' or 'comment')
 $tpl->set_unknowns('keep');
@@ -74,7 +74,7 @@ $tpl->set_var(
 		// variables from Website Baker framework
 		'PAGE_ID'		=> (int) $page_id,
 		'SECTION_ID'	=> (int) $section_id,
-		'WB_URL'		=> WB_URL,
+		'LEPTON_URL'		=> LEPTON_URL,
 		'TXT_FILE'		=> $TEXT['FILE'],
 		'TXT_TITLE'		=> $TEXT['TITLE'],
 		'TXT_GROUP'		=> $TEXT['GROUP'],
@@ -94,7 +94,7 @@ if($use_captcha) {
 		$_SESSION['captcha'] .= rand(0,9);
 	}
 	$tpl->set_var('TXT_CAPTCHA1', $TEXT['VERIFICATION'].":");
-	$tpl->set_var('TXT_CAPTCHA2', '<img src="' . WB_URL. '/include/captcha.php?' . time(). '" alt="Captcha" /> <input class="captcha" type="text" name="captcha" maxlength="5" />');
+	$tpl->set_var('TXT_CAPTCHA2', '<img src="' . LEPTON_URL. '/include/captcha.php?' . time(). '" alt="Captcha" /> <input class="captcha" type="text" name="captcha" maxlength="5" />');
 } else {
 	$tpl->set_var('TXT_CAPTCHA1', '&nbsp;');
 	$tpl->set_var('TXT_CAPTCHA2', '&nbsp;');

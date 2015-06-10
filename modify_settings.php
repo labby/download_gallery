@@ -4,14 +4,14 @@
  */
 
 require('../../config.php');
-require(WB_PATH.'/modules/admin.php');	
+require(LEPTON_PATH.'/modules/admin.php');	
 
 // Load Language file
 if(LANGUAGE_LOADED) {
-	if(!file_exists(WB_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php')) {
-		require_once(WB_PATH.'/modules/download_gallery/languages/EN.php');
+	if(!file_exists(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php')) {
+		require_once(LEPTON_PATH.'/modules/download_gallery/languages/EN.php');
 	} else {
-		require_once(WB_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php');
+		require_once(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php');
 	}
 }
 
@@ -49,10 +49,10 @@ function process(element){
 
 <div class="download_gallery" style="border:none;"><?php
 	// include core functions of WB 2.7 to edit the optional module CSS files (frontend.css, backend.css)
-	@include_once(WB_PATH .'/framework/module.functions.php');
+	@include_once(LEPTON_PATH .'/framework/summary.module_edit_css.php');
  	if(function_exists('edit_module_css')) edit_module_css('download_gallery'); 
 ?></div>
-<form name="modify" action="<?php echo WB_URL; ?>/modules/download_gallery/save_settings.php" method="post" style="margin: 0;">
+<form name="modify" action="<?php echo LEPTON_URL; ?>/modules/download_gallery/save_settings.php" method="post" style="margin: 0;">
 
 	<input type="hidden" name="section_id" value="<?php echo $section_id; ?>" />
 	<input type="hidden" name="page_id" value="<?php echo $page_id; ?>" />
@@ -254,7 +254,7 @@ function process(element){
 							echo substr($fileext['extensions'], 0, 55) . $temp;?>
 						</td>
 						<td width="20" style="padding-left: 5px;">
-							<a href="javascript:showpopup('<?php echo WB_URL; ?>/modules/download_gallery/modify_extensions.php?page_id=<?php echo $page_id; ?>&amp;section_id=<?php echo $section_id; ?>&amp;fileext_id=<?php echo $fileext['fileext_id']; ?>',800,400)" title="<?php echo $TEXT['MODIFY']; ?>">
+							<a href="javascript:showpopup('<?php echo LEPTON_URL; ?>/modules/download_gallery/modify_extensions.php?page_id=<?php echo $page_id; ?>&amp;section_id=<?php echo $section_id; ?>&amp;fileext_id=<?php echo $fileext['fileext_id']; ?>',800,400)" title="<?php echo $TEXT['MODIFY']; ?>">
 								<img src="images/rename_16.png" border="0" alt="[<?php echo $TEXT['MODIFY']?>]" />
 							</a>
 						</td>
