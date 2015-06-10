@@ -27,6 +27,7 @@ $files_to_register = array(
 	$basename.'dluser_add.php',
 	$basename.'dluser_page.php',
 	$basename.'dluser_save.php',
+	$basename.'help.php',
 	$basename.'modify_extensions.php',
 	$basename.'modify_file.php',
 	$basename.'modify_group.php',
