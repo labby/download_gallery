@@ -61,10 +61,11 @@ if (isset($_POST['fileext_id'])) {
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<title><?php echo $DGTEXT['MOD_TITLE']; ?></title>
-		<link href="<?php echo LEPTON_URL; ?>/admin/interface/stylesheet.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo THEME_URL; ?>/theme.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
 		.modify_section {
 			margin-left	: 10px;
+			margin-top: 50px;
 		}
 		.modify_section h1 {
 			text-transform	: none;

@@ -69,14 +69,16 @@ $query_fileext 	= $database->query("SELECT * FROM ".TABLE_PREFIX."mod_download_g
 $extdetails 	= $query_fileext->fetchRow();
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
 	<head>
 		<title><?php echo $DGTEXT['MOD_TITLE']; ?></title>
-		<link href="<?php echo LEPTON_URL; ?>/admin/interface/stylesheet.css" rel="stylesheet" type="text/css" />
+		<meta charset="UTF-8">
+		<link href="<?php echo THEME_URL; ?>/theme.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
 		.modify_section {
 			margin-left	: 10px;
+			margin-top: 50px;
 		}
 		.modify_section h1 {
 			text-transform	: none;
@@ -113,7 +115,7 @@ $extdetails 	= $query_fileext->fetchRow();
 	
 	<body>
 		<div class="modify_section">
-			<h1><?php echo $DGTEXT['MOD_FILE_EXT']; ?></h1>
+			<h2><?php echo $DGTEXT['MOD_FILE_EXT']; ?></h2>
 			<p><?php echo $DGTEXT['MOD_TXT']; ?></p>
 			
 			<form name="modify_file_ext" method="post" action="<?php echo LEPTON_URL; ?>/modules/download_gallery/save_extsettings.php" onsubmit="return validateForm(this);" >
@@ -138,7 +140,7 @@ $extdetails 	= $query_fileext->fetchRow();
 					<tr>
 						<td align="center">
 							<input name="save" type="submit" value="<?php echo $TEXT['SAVE']; ?>" style="width: 120px; margin-top: 5px;" /> &nbsp;
-							<input type="button" value="<?php echo $TEXT['CANCEL']; ?>" onclick="window.close(); return false;" style="width: 120px; margin-top: 5px;" />
+							<input type="button" class="cancel" value="<?php echo $TEXT['CANCEL']; ?>" onclick="window.close(); return false;" style="width: 120px; margin-top: 5px;" />
 						</td>
 					</tr>
 				</table>
