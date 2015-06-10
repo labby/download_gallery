@@ -46,17 +46,17 @@ if ($referer && strpos($referer, LEPTON_URL . '/modules/download_gallery/modify_
 
 // include the admin wrapper script
 $update_when_modified = true; // Tells script to update when this page was last updated
-require(LEPTON_PATH . '/modules/admin.php');
-$admin = new admin('Pages', '', false, false);
+#require(LEPTON_PATH . '/modules/admin.php');
+#$admin = new admin('Pages', '', false, false);
 
-// Load Language file
-if(LANGUAGE_LOADED) {
-	if(!file_exists(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php')) {
-		require_once(LEPTON_PATH.'/modules/download_gallery/languages/EN.php');
-	} else {
-		require_once(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php');
-	}
-}
+/**
+ *	Language
+ */
+$lang = (dirname(__FILE__))."/languages/". LANGUAGE .".php";
+require_once ( !file_exists($lang) ? (dirname(__FILE__))."/languages/EN.php" : $lang );
+
+$section_id = intval($_GET['section_id']);
+$page_id = intval($_GET['page_id']);
 
 require(LEPTON_PATH.'/framework/summary.functions.php');
 

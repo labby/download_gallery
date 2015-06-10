@@ -37,17 +37,17 @@ else
 }
 // end include class.secure.php
 
-$update_when_modified = true; // Tells script to update when this page was last updated
-require(LEPTON_PATH.'/modules/admin.php');
+#$update_when_modified = true; // Tells script to update when this page was last updated
+#require(LEPTON_PATH.'/modules/admin.php');
 
-// Load Language file
-if(LANGUAGE_LOADED) {
-	if(!file_exists(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php')) {
-		require_once(LEPTON_PATH.'/modules/download_gallery/languages/EN.php');
-	} else {
-		require_once(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php');
-	}
-}
+/**
+ *	Language
+ */
+$lang = (dirname(__FILE__))."/languages/". LANGUAGE .".php";
+require_once ( !file_exists($lang) ? (dirname(__FILE__))."/languages/EN.php" : $lang );
+
+$section_id = intval($_POST['section_id']);
+$page_id = intval($_POST['page_id']);
 
 require(LEPTON_PATH.'/framework/summary.functions.php');
 
@@ -85,7 +85,7 @@ if (isset($_POST['fileext_id'])) {
 					$allValid	= true;
 					//Loop through string and see if illegal chars are used
 					for ($i = 0;  $i < strlen($checkStr);  $i++) {
-						$ch = substr($checkStr, $i, 1)
+						$ch = substr($checkStr, $i, 1);
 						if (strpos($checkOK, $ch)===FALSE) {
 							$allValid = false;
 							break;
