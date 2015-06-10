@@ -37,7 +37,7 @@ else
 }
 // end include class.secure.php
 
-require(LEPTON_PATH.'/modules/admin.php');				// Include WB admin wrapper script
+require(LEPTON_PATH.'/modules/admin.php');				// Include admin wrapper script
 require(LEPTON_PATH.'/framework/class.order.php');		// Include the ordering class
 
 // STEP 0:	initialize some variables

@@ -10,7 +10,7 @@ if (file_exists('../../config.php')) {
 	require('../../../config.php');	// called from within module info
 }
 
-// Include WB admin wrapper script
+// Include admin wrapper script
 require(LEPTON_PATH.'/modules/admin.php');
 
 // STEP 2:	Display the help page.

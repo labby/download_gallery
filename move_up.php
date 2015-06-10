@@ -55,7 +55,7 @@ if(!isset($_GET['file_id']) OR !is_numeric($_GET['file_id'])) {
 	$common_field = 'group_id';
 }
 
-// Include WB admin wrapper script
+// Include admin wrapper script
 require(LEPTON_PATH.'/modules/admin.php');				
 
 // Include the ordering class
