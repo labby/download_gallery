@@ -40,10 +40,10 @@ else
 require('info.php');
 
 // Include WB functions file
-@require_once(LEPTON_PATH.'/framework/summary.functions.php');
+require_once(LEPTON_PATH.'/framework/summary.functions.php');
 
 // Include DownloadGallery functions file
-@require_once('functions.php');
+require_once('functions.php');
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
 if(!file_exists(LEPTON_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php')) 

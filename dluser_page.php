@@ -40,15 +40,17 @@ else
 // obtain module directory
 $mod_dir = basename(dirname(__FILE__));
 
-// include the module language file depending on the backend language of the current user
-@include_once(LEPTON_PATH . '/framework/summary.module_edit_css.php');
-if (!@include(get_module_language_file($mod_dir))) return;
+/**
+ *	Language
+ */
+$lang = (dirname(__FILE__))."/languages/". LANGUAGE .".php";
+require_once ( !file_exists($lang) ? (dirname(__FILE__))."/languages/EN.php" : $lang );
 
 // STEP 1:	get the Settings for this Section
 $section_id = SECTION_ID;
 $page_id = PAGE_ID;
 $query_settings = $database->query("SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_settings WHERE section_id = '$section_id'");
-$settings = $query_settings->fetchRow();
+$settings = $query_settings->fetchRow( MYSQL_ASSOC );
 $use_captcha = $settings['use_captcha']; 
 
 if($settings['userupload'] == 0 || ($settings['userupload'] == 2 && (!isset($_SESSION['USER_ID']) || $_SESSION['USER_ID'] == ""))) {
@@ -57,7 +59,7 @@ if($settings['userupload'] == 0 || ($settings['userupload'] == 2 && (!isset($_SE
 
 // include template parser class and set template
 require_once(LEPTON_PATH . '/include/phplib/template.inc');
-$tpl = new Template(dirname(__FILE__) . '/');
+$tpl = new Template(dirname(__FILE__) . '/htt/');
 // define how to handle unknown variables (default:='remove', during development use 'keep' or 'comment')
 $tpl->set_unknowns('keep');
 
@@ -82,8 +84,6 @@ if($query->numRows() > 0) {
 		$tpl->parse('group_loop', 'group_block', true);
 	}
 }
-
-//$tpl->set_block('page', 'main_block', 'main');
 
 $tpl->set_var(
 	array(
@@ -110,7 +110,7 @@ if($use_captcha) {
 		$_SESSION['captcha'] .= rand(0,9);
 	}
 	$tpl->set_var('TXT_CAPTCHA1', $TEXT['VERIFICATION'].":");
-	$tpl->set_var('TXT_CAPTCHA2', '<img src="' . LEPTON_URL. '/include/captcha.php?' . time(). '" alt="Captcha" /> <input class="captcha" type="text" name="captcha" maxlength="5" />');
+	$tpl->set_var('TXT_CAPTCHA2', '<img src="' . LEPTON_URL. '/modules/captcha_control/captcha/captcha.php?display_captcha_X986E21=1&' . time(). '" alt="Captcha" /> <input class="captcha" type="text" name="captcha" maxlength="5" />');
 } else {
 	$tpl->set_var('TXT_CAPTCHA1', '&nbsp;');
 	$tpl->set_var('TXT_CAPTCHA2', '&nbsp;');

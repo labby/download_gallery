@@ -46,12 +46,6 @@ if(!isset($_GET['sid']) OR !is_numeric($_GET['sid'])) {
 	define('SECTION_ID', $section_id);
 }
 
-// Include database class
-if(!defined('DATABASE_CLASS_LOADED')) {
-	require(LEPTON_PATH.'/framework/class.database.php');
-}
-$database = new database();
-
 // STEP 1:			Query for page id
 $query_page = $database->query("SELECT parent,page_title,menu_title,keywords,description,visibility FROM ".TABLE_PREFIX."pages WHERE page_id = '$page_id'");
 if($query_page->numRows() == 0) {

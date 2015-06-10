@@ -73,7 +73,7 @@ if(extension_loaded('gd') AND function_exists('imageCreateFromJpeg')) { /* Make'
 				$captcha_error = $MESSAGE['MOD_FORM']['INCORRECT_CAPTCHA'];
 			}
 		} else {
-			$captcha_error = $MESSAGE['MOD_FORM']['INCORRECT_CAPTCHA'];
+			$captcha_error = $MESSAGE['MOD_FORM_INCORRECT_CAPTCHA'];
 		}
 	}
 }
@@ -90,8 +90,8 @@ if(isset($captcha_error)) {
 		echo $MESSAGE['GENERIC']['FILL_IN_ALL']." -<a href=\"javascript: history.go(-1);\">BACK</a>-";
 		exit;
 	} else {
-		$title = $admin->add_slashes(htmlspecialchars($admin->get_post('title')));
-		$description = $admin->add_slashes(htmlspecialchars($admin->get_post('description')));
+		$title = addslashes(htmlspecialchars($admin->get_post('title')));
+		$description = addslashes(htmlspecialchars($admin->get_post('description')));
 		$fgroup = (int) $admin->get_post('fgroup');
 	}
 
