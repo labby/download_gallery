@@ -1,22 +1,21 @@
 <?php
 
 /**
- *  @module         Download Gallery
- *  @version        see info.php of this module
- *  @authors        Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, erpe
- *  @copyright      2010-2015 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, erpe
- *  @license        GNU General Public License
- *  @license terms  see info.php of this module
- *  @platform       see info.php of this module
+ *  @module			Download Gallery
+ *  @version		see info.php of this module
+ *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, erpe
+ *  @copyright		2010-2015 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, erpe
+ *  @license		GNU General Public License
+ *  @license terms	see info.php of this module
+ *  @platform		see info.php of this module
  *
  */
 
-// VARIABLES REQUIRED FOR WEBSITE BAKER
 $module_name		= 'Download Gallery';
 $module_directory	= 'download_gallery';
 $module_function	= 'page';
-$module_version		= '3.0.0';
-$module_platform 	= '2.x';
+$module_version		= '3.0.0.2';
+$module_platform 	= '2.0';
 $module_status		= 'stable';
 $module_author		= 'Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, erpe';
 $module_license		= 'GNU General Public License';

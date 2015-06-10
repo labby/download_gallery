@@ -1,9 +1,41 @@
 <?php
-/* 
- * Copyright and more information see file info.php
+
+/**
+ *  @module			Download Gallery
+ *  @version		see info.php of this module
+ *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, erpe
+ *  @copyright		2010-2015 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, erpe
+ *  @license		GNU General Public License
+ *  @license terms	see info.php of this module
+ *  @platform		see info.php of this module
+ *
  */
 
-require('../../config.php');
+// include class.secure.php to protect this file and the whole CMS!
+if ( defined( 'LEPTON_PATH' ) )
+{
+    include( LEPTON_PATH . '/framework/class.secure.php' );
+} 
+else
+{
+    $oneback = "../";
+    $root    = $oneback;
+    $level   = 1;
+    while ( ( $level < 10 ) && ( !file_exists( $root . '/framework/class.secure.php' ) ) )
+    {
+        $root .= $oneback;
+        $level += 1;
+    } 
+    if ( file_exists( $root . '/framework/class.secure.php' ) )
+    {
+        include( $root . '/framework/class.secure.php' );
+    } 
+    else
+    {
+        trigger_error( sprintf( "[ <b>%s</b> ] Can't include class.secure.php!", $_SERVER[ 'SCRIPT_NAME' ] ), E_USER_ERROR );
+    }
+}
+// end include class.secure.php
 
 // Include WB admin wrapper script
 $update_when_modified = true; // Tells script to update when this page was last updated
@@ -66,15 +98,15 @@ if (isset($_POST['use_captcha']) AND is_numeric($_POST['use_captcha'])) {
 }
 
 if (isset($_POST['save'])) {
-    $header = $admin->add_slashes(str_replace($friendly, $raw, $_POST['header']));
-    $footer = $admin->add_slashes(str_replace($friendly, $raw, $_POST['footer']));
-    $files_loop = $admin->add_slashes(str_replace($friendly, $raw, $_POST['files_loop']));
-    $file_header = $admin->add_slashes(str_replace($friendly, $raw, $_POST['file_header']));
-    $file_footer = $admin->add_slashes(str_replace($friendly, $raw, $_POST['file_footer']));
-    $gheader = $admin->add_slashes(str_replace($friendly, $raw, $_POST['gheader']));
-    $gloop   = $admin->add_slashes(str_replace($friendly, $raw, $_POST['gloop']));
-    $gfooter = $admin->add_slashes(str_replace($friendly, $raw, $_POST['gfooter']));
-    $search_layout = $admin->add_slashes(str_replace($friendly, $raw, $_POST['search_layout']));
+    $header = addslashes(str_replace($friendly, $raw, $_POST['header']));
+    $footer = addslashes(str_replace($friendly, $raw, $_POST['footer']));
+    $files_loop = addslashes(str_replace($friendly, $raw, $_POST['files_loop']));
+    $file_header = addslashes(str_replace($friendly, $raw, $_POST['file_header']));
+    $file_footer = addslashes(str_replace($friendly, $raw, $_POST['file_footer']));
+    $gheader = addslashes(str_replace($friendly, $raw, $_POST['gheader']));
+    $gloop   = addslashes(str_replace($friendly, $raw, $_POST['gloop']));
+    $gfooter = addslashes(str_replace($friendly, $raw, $_POST['gfooter']));
+    $search_layout = addslashes(str_replace($friendly, $raw, $_POST['search_layout']));
 } elseif (isset($_POST['reset_table'])){
     $header = '';
     $footer = '';

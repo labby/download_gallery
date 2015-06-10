@@ -1,24 +1,41 @@
 <?php
-/*
-	 Website Baker Project <http://www.websitebaker.org/>
-	 Copyright (C) 2004-2006, Ryan Djurovich
-	
-	 Website Baker is free software; you can redistribute it and/or modify
-	 it under the terms of the GNU General Public License as published by
-	 the Free Software Foundation; either version 2 of the License, or
-	 (at your option) any later version.
-	
-	 Website Baker is distributed in the hope that it will be useful,
-	 but WITHOUT ANY WARRANTY; without even the implied warranty of
-	 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
-	 See the GNU General Public License for more details.
-	
-	 You should have received a copy of the GNU General Public License along with Website Baker; 
-	 if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
 
-// prevent this file from being accessed directly
-if (!defined('LEPTON_PATH')) die(header('Location: index.php'));
+/**
+ *  @module			Download Gallery
+ *  @version		see info.php of this module
+ *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, erpe
+ *  @copyright		2010-2015 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, erpe
+ *  @license		GNU General Public License
+ *  @license terms	see info.php of this module
+ *  @platform		see info.php of this module
+ *
+ */
+
+// include class.secure.php to protect this file and the whole CMS!
+if ( defined( 'LEPTON_PATH' ) )
+{
+    include( LEPTON_PATH . '/framework/class.secure.php' );
+} 
+else
+{
+    $oneback = "../";
+    $root    = $oneback;
+    $level   = 1;
+    while ( ( $level < 10 ) && ( !file_exists( $root . '/framework/class.secure.php' ) ) )
+    {
+        $root .= $oneback;
+        $level += 1;
+    } 
+    if ( file_exists( $root . '/framework/class.secure.php' ) )
+    {
+        include( $root . '/framework/class.secure.php' );
+    } 
+    else
+    {
+        trigger_error( sprintf( "[ <b>%s</b> ] Can't include class.secure.php!", $_SERVER[ 'SCRIPT_NAME' ] ), E_USER_ERROR );
+    }
+}
+// end include class.secure.php
 
 include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
 
@@ -27,14 +44,6 @@ if(LANGUAGE_LOADED) {
 	if(!file_exists(LEPTON_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php')) 
 			require_once(LEPTON_PATH .'/modules/download_gallery/languages/EN.php');
 	else 	require_once(LEPTON_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php');
-}
-
-// load frontend.css if the template forgot it:
-if((!function_exists('register_frontend_modfiles') || !defined('MOD_FRONTEND_CSS_REGISTERED')) &&
-     file_exists(LEPTON_PATH .'/modules/download_gallery/frontend.css')) {
-        echo '<style type="text/css">';
-        include(LEPTON_PATH .'/modules/download_gallery/frontend.css');
-        echo "\n</style>\n";
 }
 
 // For the curiousity: How fast do we are?
@@ -156,8 +165,8 @@ if ((isset($_SERVER['HTTPS'])) and ($_SERVER['HTTPS']=="on")) {
 } else {        
         $selflink = "http://";
 }
-$selflink .= $_SERVER['SERVER_NAME']. $_SERVER['SCRIPT_NAME'];
-
+//	$selflink .= $_SERVER['SERVER_NAME']. $_SERVER['SCRIPT_NAME'];
+$selflink .= $_SERVER['HTTP_HOST']. $_SERVER['SCRIPT_NAME'];
 //replace search in heading with searchlayout replacing searchbox submit and reset
 if($settings['search_filter'] == '1') {
         //create the search form

@@ -1,16 +1,42 @@
 <?php
-/* 
- * Copyright and more information see file info.php
+
+/**
+ *  @module			Download Gallery
+ *  @version		see info.php of this module
+ *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, erpe
+ *  @copyright		2010-2015 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, erpe
+ *  @license		GNU General Public License
+ *  @license terms	see info.php of this module
+ *  @platform		see info.php of this module
+ *
  */
- /*
-	changes by Stefek:
-	- added "reorder file position by group" 
-		This is needed to ensure that files of every group 
-		got their own ordering 
-	- apply special id null reorder function
-		(there is no such methode in the 'order' class
- */
-require('../../config.php');
+
+// include class.secure.php to protect this file and the whole CMS!
+if ( defined( 'LEPTON_PATH' ) )
+{
+    include( LEPTON_PATH . '/framework/class.secure.php' );
+} 
+else
+{
+    $oneback = "../";
+    $root    = $oneback;
+    $level   = 1;
+    while ( ( $level < 10 ) && ( !file_exists( $root . '/framework/class.secure.php' ) ) )
+    {
+        $root .= $oneback;
+        $level += 1;
+    } 
+    if ( file_exists( $root . '/framework/class.secure.php' ) )
+    {
+        include( $root . '/framework/class.secure.php' );
+    } 
+    else
+    {
+        trigger_error( sprintf( "[ <b>%s</b> ] Can't include class.secure.php!", $_SERVER[ 'SCRIPT_NAME' ] ), E_USER_ERROR );
+    }
+}
+// end include class.secure.php
+
 require_once(LEPTON_PATH.'/framework/summary.functions.php');
 $update_when_modified = true; 					// Tells script to update when this page was last updated
 require(LEPTON_PATH.'/modules/admin.php');			// Include WB admin wrapper script
@@ -36,13 +62,13 @@ $fileext = '';
 if($admin->get_post('title') == '' AND $admin->get_post('url') == '') {
 	$admin->print_error($MESSAGE['GENERIC']['FILL_IN_ALL'], LEPTON_URL.'/modules/download_gallery/modify_file.php?page_id='.$page_id.'&section_id='.$section_id.'&file_id='.$id);
 } else {
-	$title = $admin->add_slashes(htmlspecialchars($admin->get_post('title')));
-	$description = 	$admin->add_slashes($admin->get_post('description'));
-	$old_link = 	$admin->add_slashes($admin->get_post('link'));
-	$existingfile = $admin->add_slashes($admin->get_post('existingfile'));
-	$group = 		$admin->add_slashes($admin->get_post('group'));
-	$overwrite = 	$admin->add_slashes($admin->get_post('overwrite'));
-	$remotelink = 	$admin->add_slashes($admin->get_post('remote_link'));
+	$title = addslashes(htmlspecialchars($admin->get_post('title')));
+	$description = 	addslashes($admin->get_post('description'));
+	$old_link = 	addslashes($admin->get_post('link'));
+	$existingfile = addslashes($admin->get_post('existingfile'));
+	$group = 		addslashes($admin->get_post('group'));
+	$overwrite = 	addslashes($admin->get_post('overwrite'));
+	$remotelink = 	addslashes($admin->get_post('remote_link'));
 	if(($existingfile=="") AND ($remotelink=="")) $existingfile=$old_link;
 }
 
