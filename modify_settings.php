@@ -351,7 +351,7 @@ function process(element){
 				<input name="reset_table" type="submit" value="<?php echo $DGTEXT['RESET_TABLE']; ?>" style="margin-top: 5px;" />
 			</td>
 			<td align="right">
-				<input type="button" value="<?php echo $TEXT['CANCEL']; ?>" onclick="javascript:window.location='<?php echo ADMIN_URL; ?>/pages/modify.php?page_id=<?php echo $page_id; ?>';" style="width: 100px; margin-top: 5px;" />
+				<input type="button" class="cancel" value="<?php echo $TEXT['CANCEL']; ?>" onclick="javascript:window.location='<?php echo ADMIN_URL; ?>/pages/modify.php?page_id=<?php echo $page_id; ?>';" style="width: 100px; margin-top: 5px;" />
 			</td>
 		</tr>
 	</table>
