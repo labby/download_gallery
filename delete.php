@@ -74,6 +74,6 @@ if($query_files->numRows() > 0) {
 $database->query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE section_id = '$section_id'");
 $database->query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_settings WHERE section_id = '$section_id'");
 $database->query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_file_ext WHERE section_id = '$section_id'");
-$database->query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_group WHERE section_id = '$section_id'");
+$database->query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_groups WHERE section_id = '$section_id'");
 
 ?>

@@ -39,12 +39,11 @@ else
 
 include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
 
-if(LANGUAGE_LOADED) {
-	// check if module language file exists for the language set by the user (e.g. DE, EN)
-	if(!file_exists(LEPTON_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php')) 
-			require_once(LEPTON_PATH .'/modules/download_gallery/languages/EN.php');
-	else 	require_once(LEPTON_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php');
-}
+/**
+ *	Language
+ */
+$lang = (dirname(__FILE__))."/languages/". LANGUAGE .".php";
+require_once ( !file_exists($lang) ? (dirname(__FILE__))."/languages/EN.php" : $lang );
 
 // For the curiousity: How fast do we are?
 $time_start = microtime_float();

@@ -70,7 +70,7 @@ if(!function_exists('init_fields')){
 	function init_fields(&$header, &$footer, &$file_header, &$files_loop, &$file_footer, &$gloop, &$search_layout, &$gheader, &$gfooter) {
 	   $header = addslashes('[SEARCH]');
 	   
-	   $footer = addslashes('<tr><td colspan="4">&nbsp;</td></tr>
+	   $footer = '<tr><td colspan="4">&nbsp;</td></tr>
 	   <tr>
 	   <td colspan="4" class="mod_download_gallery_th_f">
 	   <table cellpadding="0" cellspacing="0" border="0" width="98%" style="display: [DISPLAY_PREVIOUS_NEXT_LINKS]">
@@ -82,17 +82,17 @@ if(!function_exists('init_fields')){
 	   </table>
 	   </td>
 	   </tr>
-	   </table>');
+	   </table>';
 	   
-	   $file_header = addslashes('<table cellpadding="0" cellspacing="0" border="0">
+	   $file_header ='<table cellpadding="0" cellspacing="0" border="0">
 	   <tr>
 	   <td class="mod_download_gallery_th_f"> [THTITLE] </td>
 	   <td class="mod_download_gallery_th_f"> [THCHANGED] </td>
 	   <td class="mod_download_gallery_th_f"> [THSIZE] </td>
 	   <td class="mod_download_gallery_th_f"> [THCOUNT]  </td>
-	   </tr>');
+	   </tr>';
 	   
-	   $files_loop = addslashes('<tr>
+	   $files_loop ='<tr>
 	   <td class="mod_download_gallery_line_f"><img src="[FTIMAGE]" alt="" /> <a href="[LINK]" target="dlg"><b>[TITLE]</b></a></td>
 	   <td class="mod_download_gallery_line_rightalign_f"> [DATE]</td>
 	   <td class="mod_download_gallery_line_rightalign_f"> [SIZE]</td>
@@ -100,20 +100,20 @@ if(!function_exists('init_fields')){
 	   </tr>
 	   <tr>
 	   <td class="mod_download_gallery_line_text_f" colspan="4">[DESCRIPTION]</td>
-	   </tr>');
+	   </tr>';
 	   
 	   $file_footer = '';
 	   $gheader = '';
 	   $gfooter = '';
 	   
-	   $gloop = addslashes('<tr>
+	   $gloop = '<tr>
 	   <td colspan="4">&nbsp;</td>
 	   </tr>
 	   <tr>
 	   <td class="mod_download_gallery_dgheader_f" colspan="4">[GROUPTITLE]</td>
-	   </tr>');
+	   </tr>';
 	   
-	   $search_layout = addslashes('[SEARCHBOX] [SEARCHSUBMIT] [SEARCHRESULT]');
+	   $search_layout = '[SEARCHBOX] [SEARCHSUBMIT] [SEARCHRESULT]';
 	   return true;
 	}
 }
