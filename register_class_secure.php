@@ -24,6 +24,7 @@ $files_to_register = array(
 	$basename.'delete_group.php',
 	$basename.'delete.php',
 	$basename.'dlc.php',
+	$basename.'modify_extensions.php',
 	$basename.'modify_file.php',
 	$basename.'modify_group.php',
 	$basename.'modify_settings.php',

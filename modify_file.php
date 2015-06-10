@@ -50,12 +50,10 @@ $preselected_group = (isset($_GET['group_id']) && is_numeric($_GET['group_id']))
 require(LEPTON_PATH.'/modules/admin.php');
 require(LEPTON_PATH.'/framework/summary.functions.php');
 
-if(LANGUAGE_LOADED) {
+if(file_exists(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php')) {
+	require_once(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php');
+} else {
 	require_once(LEPTON_PATH.'/modules/download_gallery/languages/EN.php');
-	if(!file_exists(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php')) {
-		} else {
-		require_once(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php');
-	}
 }
 
 // Get header and footer

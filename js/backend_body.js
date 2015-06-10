@@ -18,12 +18,12 @@ function include_file(filename, filetype) {
 }
 
 // include CSS in <head>
-include_file('../../modules/download_gallery/drag_n_drop.css', 'css'); 
+include_file('../../modules/download_gallery/css/drag_n_drop.css', 'css'); 
 
 
 if(!jQuery().sortable){ 
 	// load_jQ_UI;			
-	include_file('../../include/jquery/jquery-ui-min.js', 'js'); 
+	include_file('../../modules/lib_jquery/jquery-ui/ui/jquery-ui.min.js', 'js'); 
 }
 
 // start window load function
