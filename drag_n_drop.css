@@ -1,0 +1,19 @@
+/*
+
+	The following CSS declarations needed for proper work with Drag&Drop
+	
+*/
+
+
+/*
+item row hover onmouseover
+*/
+tr.frow_hover   { background-color: #f5f8dc }
+
+/*
+--------------| Drag& Drop specifics
+*/
+.downloadGalleryResult      { font-size: 8px; font-family: Courier; text-align: center }
+.dragdrop_download_gallery   { background-color: #d5dde7; width: 15px }
+.dragdrop_handle      { background-color: #ccc; background-image: url("images/dd_grip.gif"); background-position: right center; cursor: move; padding: 0; width: 20px !important; border-style: solid; border-width: 2px 2px 3px; border-color: #cad2d9 #bac5ce }
+.move_up, .move_down   { width: 16px !important }

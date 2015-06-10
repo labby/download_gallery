@@ -1,0 +1,43 @@
+<!-- BEGIN main_block -->
+<div class="{MODULE_DIR} upload">
+<form name="upload "action="{WB_URL}/modules/download_gallery/dluser_save.php?sid={SECTION_ID}&amp;pid={PAGE_ID}"
+	method="post" enctype="multipart/form-data" >
+<table align="center">
+	<tr>
+		<td class="field_title">{TXT_FILE} *:</td>
+		<td><input class="field" type="file" name="file" /></td>
+	</tr>
+	<tr>
+		<td class="field_title">{TXT_TITLE} *:</td>
+		<td class="field"><input class="field" type="text" name="title" /></td>
+	</tr>
+	<tr>
+		<td class="field_title">{TXT_GROUP} *:</td>
+		<td>
+			<select name="fgroup">
+				<option value="0">{TXT_NONE}</option>
+				<!-- BEGIN group_block -->
+					<option value="{GROUP_VAL}">{GROUP_TITLE}</option>
+				<!-- END group_block -->
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="field_title">{TXT_DESCR}:</td>
+		<td><textarea name="description" rows="3" cols="50"></textarea></td>
+	</tr>
+	<tr>
+		<td class="field_title">{TXT_CAPTCHA1}</td>
+		<td>{TXT_CAPTCHA2}</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>
+			<input type="submit" value="{TXT_UPLOAD}" />
+			<input type="reset" value="{TXT_RESET}" />
+		</td>
+	</tr>
+</table>
+</form>
+</div>
+<!-- END main_block -->
