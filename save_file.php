@@ -78,6 +78,8 @@ $page = $query_page->fetchRow();
 $page_level = $page['level'];
 $page_link = $page['link'];
 
+$file_link="";
+
 // Check if the user uploaded an file or wants to delete one
 if ((isset($_FILES['file']['tmp_name'])) AND ($_FILES['file']['tmp_name'] != '') AND ($existingfile == '')) {
 	// Get real filename and set new filename

@@ -75,25 +75,64 @@ $database->build_and_execute(
 	TABLE_PREFIX."mod_download_gallery_settings",
 	$fields
 );
-	
-$image_array	= "jpg,jpeg,jpe,jfif,gif,bmp,dib,png,tif,tiff,wmf,emf,psp";
-$movie_array	= "mov,wma";
-$music_array	= "mp3,mid,rmi,midi,wav,snd,au,aif,aiff,ra,ram,rm,ogg";
-$docs_array	= "doc,dot";
-$pres_array	= "ppa,pps,ppt";
-$excel_array	= "xla,xlb,xlc,xld,xlk,xll,xlm,xls,xlt,xlv,xlw,xlxml";
-$compr_array	= "arj,cab,lzh,tar,tz,zip";
-$pdf_array	= "pdf";
-$txt_array	= "txt,bat,ini,log";
 
-$database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_file_ext (section_id,page_id,file_type,file_image,extensions) VALUES ('$section_id','$page_id','images','image.gif','$image_array')");
-$database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_file_ext (section_id,page_id,file_type,file_image,extensions) VALUES ('$section_id','$page_id','movies','movie.gif','$movie_array')");
-$database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_file_ext (section_id,page_id,file_type,file_image,extensions) VALUES ('$section_id','$page_id','music','music.gif','$music_array')");
-$database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_file_ext (section_id,page_id,file_type,file_image,extensions) VALUES ('$section_id','$page_id','documents','document.gif','$docs_array')");
-$database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_file_ext (section_id,page_id,file_type,file_image,extensions) VALUES ('$section_id','$page_id','presentations','presentation.gif','$pres_array')");
-$database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_file_ext (section_id,page_id,file_type,file_image,extensions) VALUES ('$section_id','$page_id','spreadsheets','spreadsheet.gif','$excel_array')");
-$database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_file_ext (section_id,page_id,file_type,file_image,extensions) VALUES ('$section_id','$page_id','compressions','compression.gif','$compr_array')");
-$database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_file_ext (section_id,page_id,file_type,file_image,extensions) VALUES ('$section_id','$page_id','pdf','pdf.gif','$pdf_array')");
-$database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_file_ext (section_id,page_id,file_type,file_image,extensions) VALUES ('$section_id','$page_id','text','text.gif','$txt_array')");
+$file_types = array(
+	array(
+		'file_type'	=> "images",
+		'file_image' => "image.gif",
+		'extensions' => "jpg,jpeg,jpe,jfif,gif,bmp,dib,png,tif,tiff,wmf,emf,psp"
+	),
+	array(
+		'file_type'	=> "movies",
+		'file_image' => "movie.gif",
+		'extensions' => "mov,wma"
+	),
+	array(
+		'file_type' => "music",
+		'file_image' => "music.gif",
+		'extensions' => "mp3,mid,rmi,midi,wav,snd,au,aif,aiff,ra,ram,rm,ogg"
+	),
+	array(
+		'file_type' => "documents",
+		'file_image' => "document.gif",
+		'extensions' => "doc,dot"
+	),
+	array(
+		'file_type' => "presentations",
+		'file_image' => "presentation.gif",
+		'extensions' => "ppa,pps,ppt"
+	),
+	array(
+		'file_type' => "spreadsheets",
+		'file_image' => "spreadsheet.gif",
+		'extensions' => "xla,xlb,xlc,xld,xlk,xll,xlm,xls,xlt,xlv,xlw,xlxml"
+	),
+	array(
+		'file_type'	=> "compressions",
+		'file_image' => "compression.gif",
+		'extensions' => "arj,cab,lzh,tar,tz,zip"
+	),
+	array(
+		'file_type' => "pdf",
+		'file_image' => "pdf.gif",
+		'extensions' => "pdf"
+	),
+	array(
+		'file_type' => "text",
+		'file_image' => "text.gif",
+		'extensions' => "txt,bat,ini,log"
+	)
+);
+
+foreach($file_types as &$type) {
+	$type['section_id'] = $section_id;
+	$type['page_id'] = $page_id;
+	
+	$database->build_and_execute(
+		"insert",
+		TABLE_PREFIX."mod_download_gallery_file_ext",
+		$type
+	);
+}
 
 ?>

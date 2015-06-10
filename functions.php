@@ -67,8 +67,11 @@ if(!function_exists('human_file_size')){
 }
 
 if(!function_exists('init_fields')){
+	/**
+	 *	Since we are using PDO we are not escape the vars before using "execute()" to avoid double escaped quotes.
+	 */
 	function init_fields(&$header, &$footer, &$file_header, &$files_loop, &$file_footer, &$gloop, &$search_layout, &$gheader, &$gfooter) {
-	   $header = addslashes('[SEARCH]');
+	   $header = '[SEARCH]';
 	   
 	   $footer = '<tr><td colspan="4">&nbsp;</td></tr>
 	   <tr>
