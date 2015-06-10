@@ -36,7 +36,7 @@ else
 }
 // end include class.secure.php
 
-//require(LEPTON_PATH.'/modules/admin.php');				// Include WB admin wrapper script
+//require(LEPTON_PATH.'/modules/admin.php');				// Include admin wrapper script
 require_once(LEPTON_PATH.'/framework/class.order.php');		// Include the ordering class
 
 include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');

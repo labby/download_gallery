@@ -46,7 +46,7 @@ else
 
 $preselected_group = (isset($_GET['group_id']) && is_numeric($_GET['group_id'])) ? intval($_GET['group_id']) : 0;
 
-// Include WB admin wrapper script
+// Include admin wrapper script
 require(LEPTON_PATH.'/modules/admin.php');
 require(LEPTON_PATH.'/framework/summary.functions.php');
 

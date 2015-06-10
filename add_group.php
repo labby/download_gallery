@@ -37,7 +37,7 @@ else
 }
 // end include class.secure.php
 
-// Include WB admin wrapper script
+// Include admin wrapper script
 require(LEPTON_PATH.'/modules/admin.php');
 
 // STEP 0:	initialize some variables

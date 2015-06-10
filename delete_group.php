@@ -45,7 +45,7 @@ if(!isset($_GET['group_id']) OR !is_numeric($_GET['group_id'])) {
 	$group_id = (int) $_GET['group_id'];
 }
 
-// Include WB admin wrapper script
+// Include admin wrapper script
 $update_when_modified = true; // Tells script to update when this page was last updated
 require(LEPTON_PATH.'/modules/admin.php');
 

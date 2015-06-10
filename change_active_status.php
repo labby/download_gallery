@@ -55,7 +55,7 @@ if (isset($_GET['file_id']) && is_numeric($_GET['file_id']) && isset($_GET['stat
 // reverse current status to change its value in DB 
 $status = ($status == 1) ? 0 : 1;
 
-// Include WB admin wrapper script
+// Include admin wrapper script
 $update_when_modified = true; // Tells script to update when this page was last updated
 require(LEPTON_PATH.'/modules/admin.php');
 

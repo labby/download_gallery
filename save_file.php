@@ -39,7 +39,7 @@ else
 
 require_once(LEPTON_PATH.'/framework/summary.functions.php');
 $update_when_modified = true; 					// Tells script to update when this page was last updated
-require(LEPTON_PATH.'/modules/admin.php');			// Include WB admin wrapper script
+require(LEPTON_PATH.'/modules/admin.php');			// Include admin wrapper script
 include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
 
 // Get id
