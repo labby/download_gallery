@@ -13,13 +13,13 @@ textarea     { color: #520000; font-family: monospace, Courier; background-color
 /*
 --------------| Table Layout
 */
-div.download_gallery   { background-color: #fbfbfb; background-image: url("images/box_bg.png"); background-repeat: repeat-x; background-position: 0 -40px; margin-top: 8px; margin-bottom: 8px; padding: 4px; border: solid 3px #bfc9df }
+div.download_gallery   { background-color: #fbfbfb; background-image: url("../images/box_bg.png"); background-repeat: repeat-x; background-position: 0 -40px; margin-top: 8px; margin-bottom: 8px; padding: 4px; border: solid 3px #bfc9df }
 table.download_gallery   { background-repeat: repeat-x; margin-bottom: 5px; border: solid 2px #babfca; border-collapse: collapse; }
 .download_gallery thead td, .download_gallery tfoot td  { color: #4c576f; font-weight: bold; background-color: #fff }
 table.download_gallery tbody td      { border-bottom: 1px solid #bfc9df }
 .download_gallery .hilite td  { background-color: #DBFBBA!important }
-.download_gallery thead td, .bakery tfoot td  { font-size: 11px; background-image: url("images/box_bg.png"); background-repeat: repeat-x; background-attachment: scroll; background-position: 0 -40px; border-top: 1px solid #becadb; border-bottom: 1px solid #becadb }
-.download_gallery input   { color: #5c6a86; font-size: 10px; font-weight: bold; background-color: #c5cdd6; background-image: url("images/box_bg.png"); background-position: 0 -40px; border: solid 1px }
+.download_gallery thead td, .bakery tfoot td  { font-size: 11px; background-image: url("../images/box_bg.png"); background-repeat: repeat-x; background-attachment: scroll; background-position: 0 -40px; border-top: 1px solid #becadb; border-bottom: 1px solid #becadb }
+.download_gallery input   { color: #5c6a86; font-size: 10px; font-weight: bold; background-color: #c5cdd6; background-image: url("../images/box_bg.png"); background-position: 0 -40px; border: solid 1px }
 
 tr.even, tr.odd    { background-color: #a3baca !important }
 td.group_empty { font-weight: bold; background-color: #f4f2e9; text-align: center }
@@ -75,8 +75,8 @@ table.settings_table    {
     padding: 0;
     border: solid 1px #515d76;
 }
-.settings_table caption	   { color: #fff !important; font-size: 16px; font-weight: bold; line-height: 160%; background-color: #515d76; background-image: url("images/box_bg.png"); background-repeat: repeat-x; text-align: left; margin-top: 8px; padding-top: 4px; padding-left: 10px; height: 35px; border: 1px #515d76 }
-.settings_table tr td, .settings_table tr th        { background-image: url("images/box_bg.png"); background-repeat: repeat-x; background-attachment: scroll; background-position: 0 -40px; margin: 0; padding: 4px; border-bottom: 1px solid #becadb }
+.settings_table caption	   { color: #fff !important; font-size: 16px; font-weight: bold; line-height: 160%; background-color: #515d76; background-image: url("../images/box_bg.png"); background-repeat: repeat-x; text-align: left; margin-top: 8px; padding-top: 4px; padding-left: 10px; height: 35px; border: 1px #515d76 }
+.settings_table tr td, .settings_table tr th        { background-image: url("../images/box_bg.png"); background-repeat: repeat-x; background-attachment: scroll; background-position: 0 -40px; margin: 0; padding: 4px; border-bottom: 1px solid #becadb }
 .settings_table tr.row_a td, .settings_table tr.row_a th     { background-color: #e0eef8; background-image: none; background-position: 0 -36px; border-top: 1px solid #e0e0e0; border-bottom: 1px solid #999 }
 .settings_table tr.row_b td, .settings_table tr.row_b th     { background-color: #f6faff; background-image: none; background-position: 0 -36px; border-top: 1px solid #e0e0e0; border-bottom: 1px solid #999 }
 .settings_table th {
@@ -118,4 +118,11 @@ table.settings_table    {
 
 .download_gallery_help .row_a a:hover {
 	 border-bottom: 1px solid #000;
+}
+
+div.mce-panel button {
+	min-width: 60px !important;
+	max-width: 64px !important;
+	margin: 0px;
+	padding. 0px;
 }
