@@ -39,23 +39,21 @@ else
 // Get ID
 if (isset($_GET['file_id']) && is_numeric($_GET['file_id']) && isset($_GET['status']) && is_numeric($_GET['status'])) {
 	
-	$fID 	= $_GET['file_id'];
-	$status = $_GET['status'];
+	$fID 	= intval($_GET['file_id']);
+	$status = intval($_GET['status']);
 	
 }elseif (isset($_GET['group_id']) && is_numeric($_GET['group_id']) && isset($_GET['status']) && is_numeric($_GET['status'])) {
 	
-	$gID 	= $_GET['group_id'];
-	$status = $_GET['status'];	
+	$gID 	= intval($_GET['group_id']);
+	$status = intval($_GET['status']);	
 	
 } else {
 
 	exit(header("Location: ".ADMIN_URL."/pages/index.php"));	
 }
 
-
 // reverse current status to change its value in DB 
-if($status == 1) $status = 0;
-elseif($status == 0) $status = 1;
+$status = ($status == 1) ? 0 : 1;
 
 // Include WB admin wrapper script
 $update_when_modified = true; // Tells script to update when this page was last updated
