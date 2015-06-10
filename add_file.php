@@ -56,7 +56,18 @@ $order = new order(TABLE_PREFIX.'mod_download_gallery_files', 'position', 'file_
 $position = $order->get_new($section_id);
 
 // Insert new row into database
-$database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_files (section_id,page_id,position,active) VALUES ('$section_id','$page_id','$position','1')");
+$fields = array(
+	'section_id'=> $section_id,
+	'page_id'	=> $page_id,
+	'position'	=> $position,
+	'active'	=> 1
+);
+
+$database->build_and_execute(
+	"insert",
+	TABLE_PREFIX."mod_download_gallery_files",
+	$fields
+);
 
 // Get the id
 $file_id = $database->get_one("SELECT LAST_INSERT_ID()");

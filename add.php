@@ -40,8 +40,8 @@ else
 include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
 
 // STEP 0:	initialize some variables
-$page_id = (int) $page_id;
-$section_id = (int) $section_id;
+$page_id = intval($page_id);
+$section_id = intval($section_id);
 
 $header = '';
 $footer = '';
@@ -52,10 +52,30 @@ $gloop = '';
 $search_layout = '';
 $gheader = '';
 $gfooter = '';
-init_fields($header, $footer, $file_header, $files_loop, $file_footer, $gloop, $search_layout, $gheader, $gfooter);
-$database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_settings (section_id,page_id,header,files_loop,footer,file_header,file_footer,gloop,search_layout,gheader,gfooter)
-                 VALUES ('$section_id','$page_id','$header','$files_loop','$footer','$file_header','$file_footer','$gloop','$search_layout','$gheader','$gfooter')");
 
+//	see functions.php for details.
+init_fields($header, $footer, $file_header, $files_loop, $file_footer, $gloop, $search_layout, $gheader, $gfooter);
+
+$fields = array(
+	'section_id'	=> $section_id,
+	'page_id'		=> $page_id,
+	'header'		=> $header,
+	'files_loop'	=> $files_loop,
+	'footer'		=> $footer,
+	'file_header'	=> $file_header,
+	'file_footer'	=> $file_footer,
+	'gloop'			=> $gloop,
+	'search_layout'	=> $search_layout,
+	'gheader'		=> $gheader,
+	'gfooter'		=> $gfooter
+);
+
+$database->build_and_execute(
+	"insert",
+	TABLE_PREFIX."mod_download_gallery_settings",
+	$fields
+);
+	
 $image_array	= "jpg,jpeg,jpe,jfif,gif,bmp,dib,png,tif,tiff,wmf,emf,psp";
 $movie_array	= "mov,wma";
 $music_array	= "mp3,mid,rmi,midi,wav,snd,au,aif,aiff,ra,ram,rm,ogg";
