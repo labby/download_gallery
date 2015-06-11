@@ -3,8 +3,8 @@
 /**
  *  @module			Download Gallery
  *  @version		see info.php of this module
- *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, erpe
- *  @copyright		2010-2015 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, erpe
+ *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @copyright		2010-2015 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
  *  @license		GNU General Public License
  *  @license terms	see info.php of this module
  *  @platform		see info.php of this module
@@ -40,7 +40,7 @@ else
 // Include admin wrapper script
 require(LEPTON_PATH.'/modules/admin.php');
 
-// STEP 2:	Display the help page.
+// Display the help page.
 ?>
 
 <div class="download_gallery_help">
