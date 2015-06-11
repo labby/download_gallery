@@ -326,12 +326,20 @@ foreach($list as $group){
 
 	}else{		
 		
-		echo @str_replace(array_keys($group),array_values($group),$outer_loop_template);
+		//	We have to strip the arrays first, e.g. in the [files] values, to avoid "array_to_string" conflicts/notice.
+		$temp_values = array_values($group);
+		foreach($temp_values as &$ref) if (is_array($ref)) $ref= "(Array)";
+		
+		echo str_replace(
+			array_keys($group),
+			$temp_values,
+			$outer_loop_template
+		);
 	}
 	
 	// inner LOOP
 	
-	$files = @$list[$group['group_id']]['files'];
+	$files = (isset($list[$group['group_id']]['files']) ? $list[$group['group_id']]['files'] : NULL);
 	
 	if(empty($files)){
 		

@@ -23,7 +23,7 @@ include_file('../../modules/download_gallery/css/drag_n_drop.css', 'css');
 
 if(!jQuery().sortable){ 
 	// load_jQ_UI;			
-	include_file('../../modules/lib_jquery/jquery-ui/ui/jquery-ui.min.js', 'js'); 
+	// include_file('../../modules/lib_jquery/jquery-ui/ui/jquery-ui.min.js', 'js'); 
 }
 
 // start window load function
