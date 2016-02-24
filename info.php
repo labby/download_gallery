@@ -14,7 +14,7 @@
 $module_name		= 'Download Gallery';
 $module_directory	= 'download_gallery';
 $module_function	= 'page';
-$module_version		= '3.0.0.5';
+$module_version		= '3.0.0.6';
 $module_platform 	= '2.0';
 $module_status		= 'stable';
 $module_author		= 'Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, erpe';
