@@ -152,7 +152,7 @@ $limit_sql = ($settings['files_per_page'] != 0) ? " LIMIT $position, {$settings[
 
 //Query for serach results
 if ($searchfor!="") {
-	
+	$DG_FILES = TABLE_PREFIX."mod_download_gallery_files";
 	$dlsearch= " AND (".$DG_FILES.".title LIKE '%$searchfor%' OR ".$DG_FILES.".description LIKE '%$searchfor%')";       
 	$query_filter_num = $database->query("SELECT `file_id` FROM `".$DG_FILES."` WHERE `section_id` = '$section_id' AND `active` = '1' AND `title` != '' " .$dlsearch);
 	$search_num = $query_filter_num->numRows();
