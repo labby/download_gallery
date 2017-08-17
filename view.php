@@ -275,12 +275,20 @@ if($num_files > 0) {
 	// REPLACE BUTTON PLACEHOLDERS WITH VALUES
 	echo str_replace(array_keys($button_placeholders), array_values($button_placeholders), $settings['file_header']);
 	
+	$group_started = false;
 	
 	//--> start FILE LOOP
 	while($file = $query_files->fetchRow()) {
 		
 		//$setting_group
 		if($file['group_id'] != $pregroup){
+			
+			//  has a group started? "close" it ... print group footer
+			if($group_started === true)
+			{
+			    echo $settings['group_footer'];
+			    
+			}
 			
 			$query_groups = $database->query(sprintf("SELECT `group_id`, `title` FROM `%s` WHERE section_id = '%d' AND group_id='%d' AND active ='1'", 
 												$DG_PREFIX."_groups",$section_id, $file['group_id'] ));
@@ -293,8 +301,8 @@ if($num_files > 0) {
 				 
 				 echo $settings['group_header'];
 				 echo str_replace('[GROUPTITLE]', $group_title, $settings['group_loop']);
-				 echo $settings['group_footer'];
-				 
+				 // echo $settings['group_footer'];
+				 $group_started = true;
 			}
 		}
 		
@@ -448,6 +456,12 @@ if($num_files > 0) {
 	//<-- end FILE LOOP
 	
 	echo $settings['file_footer'];
+	
+	//  any group "open"?
+	if($group_started === true)
+    {
+	    echo $settings['group_footer'];
+	}
 }
 
 // Print footer
