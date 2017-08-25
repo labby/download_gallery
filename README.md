@@ -17,8 +17,7 @@ This module is for making a download gallery pages.
 
 #### Notice
 
-This is a pure LEPTON-CMS version (requires LEPTON 2) and will not work within WebsiteBaker.
-Sorry, guys
+This is a pure LEPTON-CMS version.
 
 [1]: http://lepton-cms.org "LEPTON CMS"
 [2]: http://www.lepton-cms.com/lepador/modules/download-gallery-2series.php
