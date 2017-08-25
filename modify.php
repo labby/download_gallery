@@ -173,7 +173,7 @@ $query_files = $database->query($files_query);
 
 while($file = $query_files->fetchRow()) {
 	// work out {FILE_UP} | {FILE_DOWN} ICON & Link
-	$move_up_down = '<a href="%s" title="%s"><img src="'.$IMAGES.'/%s_16.png" border="0" alt="%s" /></a>';	
+	$move_up_down = '<a href="%s" title="%s"><img src="'.$DG_ICONS.'/%s_dg.png" border="0" alt="%s" /></a>';	
 	
 	// workout {EXT_ICON}
 	$unknown_icon = '<img src="'.$DG_ICONS.'/unknown.gif" alt="[unknown.gif]" />';	
@@ -210,8 +210,7 @@ while($file = $query_files->fetchRow()) {
 		'{MOVE_DOWN}'=> ($file['position'] != 1 && $orderby == "position") 
 							? sprintf($move_up_down, dg_change_position('up', $file['file_id']), $TEXT['MOVE_UP'], 'up', '/\\')
 							: '<img src="'.$DG_ICONS.'/empty.gif" border="0" alt="[]" />'
-	);			    
-			
+	);			    	
 	
 } // endwhile ($file)		
 
@@ -231,14 +230,14 @@ while($file = $query_files->fetchRow()) {
 </p>
 <h2><?php echo $MENU['GROUPS'].' &amp; '.$TEXT['FILES'] ?></h2>
 <p>
-<button onclick="javascript: window.location = '<?php echo $MODULE_URL; ?>/add_file.php?page_id=<?php echo $page_id; ?>&amp;section_id=<?php echo $section_id; ?>';">
+<button class="ui button" onclick="javascript: window.location = '<?php echo $MODULE_URL; ?>/add_file.php?page_id=<?php echo $page_id; ?>&amp;section_id=<?php echo $section_id; ?>';">
 	<img src="<?php echo $DG_ICONS; ?>/add_new.png" alt="" /><?php echo $TEXT['ADD'].' '.$TEXT['FILE']; ?>
 </button>
-<button onclick="javascript: window.location = '<?php echo $MODULE_URL; ?>/add_group.php?page_id=<?php echo $page_id; ?>&amp;section_id=<?php echo $section_id; ?>';">
+<button class="ui button" onclick="javascript: window.location = '<?php echo $MODULE_URL; ?>/add_group.php?page_id=<?php echo $page_id; ?>&amp;section_id=<?php echo $section_id; ?>';">
 	<img src="<?php echo $DG_ICONS; ?>/add_group.png" alt="" /><?php echo $TEXT['ADD'].' '.$TEXT['GROUP']; ?>
 </button>
 </p>
-<table id="DownloadGalleryFiles" width="100%" cellspacing="0" cellpadding="2" border="0" class="download_gallery">
+<table id="DownloadGalleryFiles" width="100%" cellspacing="0" cellpadding="2" border="0" class="download_gallery ui striped table">
 <thead>
 	<tr style="height: 25px;">
 		<td></td>

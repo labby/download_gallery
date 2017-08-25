@@ -61,7 +61,7 @@ $fetch_content = $query_content->fetchRow();
 <input type="hidden" name="group_id" value="<?php echo $group_id; ?>" />
 
 <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
-	<caption><?php echo $TEXT['MODIFY'].'/'.$TEXT['ADD'].' '.$TEXT['GROUP']; ?></caption>	
+	<caption class="be_lepsem"><?php echo $TEXT['MODIFY'].'/'.$TEXT['ADD'].' '.$TEXT['GROUP']; ?></caption>	
 	<tr>
 		<th><?php echo $TEXT['ACTIVE']; ?>:</th>
 		<td>
@@ -80,11 +80,11 @@ $fetch_content = $query_content->fetchRow();
 	
 	<tfoot>
 	<tr>
-		<td style="text-align:left;">
-			<input name="save" type="submit" value="<?php echo $TEXT['SAVE']; ?>" style="width: 100px; margin-top: 5px;" />
+		<td style="text-align:center;">
+			<input class="ui positive button" name="save" type="submit" value="<?php echo $TEXT['SAVE']; ?>" style="width: 100px; margin-top: 5px;" />
 		</td>
 		<td style="text-align:right;">
-			<input type="button" class="cancel" value="<?php echo $TEXT['CANCEL']; ?>" onclick="javascript: window.location = '<?php echo ADMIN_URL; ?>/pages/modify.php?page_id=<?php echo $page_id; ?>';" style="width: 100px; margin-top: 5px;" />
+			<input type="button" class="cancel ui negative button" value="<?php echo $TEXT['CANCEL']; ?>" onclick="javascript: window.location = '<?php echo ADMIN_URL; ?>/pages/modify.php?page_id=<?php echo $page_id; ?>';" style="width: 100px; margin-top: 5px;" />
 		</td>
 	</tr>
 	</tfoot>

@@ -137,132 +137,9 @@ require(LEPTON_PATH.'/modules/admin.php');
 	
 	<a name="changelog"></a><h3>Changelog</h3>
 
-	<strong>Version 2.22 modified (12-14-2010) by Frank Heyne</strong>
-		<ul>
-			<li><strong>Fixed</strong> backend security</li>
-		</ul>
+	<h4>This module is hosted and developed on GITHUB.</h4>
+	<p>You can follow the changelog on <a href="https://github.com/labby/download_gallery/commits/master" target="_blank">the commit section on github.</a> if you like</p>
 	<hr />
-	
-	<strong>Version 2.21 modified (09-10-2009) by Frank Heyne</strong>
-		<ul>
-			<li><strong>Fixed</strong> backend security, thanks to doc!</li>
-		</ul>
-	<hr />
-	
-	<strong>Version 2.20 modified (09-05-2009) by Frank Heyne</strong>
-		<ul>
-			<li><strong>Fixed</strong> problem with wrong mime types</li>
-			<li><strong>Fixed</strong> some bugs, partly security related</li>
-		</ul>
-	<hr />
-	
-	<strong>Version 2.13 modified (08-26-2009) by Frank Heyne</strong>
-		<ul>
-			<li><strong>Added</strong> ability to add links to files on Windows network shares (they do only work with IE!)</li>
-			<li><strong>Fixed</strong> download links now are no longer guessable</li>
-		</ul>
-	<hr />
-	
-	<strong>Version 2.12 modified (08-20-2009) by Frank Heyne</strong>
-		<ul>
-			<li><strong>Fixed</strong> install.php, thanks aldus!</li>
-		</ul>
-	<hr />
-	
-	<strong>Version 2.10 modified (06-14-2009) by Frank Heyne</strong>
-		<ul>
-			<li><strong>Added</strong> to user upload: possibility to add file group</li>
-			<li><strong>Added</strong> to user upload: made captcha optional</li>
-			<li><strong>Fixed</strong> in user upload: sorted php, html and css code into different files</li>
-			<li><strong>Added</strong> new place holder for anchor: [FID] will create an anchor called "A"+file_id
-				(this will not work when the list goes over multiple pages, so use with care!)</li>
-			<li><strong>Fixed</strong> in the backend: html validation errors (as far as module code is concerned)</li>
-		</ul>
-	<hr />
-	
-	<strong>Version 2.05 modified (04-27-2009) by Frank Heyne</strong>
-		<ul>
-			<li><strong>Merged</strong> dlc.php and dl.php, removed dl.php</li>
-			<li><strong>Fixed</strong> bug which did disallow downloads from restricted pages with multiple groups (except for admins)</li>
-		</ul>
-	<hr />
-	
-	<strong>Version 2.00 modified (12-23-2008) by Frank Heyne</strong>
-		<ul>
-			<li><strong>Added:</strong> possibility to add remote links to the list</li>
-			<li><strong>Added:</strong> possibility to sort list by title, date, size and downloads<br />
-				(currently sort buttons must be placed into $setting_file_header)<br />
-				place holders for sort buttons are: [THTITLE], [THCHANGED], [THSIZE], [THCOUNT]</li>
-			<li><strong>Changed:</strong> modified_when from time stamp of the entry to the last write date of the file</li>
-			<li><strong>Fixed:</strong> warnings which happened when run with PHP error level E_ALL&amp;E_STRICT</li>
-			<li><strong>Fixed:</strong> moved frontend css into separate file</li>
-			<li><strong>Changed:</strong> minor improvements</li>
-		</ul>
-	<hr />
-
-	<strong>Version 1.91 modified (12-06-2008) by Christian Sommer</strong>
-		<ul>
-			<li><strong>Added:</strong> some access restrictions and .htaccess file to: /media/download_gallery/</li>
-		</ul>
-	<hr />
-
-	<strong>Version 1.8 modified (11-30-2006) by RSmith</strong>
-		<ul>
-			<li><strong>Added:</strong> Searchfilter</li>
-			<li><strong>Fixed:</strong> Upgrade script only upgrades new fields</li>
-		</ul>
-	<hr />
-	<strong>Version 1.7 modified (11-19-2006) by RSmith</strong>
-		<ul>
-			<li><strong>Added:</strong> Download Gallery Groups added</li>
-		</ul>
-	<hr />
-	<strong>Version 1.6 modified (10-16-2006) by Rsmith</strong>
-		<ul>
-			<li><strong>Added:</strong> Addititonal Upload Settings - none, publc, registered</li>
-			<li><strong>Added:</strong> Download rights based on page settings, Public or registered</li>
-			<li><strong>Added:</strong> File URL hidden so not easily found and linkable</li>
-		</ul>
-	<hr />
-	<strong>Version 1.5 modified (09-12-2006) by Ruebenwurzel</strong>
-		<ul>
-			<li><strong>Fixed:</strong> install script now supports mysql5 strict mode</li>
-		</ul>
-	<hr />
-	<strong>Version 1.4 modified (5-15-2006) by RSmith</strong>
-		<ul>
-			<li><strong>Fixed:</strong> File deleting only deletes the file when the file is no longer used in any download gallery section</li>
-			<li><strong>Fixed:</strong> Section deleting only deletes the file when it is no longer used in any section</li>
-			<li><strong>Added:</strong> Ability to select any file from the MEDIA_DIRECTORY &amp; subdirectorys</li>
-			<li><strong>Added:</strong> Can only delete files that have been uploaded via, download gallery</li>
-			<li><strong>Added:</strong> Automatic delete of empty/unsaved records</li>
-			<li><strong>Added:</strong> Sort records ascending / descending</li>
-			<li><strong>Added:</strong> Sort records manualy or by title</li>
-			<li><strong>Added:</strong> Sort records by extension, ascending or descending</li>
-			<li><strong>Added:</strong> User based uploading files now enabled/disabled via admin</li>
-			<li><strong>Added:</strong> Overwrite - If a file exists in any download gallery section it will not be overwritten unless the Overwrite checkbox is checked</li>
-			<li><strong>Added:</strong> Download Counter for the number of times the file has been downloaded</li>
-			<li><strong>Added:</strong> Added additional Lanugage File entries</li>
-			<li><strong>Added:</strong> Hides extension sort setting when Ordered Manualy in the setting admin</li>
-		</ul>
-	<hr />
-	<strong>Version 1.3 modified (3-10-2006) by Ruebenwurzel</strong>
-		<ul>
-			<li><strong>Added:</strong> WYSIWYG for the Description Field</li>
-		</ul>
-	<hr />
-	<strong>Version 1.1 modified (12-28-2005) by Ruebenwurzel</strong>
-		<ul>
-			<li><strong>Added:</strong> Language support to modify extension windows</li>
-			<li><strong>Fixed:</strong> Bug in modify extension window</li>
-			<li><strong>Changed:</strong> Minor layout changes in admin Interface</li>
-			<li><strong>Fixed:</strong> Code cleaning and all files stored in UNIX</li>
-		</ul>
-	<hr />
-	<strong>Version 1.0 modified (12-01-2005) by Woudloper</strong>
-		<ul>
-			<li><strong>Initial Release:</strong> all the available features</li>
-		</ul>
 
 <?php
 if ($section_id > 1) {
@@ -270,7 +147,7 @@ if ($section_id > 1) {
 	<table cellpadding="0" cellspacing="0" border="0" width="100%">	
 		<tr>
 			<td>
-				<input type="button" value="<?php echo $TEXT['BACK']; ?>" onclick="javascript: window.location = '<?php echo ADMIN_URL; ?>/pages/modify.php?page_id=<?php echo $page_id; ?>';" style="width: 100px; margin-top: 5px;" />
+				<input class="ui button" type="button" value="<?php echo $TEXT['BACK']; ?>" onclick="javascript: window.location = '<?php echo ADMIN_URL; ?>/pages/modify.php?page_id=<?php echo $page_id; ?>';" style="width: 100px; margin-top: 5px;" />
 			</td>
 		</tr>	
 	</table>

@@ -41,10 +41,8 @@ if(!isset($_POST['action']) || !isset($_POST['row']) ){
 	header( 'Location: ../../index.php' );
 	
 }else{	
-
-	require('../../config.php');
 	
-	// check if user has permissions to access the Bakery module
+	// check if user has permissions to access the module
 	require_once('../../framework/class.admin.php');
 	$admin = new admin('Modules', 'module_view', false, false);
 	
@@ -52,7 +50,7 @@ if(!isset($_POST['action']) || !isset($_POST['row']) ){
 		die(header('Location: ../../index.php'));
 	
 	// Sanitized variables
-	$action = $admin->add_slashes($_POST['action']);
+	$action = addslashes($_POST['action']);
 	// We just get the array here, and few lines below we sanitize it
 	$row = $_POST['row'];	
 	$sID = intval($database->get_one("SELECT `section_id` FROM `".TABLE_PREFIX."mod_download_gallery_files` WHERE `file_id` = ".intval($row[0])));
@@ -85,7 +83,7 @@ if(!isset($_POST['action']) || !isset($_POST['row']) ){
 			
 		} //endforeach 
 		
-		echo '<img src="'.LEPTON_URL.'/modules/bakery/images/ajax-loader.gif" alt="" border="0" />';
+		echo '<img src="'.LEPTON_URL.'/modules/download_gallery/images/ajax-loader.gif" alt="" border="0" />';
 		
 	}
 } 

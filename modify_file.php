@@ -91,7 +91,7 @@ if (!defined('WYSIWYG_EDITOR') OR WYSIWYG_EDITOR=="none" OR !file_exists(LEPTON_
 	<input type="hidden" name="link" value="<?php echo $fetch_content['link']; ?>" />
 
 	<table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
-		<caption><?php echo $TEXT['MODIFY'].'/'.$TEXT['DELETE'].' '.$TEXT['FILE']; ?></caption>
+		<caption class="be_lepsem"><?php echo $TEXT['MODIFY'].'/'.$TEXT['DELETE'].' '.$TEXT['FILE']; ?></caption>
 		<tr>
 			<th><?php echo $TEXT['ACTIVE']; ?>:</th>
 			<td valign="top">				
@@ -219,11 +219,11 @@ if (!defined('WYSIWYG_EDITOR') OR WYSIWYG_EDITOR=="none" OR !file_exists(LEPTON_
 		
 		<tfoot>
 			<tr>
-				<td style="text-align:left;">
-				<input name="save" type="submit" value="<?php echo $TEXT['SAVE']; ?>" style="width: 100px; margin-top: 5px;" />
+				<td style="text-align:center;">
+				<input class="ui positive button" name="save" type="submit" value="<?php echo $TEXT['SAVE']; ?>" style="width: 100px; margin-top: 5px;" />
 				</td>
 				<td style="text-align:right;">
-	                <input type="button" class="cancel" value="<?php echo $TEXT['CANCEL']; ?>" onclick="javascript: window.location = '<?php
+	                <input class="ui negative button" type="button" class="cancel" value="<?php echo $TEXT['CANCEL']; ?>" onclick="javascript: window.location = '<?php
 					echo ADMIN_URL; ?>/pages/modify.php?page_id=<?php echo $page_id; ?>';" style="width: 100px; margin-top: 5px;" />
 				</td>
 			</tr>

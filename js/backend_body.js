@@ -41,7 +41,7 @@ $(window).load(function(){
 		*/	
 		$(function() { 
 			$('.dragdrop_download_gallery').addClass('dragdrop_handle'); // this class="dragdrop_download_gallery" will result in class="dragdrop_download_gallery dragdrop_handle"
-			$("#DownloadGalleryFiles .move_position a").remove(); // remove up/down icons (we have dragNdrop therefore we don't need them)
+//			$("#DownloadGalleryFiles .move_position a").remove(); // remove up/down icons (we have dragNdrop therefore we don't need them)
 		
 			
 			$("#DownloadGalleryFiles tbody").sortable({ 

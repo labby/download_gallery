@@ -81,9 +81,12 @@ function process(element){
 </script>
 
 <div class="download_gallery" style="border:none;"><?php
-	// include core functions of WB 2.7 to edit the optional module CSS files (frontend.css, backend.css)
-	@include_once(LEPTON_PATH .'/framework/summary.module_edit_css.php');
- 	if(function_exists('edit_module_css')) edit_module_css('download_gallery'); 
+
+	// include core functions to edit the optional module CSS files (frontend.css, backend.css)
+ 	if(!function_exists('edit_module_css')) {
+		include_once(LEPTON_PATH .'/framework/summary.module_edit_css.php');
+	}
+	edit_module_css('download_gallery'); 
 ?></div>
 <form name="modify" action="<?php echo LEPTON_URL; ?>/modules/download_gallery/save_settings.php" method="post" style="margin: 0;">
 
@@ -91,7 +94,7 @@ function process(element){
 	<input type="hidden" name="page_id" value="<?php echo $page_id; ?>" />
 
 	<table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
-		<caption><?php echo $DGTEXT['GSETTINGS']; ?></caption>
+		<caption class="be_lepsem"><?php echo $DGTEXT['GSETTINGS']; ?></caption>
 		<tr>
 			<th><?php echo $DGTEXT['FILES_PER_PAGE']; ?>:</th>
 			<td valign="top"><input type="text" name="files_per_page" value="<?php echo $fetch_content['files_per_page']; ?>" style="width: 30px" /> 0 = <?php echo $TEXT['UNLIMITED']; ?></td>
@@ -257,8 +260,9 @@ function process(element){
 			</td>
 		</tr>
 	</table>
+	<hr />
 	<table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
-	<caption><?php echo $DGTEXT['FILE_TYPE_EXT']; ?></caption>
+	<caption class="be_lepsem"><?php echo $DGTEXT['FILE_TYPE_EXT']; ?></caption>
 
 			<thead>
 		
@@ -297,9 +301,9 @@ function process(element){
 				}
 				?>
 	</table>
-
+	<hr />
 	<table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%" style="margin-top: 5px;">
-		<caption><?php echo $DGTEXT['LSETTINGS']; ?></caption>		
+		<caption class="be_lepsem"><?php echo $DGTEXT['LSETTINGS']; ?></caption>		
 		<tr>
 			<th><?php echo $TEXT['HEADER']; ?>:</th>
 			<td valign="top"><textarea cols="50" rows="5" name="header" style="width: 98%; height: 80px;"><?php echo htmlspecialchars($fetch_content['header']); ?></textarea></td>
@@ -345,13 +349,13 @@ function process(element){
 	<table cellpadding="0" cellspacing="0" border="0" width="100%">
 		<tr>
 			<td align="left">
-				<input name="save" type="submit" value="<?php echo $TEXT['SAVE']; ?>" style="width: 100px; margin-top: 5px;" />
+				<input class="ui positive button" name="save" type="submit" value="<?php echo $TEXT['SAVE']; ?>" style="width: 100px; margin-top: 5px;" />
 			</td>
 			<td align="center">
-				<input name="reset_table" type="submit" value="<?php echo $DGTEXT['RESET_TABLE']; ?>" style="margin-top: 5px;" />
+				<input class="ui negative button" name="reset_table" type="submit" value="<?php echo $DGTEXT['RESET_TABLE']; ?>" style="margin-top: 5px;" />
 			</td>
 			<td align="right">
-				<input type="button" class="cancel" value="<?php echo $TEXT['CANCEL']; ?>" onclick="javascript:window.location='<?php echo ADMIN_URL; ?>/pages/modify.php?page_id=<?php echo $page_id; ?>';" style="width: 100px; margin-top: 5px;" />
+				<input type="button" class="cancel ui negative button" value="<?php echo $TEXT['CANCEL']; ?>" onclick="javascript:window.location='<?php echo ADMIN_URL; ?>/pages/modify.php?page_id=<?php echo $page_id; ?>';" style="width: 100px; margin-top: 5px;" />
 			</td>
 		</tr>
 	</table>
