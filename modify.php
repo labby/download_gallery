@@ -112,7 +112,7 @@ $list[0] = array(
 			
 			);
 
-$file_link_pattern = LEPTON_URL.'/modules/download_gallery/%s.php?page_id='.$page_id.'&amp;section_id='.$section_id.'&amp;file_id=%d';
+$file_link_pattern = LEPTON_URL.'/modules/download_gallery/%s.php?page_id='.$page_id.'&amp;section_id='.$section_id.'&amp;file_id=%d&amp;leptoken='.get_leptoken();
 $group_link_pattern = LEPTON_URL.'/modules/download_gallery/%s.php?page_id='.$page_id.'&amp;section_id='.$section_id.'&amp;group_id=%d';
 $add_file ='<a href="'.$MODULE_URL.'/add_file.php?page_id='.$page_id.'&amp;section_id='.$section_id.'&amp;group_id=%d" title="'.$TEXT['ADD'].' '.$TEXT['FILE'].'">
 			<img src="'.$DG_ICONS.'/add_child.png" alt="" />
@@ -348,9 +348,14 @@ foreach($list as $group){
 		
 	}else{	
 		
-		foreach($files as $file)	
-			echo str_replace(array_keys($file),array_values($file),$inner_loop_template);
-		
+		foreach($files as $file)
+		{	
+			echo str_replace(
+			    array_keys($file),
+			    array_values($file),
+			    $inner_loop_template
+			);
+		}
 	}
 
 	echo '<tr><td colspan="11" align="right"></td></tr>';
