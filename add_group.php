@@ -37,17 +37,10 @@ else
 }
 // end include class.secure.php
 
-// Include admin wrapper script
-require(LEPTON_PATH.'/modules/admin.php');
+$admin = new LEPTON_admin('Pages', 'pages_modify');
 
-// STEP 0:	initialize some variables
-$page_id = (int) $page_id;
-$section_id = (int) $section_id;
-
-// Include the ordering class
-require(LEPTON_PATH.'/framework/class.order.php');
 // Get new order
-$order = new order(TABLE_PREFIX.'mod_download_gallery_groups', 'position', 'group_id', 'section_id');
+$order = new LEPTON_order(TABLE_PREFIX.'mod_download_gallery_groups', 'position', 'group_id', 'section_id');
 $position = $order->get_new($section_id);
 
 // Insert new row into database

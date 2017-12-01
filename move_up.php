@@ -59,7 +59,7 @@ if(!isset($_GET['file_id']) OR !is_numeric($_GET['file_id'])) {
 require(LEPTON_PATH.'/modules/admin.php');				
 
 // Include the ordering class
-require(LEPTON_PATH.'/framework/class.order.php');	
+//require(LEPTON_PATH.'/framework/class.order.php'); // use LEPTON_order	
 
 
 // Create new order object and reorder

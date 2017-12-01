@@ -92,7 +92,7 @@ if($group_id == 0){
 } else {
 
 	// Include the ordering class
-	require(LEPTON_PATH.'/framework/class.order.php');			
+	//require(LEPTON_PATH.'/framework/class.order.php'); // use LEPTON_order			
 	// Initialize order object 
 	$order = new order(TABLE_PREFIX."mod_download_gallery_files", 'position', 'file_id', 'group_id');
 	// reorder all groups in this group_id

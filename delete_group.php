@@ -56,7 +56,7 @@ $database->query("UPDATE ".TABLE_PREFIX."mod_download_gallery_files SET group_id
 $database->query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_groups WHERE group_id = '$group_id' AND section_id = '$section_id'");
 
 // Include the ordering class
-require(LEPTON_PATH.'/framework/class.order.php');			
+//require(LEPTON_PATH.'/framework/class.order.php'); // use LEPTON_order			
 // Initialize order object 
 $order = new order(TABLE_PREFIX."mod_download_gallery_groups", 'position', 'group_id', 'section_id');
 // reorder all groups in this section_id

@@ -37,13 +37,10 @@ else
 }
 // end include class.secure.php
 
-include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
 
-/**
- *	Language
- */
-$lang = (dirname(__FILE__))."/languages/". LANGUAGE .".php";
-require_once ( !file_exists($lang) ? (dirname(__FILE__))."/languages/EN.php" : $lang );
+LEPTON_handle::include_files('/modules/download_gallery/functions.php');
+
+$DGTEXT = download_gallery::getInstance()->language;
 
 // For the curiousity: How fast do we are?
 $time_start = microtime_float();
@@ -403,7 +400,7 @@ if($num_files > 0) {
 			$ext_icon = $unknown_icon;				
 				
 		$dldescription = $file['description'];
-		$wb->preprocess($dldescription);		
+		$oLEPTON->preprocess($dldescription);		
 		
 		// Get user data
 		$users = array();		
@@ -473,9 +470,4 @@ echo "</form>\n";
 if($settings['userupload'] ==1 ||	($settings['userupload']==2 && isset($_SESSION['USER_ID']) && $_SESSION['USER_ID'] != "" && is_numeric($_SESSION['USER_ID']))){
 	echo '<a href="'.LEPTON_URL.'/modules/download_gallery/dluser_add.php?sid='.$section_id.'&amp;pid='.$page_id.'">'.$DGTEXT['UPLOADFILE']. '</a>';
 }
-
-//$time_end = microtime_float();
-//$runtime = round($time_end - $time_start, 4);
-//echo "<-- gallery generated in ".$runtime." seconds -->\n";
-//echo "\n<!-- end download gallery -->\n";
 ?>

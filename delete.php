@@ -65,15 +65,15 @@ if($query_files->numRows() > 0) {
 			}
 		}
 		//delete file database entry 
-		$database->query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE file_id = '$file_id' LIMIT 1");
+		$database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE file_id = '$file_id' LIMIT 1");
 	}
 }
 //echo "delete $fname";
 
 // STEP 4:	Also delete the table entries
-$database->query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE section_id = '$section_id'");
-$database->query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_settings WHERE section_id = '$section_id'");
-$database->query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_file_ext WHERE section_id = '$section_id'");
-$database->query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_groups WHERE section_id = '$section_id'");
+$database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE section_id = '$section_id'");
+$database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_settings WHERE section_id = '$section_id'");
+$database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_file_ext WHERE section_id = '$section_id'");
+$database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_groups WHERE section_id = '$section_id'");
 
 ?>

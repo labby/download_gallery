@@ -37,10 +37,15 @@ else
 }
 // end include class.secure.php
 
-require_once(LEPTON_PATH.'/framework/summary.functions.php');
+$file_names = array(
+'/modules/download_gallery/functions.php',
+'/framework/summary.functions.php'
+);
+LEPTON_handle::include_files ($file_names);
+
 $update_when_modified = true; 					// Tells script to update when this page was last updated
-require(LEPTON_PATH.'/modules/admin.php');			// Include admin wrapper script
-include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
+
+$admin = new LEPTON_admin('Pages', 'pages_modify');
 
 // Get id
 $id = ''; $file_id = '';
@@ -62,7 +67,7 @@ $fileext = '';
 if($admin->get_post('title') == '' AND $admin->get_post('url') == '') {
 	$admin->print_error($MESSAGE['GENERIC']['FILL_IN_ALL'], LEPTON_URL.'/modules/download_gallery/modify_file.php?page_id='.$page_id.'&section_id='.$section_id.'&file_id='.$id);
 } else {
-	$title = addslashes(htmlspecialchars($admin->get_post('title')));
+	$title = addslashes($admin->get_post('title'));
 	$description = 	addslashes($admin->get_post('description'));
 	$old_link = 	addslashes($admin->get_post('link'));
 	$existingfile = addslashes($admin->get_post('existingfile'));
@@ -190,9 +195,9 @@ if($group==0){
 } else {
 
 	// Include the ordering class
-	require(LEPTON_PATH.'/framework/class.order.php');			
+	//require(LEPTON_PATH.'/framework/class.order.php'); // use LEPTON_order			
 	// Initialize order object 
-	$order = new order(TABLE_PREFIX."mod_download_gallery_files", 'position', 'file_id', 'group_id');
+	$order = new LEPTON_order(TABLE_PREFIX."mod_download_gallery_files", 'position', 'file_id', 'group_id');
 	// reorder all groups in this group_id
 	$order->clean( $group );   
 }
