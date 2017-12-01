@@ -37,25 +37,12 @@ else
 }
 // end include class.secure.php
 
-require('info.php');
-
-// Include WB functions file
-require_once(LEPTON_PATH.'/framework/summary.functions.php');
+//get instnace of own module class
+$oDownload_gallery = download_gallery::getInstance();
 
 // Include DownloadGallery functions file
 require_once('functions.php');
 
-// check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(LEPTON_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php')) 
-		require_once(LEPTON_PATH .'/modules/download_gallery/languages/EN.php');
-else 	require_once(LEPTON_PATH .'/modules/download_gallery/languages/' .LANGUAGE .'.php');
-
-
-// STEP 0:	initialize some variables
-$page_id 	= intval( $page_id );
-$section_id = intval( $section_id );
-
-$IMAGES 		= THEME_URL.'/images';
 $MODULE_URL 	= LEPTON_URL.'/modules/download_gallery';
 $DG_ICONS 		= $MODULE_URL.'/images';
 $MODULE_PREFIX = TABLE_PREFIX."mod_download_gallery";

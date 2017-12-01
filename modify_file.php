@@ -37,24 +37,23 @@ else
 }
 // end include class.secure.php
 
+
+
 // Get id
 $file_id = '';
 if(!isset($_GET['file_id']) || !is_numeric($_GET['file_id'])) 
+{	
 	header("Location: ".ADMIN_URL."/pages/index.php");
-else 
+}
+else {
 	$file_id = intval($_GET['file_id']);
+}
+
+//get instance of admin object and own module class
+$admin = new LEPTON_admin('Pages', 'pages_modify');
+$DGTEXT = download_gallery::getInstance()->language;
 
 $preselected_group = (isset($_GET['group_id']) && is_numeric($_GET['group_id'])) ? intval($_GET['group_id']) : 0;
-
-// Include admin wrapper script
-require(LEPTON_PATH.'/modules/admin.php');
-require(LEPTON_PATH.'/framework/summary.functions.php');
-
-if(file_exists(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php')) {
-	require_once(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php');
-} else {
-	require_once(LEPTON_PATH.'/modules/download_gallery/languages/EN.php');
-}
 
 // Get header and footer
 $query_content = $database->query("SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE file_id = '$file_id' and page_id = '$page_id'");

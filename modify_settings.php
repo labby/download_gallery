@@ -37,16 +37,9 @@ else
 }
 // end include class.secure.php
 
-require(LEPTON_PATH.'/modules/admin.php');	
-
-// Load Language file
-if(LANGUAGE_LOADED) {
-	if(!file_exists(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php')) {
-		require_once(LEPTON_PATH.'/modules/download_gallery/languages/EN.php');
-	} else {
-		require_once(LEPTON_PATH.'/modules/download_gallery/languages/'.LANGUAGE.'.php');
-	}
-}
+//get instance of admin object and own module class
+$admin = new LEPTON_admin('Pages', 'pages_modify');
+$DGTEXT = download_gallery::getInstance()->language;
 
 // Get General Settings
 $query_content = $database->query("SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_settings WHERE section_id = '$section_id' and page_id = '$page_id'");
