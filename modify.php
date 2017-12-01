@@ -37,7 +37,7 @@ else
 }
 // end include class.secure.php
 
-//get instnace of own module class
+//get instance of own module class
 $oDownload_gallery = download_gallery::getInstance();
 
 // Include DownloadGallery functions file
