@@ -11,7 +11,7 @@
  *
  */
  
-class download_gallery extends LEPTON_class
+class download_gallery extends LEPTON_abstract
 {
 	public static $instance;
 	

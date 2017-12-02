@@ -38,16 +38,6 @@ else
 
 
 // delete obsolete file
-$to_delete = array(
-LEPTON_PATH.'/modules/download_gallery/headers.inc.php'
-);
+LEPTON_handle::delete_obsolete_files ('/modules/download_gallery/headers.inc.php');
 
-foreach ($to_delete as $ref)  {
-	if (file_exists($ref)) {
-		$result = unlink ($ref);
-		if (false === $result) {
-			echo "Cannot delete file ".$ref.". Please check file permissions and ownership or delete file manually.";
-		}
-	}
-}
 ?>
