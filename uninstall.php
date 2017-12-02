@@ -38,15 +38,14 @@ else
 // end include class.secure.php
 
 //	Remove all table entries from the search-table and drop the module tables.
-$database->query("DELETE FROM `".TABLE_PREFIX."search` WHERE `name` = 'module' AND `value` = 'download_gallery'");
-$database->query("DELETE FROM `".TABLE_PREFIX."search` WHERE `extra` = 'download_gallery'");
-$database->query("DROP TABLE `".TABLE_PREFIX."mod_download_gallery_files`");
-$database->query("DROP TABLE `".TABLE_PREFIX."mod_download_gallery_settings`");
-$database->query("DROP TABLE `".TABLE_PREFIX."mod_download_gallery_groups`");
-$database->query("DROP TABLE `".TABLE_PREFIX."mod_download_gallery_file_ext`");
+$database->simple_query("DELETE FROM `".TABLE_PREFIX."search` WHERE `name` = 'module' AND `value` = 'download_gallery'");
+$database->simple_query("DELETE FROM `".TABLE_PREFIX."search` WHERE `extra` = 'download_gallery'");
+LEPTON_handle::drop_table("mod_download_gallery_files");
+LEPTON_handle::drop_table("mod_download_gallery_settings");
+LEPTON_handle::drop_table("mod_download_gallery_groups");
+LEPTON_handle::drop_table("mod_download_gallery_file_ext");
 
 //	Remove the download_gallery folder in the media dir
-require_once(LEPTON_PATH.'/framework/functions/function.rm_full_dir.php');
-rm_full_dir(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery');
+LEPTON_handle::delete_obsolete_directories(MEDIA_DIRECTORY.'/download_gallery');
 
 ?>

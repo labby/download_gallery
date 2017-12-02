@@ -24,9 +24,6 @@ $files_to_register = array(
 	$basename.'delete_group.php',
 	$basename.'delete.php',
 	$basename.'dlc.php',
-	$basename.'dluser_add.php',
-	$basename.'dluser_page.php',
-	$basename.'dluser_save.php',
 	$basename.'help.php',
 	$basename.'modify_extensions.php',
 	$basename.'modify_file.php',
@@ -39,8 +36,7 @@ $files_to_register = array(
 	$basename.'save_extsettings.php',
 	$basename.'save_file.php',
 	$basename.'save_group.php',
-	$basename.'save_settings.php',
-	$basename.'headers.inc.php'
+	$basename.'save_settings.php'
 );
 
 $lepton_filemanager->register( $files_to_register );

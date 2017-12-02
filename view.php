@@ -402,27 +402,6 @@ if($num_files > 0) {
 		$dldescription = $file['description'];
 		$oLEPTON->preprocess($dldescription);		
 		
-		// Get user data
-		$users = array();		
-		$user_id 						= '';
-		$users[$user_id]['username'] 	= '';
-		$users[$user_id]['display_name']= '';
-		$users[$user_id]['email'] 		= '';
-				
-		$query_users = $database->query("SELECT `user_id`, `username`, `display_name`, `email` FROM ".TABLE_PREFIX."users");
-		
-		if($query_users->numRows() > 0) {			
-			while($user = $query_users->fetchRow()) {
-				// Insert user info into users array
-				$user_id 						= $user['user_id'];
-				$users[$user_id]['username'] 	= $user['username'];
-				$users[$user_id]['display_name']= $user['display_name'];
-				$users[$user_id]['email'] 		= $user['email'];
-			}				
-		}
-		
-		$uid = $file['modified_by']; 
-
 		// Work-out the file link
 		$file_placeholders = array(
 			
@@ -436,12 +415,7 @@ if($num_files > 0) {
 			'[DATE]' 		=>  $file_date, 
 			'[TIME]' 		=> $file_time, 
 			'[DL]' 			=> ($file['dlcount']=="") ? 0 : $file['dlcount'], 
-			'[FID]' 		=> $file['file_id'], 			
-			'[USER_ID]'		=> $file['modified_by'], 
-			'[USERNAME]' 	=> $users[$uid]['username'], 
-			'[DISPLAY_NAME]'=> $users[$uid]['display_name'], 
-			'[EMAIL]' 		=>  $users[$uid]['email'], 
-					
+			'[FID]' 		=> $file['file_id']				
 		);
 		// REPLACE FILE PLACEHOLDERS WITH VALUES
 		echo str_replace(array_keys($file_placeholders), array_values($file_placeholders), $settings['files_loop']);
@@ -466,8 +440,4 @@ echo str_replace(array_keys($header_footer_placeholders), array_values($header_f
 
 echo "</form>\n";
 
-//display upload link if setting is set to allow this
-if($settings['userupload'] ==1 ||	($settings['userupload']==2 && isset($_SESSION['USER_ID']) && $_SESSION['USER_ID'] != "" && is_numeric($_SESSION['USER_ID']))){
-	echo '<a href="'.LEPTON_URL.'/modules/download_gallery/dluser_add.php?sid='.$section_id.'&amp;pid='.$page_id.'">'.$DGTEXT['UPLOADFILE']. '</a>';
-}
 ?>
