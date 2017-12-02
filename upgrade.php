@@ -40,4 +40,8 @@ else
 // delete obsolete file
 LEPTON_handle::delete_obsolete_files ('/modules/download_gallery/headers.inc.php');
 
+// delete obsolete columns
+$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN use_captcha "); 
+$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN userupload "); 
+
 ?>

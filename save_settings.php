@@ -85,17 +85,7 @@ if (isset($_POST['extordering']) AND is_numeric($_POST['extordering'])) {
 } else {
     $extordering = '0';
 }
-if (isset($_POST['userupload']) AND is_numeric($_POST['userupload'])) {
-    $userupload = $_POST['userupload'];
-} else {
-    $userupload = '0';
-}
 
-if (isset($_POST['use_captcha']) AND is_numeric($_POST['use_captcha'])) {
-    $use_captcha = $_POST['use_captcha'];
-} else {
-    $use_captcha = '0';
-}
 
 if (isset($_POST['save'])) {
     $header = addslashes(str_replace($friendly, $raw, $_POST['header']));
@@ -153,8 +143,6 @@ $query="UPDATE ".TABLE_PREFIX."mod_download_gallery_settings SET
 	file_footer = '$file_footer', 
 	ordering = '$ordering', 
 	extordering = '$extordering',
-	userupload = '$userupload',
-    use_captcha = '$use_captcha',
 	gheader = '$gheader',
 	gloop = '$gloop', 						   
 	gfooter = '$gfooter',	

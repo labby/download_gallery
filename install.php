@@ -37,7 +37,6 @@ else
 }
 // end include class.secure.php
 
-$database->query("DROP TABLE IF EXISTS `".TABLE_PREFIX."mod_download_gallery_files`");
 $mod_dl_gallery = 'CREATE TABLE `'.TABLE_PREFIX.'mod_download_gallery_files` ( '
 				 . '`file_id` INT NOT NULL AUTO_INCREMENT, '
 				 . '`section_id` INT NOT NULL DEFAULT \'0\', '
@@ -58,7 +57,6 @@ $mod_dl_gallery = 'CREATE TABLE `'.TABLE_PREFIX.'mod_download_gallery_files` ( '
 				 . ' )';
 $database->query($mod_dl_gallery);
 
-$database->query("DROP TABLE IF EXISTS `".TABLE_PREFIX."mod_download_gallery_settings`");
 $mod_dl_gallery = 'CREATE TABLE `'.TABLE_PREFIX.'mod_download_gallery_settings` ( '
 				 . '`section_id` INT NOT NULL DEFAULT \'0\','
 				 . '`page_id` INT NOT NULL DEFAULT \'0\','
@@ -72,18 +70,15 @@ $mod_dl_gallery = 'CREATE TABLE `'.TABLE_PREFIX.'mod_download_gallery_settings` 
 				 . '`file_footer` TEXT NOT NULL ,'
 				 . '`ordering` TINYINT(3) NOT NULL DEFAULT \'0\','
 				 . '`extordering` TINYINT(3) NOT NULL DEFAULT \'0\','
-				 . '`userupload` TINYINT(3) NOT NULL DEFAULT \'0\','
 				 . '`gheader` TEXT NOT NULL ,'
 				 . '`gloop` TEXT NOT NULL ,'
 				 . '`gfooter` TEXT NOT NULL ,'
 				 . '`search_filter` TEXT NOT NULL ,'						 
 				 . '`search_layout` TEXT NOT NULL ,'
-				 . '`use_captcha` TINYINT( 3 ) NOT NULL DEFAULT \'0\','
 				 . 'PRIMARY KEY (section_id)'
 				 . ' )';
 $database->query($mod_dl_gallery);
 
-$database->query("DROP TABLE IF EXISTS `".TABLE_PREFIX."mod_download_gallery_groups`");
 $mod_dlg = 'CREATE TABLE `'.TABLE_PREFIX.'mod_download_gallery_groups` ( '
 				 . '`group_id` INT NOT NULL AUTO_INCREMENT,'
 				 . '`section_id` INT NOT NULL DEFAULT \'0\','
@@ -95,7 +90,6 @@ $mod_dlg = 'CREATE TABLE `'.TABLE_PREFIX.'mod_download_gallery_groups` ( '
 				 . ' )';
 $database->query($mod_dlg);
 
-$database->query("DROP TABLE IF EXISTS `".TABLE_PREFIX."mod_download_gallery_file_ext`");
 $mod_dl_gallery = 'CREATE TABLE `' . TABLE_PREFIX . 'mod_download_gallery_file_ext` ( '
 				 . '`fileext_id` INT NOT NULL AUTO_INCREMENT, '
 				 . '`section_id` INT NOT NULL DEFAULT \'0\', '

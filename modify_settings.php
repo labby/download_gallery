@@ -214,44 +214,6 @@ function process(element){
 				</select> <?php echo $DGTEXT['EXTINFO']; ?>
 			</td>
 		</tr>
-		<tr>
-			<th><?php echo $DGTEXT['USERUPLOAD']; ?>:</th>
-			<td>
-				<?php
-					$uploadpub="";
-					$uploadreg="";
-					$uploadno="";
-				if ($fetch_content['userupload'] == '1') {
-					$uploadpub="checked='checked'";
-				} elseif ($fetch_content['userupload'] == '2') {
-					$uploadreg="checked='checked'";
-				}else {
-					$uploadno="checked='checked'";
-				}
-				?>
-				<input type="radio" name="userupload" class="userupload" value="" <?php echo $uploadno; ?>/><?php echo $TEXT['NONE']; ?>
-				<input type="radio" name="userupload" class="userupload" value="1" <?php echo $uploadpub; ?>/><?php echo $TEXT['PUBLIC']; ?>
-				<input type="radio" name="userupload" class="userupload" value="2" <?php echo $uploadreg; ?>/><?php echo $TEXT['REGISTERED']; ?>
-			</td>
-		</tr>
-		<tr>
-			<th><?php echo $TEXT['CAPTCHA_VERIFICATION']; ?>:</th>
-			<td>
-				<?php
-					$use_captcha_true_checked = '';
-					$use_captcha_false_checked = '';
-					if ($fetch_content['use_captcha'] == '1') {
-						$use_captcha_true_checked = "checked='checked'";
-					} else {
-						$use_captcha_false_checked = "checked='checked'";
-					}
-				?>
-				<input type="radio" name="use_captcha" id="use_captcha_true" value="1" <?php echo $use_captcha_true_checked;  ?> />
-				<label for="use_captcha_true"><?php echo $TEXT['ENABLED']; ?></label>
-				<input type="radio" name="use_captcha" id="use_captcha_false" value="0" <?php echo $use_captcha_false_checked;  ?> />
-				<label for="use_captcha_false"><?php echo $TEXT['DISABLED']; ?></label>
-			</td>
-		</tr>
 	</table>
 	<hr />
 	<table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">

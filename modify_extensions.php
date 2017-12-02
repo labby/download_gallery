@@ -44,21 +44,14 @@ if ($referer && strpos($referer, LEPTON_URL . '/modules/download_gallery/modify_
 	die(header('Location: ../../index.php'));
 }
 
-// include the admin wrapper script
-$update_when_modified = true; // Tells script to update when this page was last updated
-#require(LEPTON_PATH . '/modules/admin.php');
-#$admin = new admin('Pages', '', false, false);
 
-/**
- *	Language
- */
-$lang = (dirname(__FILE__))."/languages/". LANGUAGE .".php";
-require_once ( !file_exists($lang) ? (dirname(__FILE__))."/languages/EN.php" : $lang );
+$DGTEXT = download_gallery::getInstance()->language;
+$update_when_modified = true; // Tells script to update when this page was last updated
 
 $section_id = intval($_GET['section_id']);
 $page_id = intval($_GET['page_id']);
 
-require(LEPTON_PATH.'/framework/summary.functions.php');
+
 
 if (isset($_GET['fileext_id'])) {
 	$fileext_id = (int) $_GET['fileext_id'];

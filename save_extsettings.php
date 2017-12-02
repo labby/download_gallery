@@ -37,19 +37,11 @@ else
 }
 // end include class.secure.php
 
-#$update_when_modified = true; // Tells script to update when this page was last updated
-#require(LEPTON_PATH.'/modules/admin.php');
 
-/**
- *	Language
- */
-$lang = (dirname(__FILE__))."/languages/". LANGUAGE .".php";
-require_once ( !file_exists($lang) ? (dirname(__FILE__))."/languages/EN.php" : $lang );
+$DGTEXT = download_gallery::getInstance()->language;
 
 $section_id = intval($_POST['section_id']);
 $page_id = intval($_POST['page_id']);
-
-require(LEPTON_PATH.'/framework/summary.functions.php');
 
 $fileext_id = '';
 if (isset($_POST['fileext_id'])) {
