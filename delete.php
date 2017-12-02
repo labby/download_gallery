@@ -4,7 +4,7 @@
  *  @module			Download Gallery
  *  @version		see info.php of this module
  *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
- *  @copyright		2010-2017 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @copyright		2010-2018 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
  *  @license		GNU General Public License
  *  @license terms	see info.php of this module
  *  @platform		see info.php of this module
@@ -68,7 +68,6 @@ if($query_files->numRows() > 0) {
 		$database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE file_id = '$file_id' LIMIT 1");
 	}
 }
-//echo "delete $fname";
 
 // STEP 4:	Also delete the table entries
 $database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE section_id = '$section_id'");

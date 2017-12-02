@@ -1,9 +1,8 @@
 ### Download Gallery
 ============
-A LEPTON 2 addon d for making a download gallery page
 
 Download Gallery is as a helpful addon for Content Management System [LEPTON CMS][1]<br /><br />
-This module is for making a download gallery pages.
+This module is for creating a download gallery pages.
 
 #### Requirements
 
@@ -11,7 +10,7 @@ This module is for making a download gallery pages.
 
 #### Installation
 
-* download latest [download_gallery.zip] [2] installation archive
+* download latest [download_gallery.zip][2] installation file
 * in CMS backend select the file from "Add-ons" -> "Modules" -> "Install module"
 
 

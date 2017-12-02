@@ -4,7 +4,7 @@
  *  @module			Download Gallery
  *  @version		see info.php of this module
  *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
- *  @copyright		2010-2017 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @copyright		2010-2018 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
  *  @license		GNU General Public License
  *  @license terms	see info.php of this module
  *  @platform		see info.php of this module
@@ -37,7 +37,7 @@ else
 }
 // end include class.secure.php
 
-include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
+require_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
 
 // STEP 0:	initialize some variables
 $page_id = intval($page_id);
@@ -85,7 +85,7 @@ $file_types = array(
 	array(
 		'file_type'	=> "movies",
 		'file_image' => "movie.gif",
-		'extensions' => "mov,wma"
+		'extensions' => "mov,mp4,wma"
 	),
 	array(
 		'file_type' => "music",

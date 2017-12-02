@@ -4,7 +4,7 @@
  *  @module			Download Gallery
  *  @version		see info.php of this module
  *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
- *  @copyright		2010-2017 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @copyright		2010-2018 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
  *  @license		GNU General Public License
  *  @license terms	see info.php of this module
  *  @platform		see info.php of this module
@@ -36,6 +36,8 @@ else
     }
 }
 // end include class.secure.php
+
+
 // Get ID
 if (isset($_GET['file_id']) && is_numeric($_GET['file_id']) && isset($_GET['status']) && is_numeric($_GET['status'])) {
 	
@@ -55,17 +57,17 @@ if (isset($_GET['file_id']) && is_numeric($_GET['file_id']) && isset($_GET['stat
 // reverse current status to change its value in DB 
 $status = ($status == 1) ? 0 : 1;
 
-// Include admin wrapper script
+$admin = new LEPTON_admin('Pages', 'pages_modify');
 $update_when_modified = true; // Tells script to update when this page was last updated
-require(LEPTON_PATH.'/modules/admin.php');
+//require(LEPTON_PATH.'/modules/admin.php');
 
 // change FILE STATUS?
 if (isset($fID) && is_numeric($fID))
-	$database->query("UPDATE `".TABLE_PREFIX."mod_download_gallery_files` SET `active` = '$status' WHERE `file_id` ='$fID'");
+	$database->simple_query("UPDATE `".TABLE_PREFIX."mod_download_gallery_files` SET `active` = '$status' WHERE `file_id` ='$fID'");
 	
 // change GROUP STATUS?
 if (isset($gID) && is_numeric($gID))
-	$database->query("UPDATE `".TABLE_PREFIX."mod_download_gallery_groups` SET `active` = '$status' WHERE `group_id` ='$gID'");
+	$database->simple_query("UPDATE `".TABLE_PREFIX."mod_download_gallery_groups` SET `active` = '$status' WHERE `group_id` ='$gID'");
 	
 
 /**

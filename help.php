@@ -4,7 +4,7 @@
  *  @module			Download Gallery
  *  @version		see info.php of this module
  *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
- *  @copyright		2010-2017 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @copyright		2010-2018 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
  *  @license		GNU General Public License
  *  @license terms	see info.php of this module
  *  @platform		see info.php of this module
@@ -110,10 +110,6 @@ require(LEPTON_PATH.'/modules/admin.php');
 				<li><code>[SIZE]</code> - The size of the download file.</li>
 				<li><code>[DATE]</code> - The date on which the download file has been last modified.</li>
 				<li><code>[TIME]</code> - The time on which the download file has been last modified.</li>
-				<li><code>[USER_ID]</code> - The userid of the person who has modified the download file.</li>
-				<li><code>[USERNAME]</code> - The username of the person who has modified the download file.</li>
-				<li><code>[DISPLAY_NAME]</code> - The display name of the person who has modified the download file.</li>
-				<li><code>[EMAIL]</code> - The e-mail address of the person who has modifief the download file.</li>
 				<li><code>[DL]</code> - The number of times the file has been downloaded</li>
 				<li><code>[FID]</code> - will create an anchor called "A"+file_id (this will not work when the list goes over multiple pages, so use with care!)</li>
 			</ul>
