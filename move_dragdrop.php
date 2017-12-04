@@ -43,8 +43,7 @@ if(!isset($_POST['action']) || !isset($_POST['row']) ){
 }else{	
 	
 	// check if user has permissions to access the module
-	require_once('../../framework/class.admin.php');
-	$admin = new admin('Modules', 'module_view', false, false);
+	$admin = new LEPTON_admin('Modules', 'module_view', false, false);
 	
 	if (!($admin->is_authenticated() && $admin->get_permission('download_gallery', 'module'))) 
 		die(header('Location: ../../index.php'));

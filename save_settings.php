@@ -37,10 +37,9 @@ else
 }
 // end include class.secure.php
 
-// Include admin wrapper script
-$update_when_modified = true; // Tells script to update when this page was last updated
-require(LEPTON_PATH.'/modules/admin.php');
-include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
+$admin = new LEPTON_admin('Pages', 'pages_modify');
+LEPTON_handle::include_files('/modules/download_gallery/functions.php');
+
 
 // This code removes any php tags and adds slashes
 $friendly = array('&lt;', '&gt;', '?php');

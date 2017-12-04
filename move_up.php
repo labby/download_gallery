@@ -55,15 +55,11 @@ if(!isset($_GET['file_id']) OR !is_numeric($_GET['file_id'])) {
 	$common_field = 'group_id';
 }
 
-// Include admin wrapper script
-require(LEPTON_PATH.'/modules/admin.php');				
-
-// Include the ordering class
-//require(LEPTON_PATH.'/framework/class.order.php'); // use LEPTON_order	
+$admin = new LEPTON_admin('Pages', 'pages_modify');			
 
 
 // Create new order object and reorder
-$order = new order($table, 'position', $id_field, $common_field);
+$order = new LEPTON_order($table, 'position', $id_field, $common_field);
 if($order->move_up($id)) {
 	
 	/*

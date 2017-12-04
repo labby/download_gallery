@@ -130,7 +130,7 @@ if(!function_exists('make_dl_dir')){
 		  or (filesize(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess') < 90))
 	   {
 		  // create a .htaccess file to prevent execution of PHP, HMTL files
-		  $content = <<< EOT
+		  $content = '
 	<Files .htaccess>
 		order allow,deny
 		deny from all
@@ -141,7 +141,7 @@ if(!function_exists('make_dl_dir')){
 	</Files>
 	
 	Options -Indexes -ExecCGI
-EOT;
+';
 	
 		  $handle = fopen(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess', 'w');
 		  fwrite($handle, $content);
@@ -215,36 +215,4 @@ if(!function_exists('reorder_id_null_group')){
 	
 }
 
-
-/*
-function human_file_size($size) {
-   $filesizename = array(" Bytes", " KB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB");
-   return round($size/pow(1024, ($i = floor(log($size, 1024)))), 2) . $filesizename[$i];
-}
-
-
-function hfs($size, $roundup, $decimals) {
-   $filesizename = array(" Bytes", " kB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB");
-   if (($roundup > 0) && ($decimals == 0)) {
-		$addition=.45;
-	} else {
-		$addition = 0 ;
-   }
-
-   if ($size == 0) {
-		$retstring = "0 kB";
-	} else {
-		$retstring = round($size/pow(1024, ($i = floor(log($size, 1024))))+$addition, $decimals) . $filesizename[$i];
-   }
-	
-   // In DE Komma statt Punkt:
-   if (LANGUAGE == "DE") {
-      //echo "<!-- DEBUG DE -->\n";
-      return str_replace('.', ',', $retstring);
-   } else {
-      //echo "<!-- DEBUG another language -->\n";
-      return $retstring;
-   }
-}
-*/
 ?>

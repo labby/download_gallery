@@ -39,7 +39,6 @@ else
 
 
 LEPTON_handle::include_files('/modules/download_gallery/functions.php');
-
 $DGTEXT = download_gallery::getInstance()->language;
 
 // For the curiousity: How fast do we are?

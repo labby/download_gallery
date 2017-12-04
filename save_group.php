@@ -51,9 +51,7 @@ if(!isset($_POST['active']) OR !is_numeric($_POST['active'])) {
 	$active = (int) $_POST['active'];
 }
 
-// Include admin wrapper script
-$update_when_modified = true; // Tells script to update when this page was last updated
-require(LEPTON_PATH.'/modules/admin.php');
+$admin = new LEPTON_admin('Pages', 'pages_modify');
 
 // Vagroup_idate all fields
 if($admin->get_post('title') == '') {
@@ -63,7 +61,7 @@ if($admin->get_post('title') == '') {
 }
 
 // Update row
-$database->query("UPDATE ".TABLE_PREFIX."mod_download_gallery_groups SET title = '$title', active = '$active' WHERE group_id = '$group_id' and page_id = '$page_id'");
+$database->simple_query("UPDATE ".TABLE_PREFIX."mod_download_gallery_groups SET title = '$title', active = '$active' WHERE group_id = '$group_id' and page_id = '$page_id'");
 
 // Check if there is a db error, otherwise say successful
 if($database->is_error()) {

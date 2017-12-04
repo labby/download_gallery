@@ -46,8 +46,7 @@ if(!isset($_GET['file_id']) OR !is_numeric($_GET['file_id'])) {
 	$file_id = (int) $_GET['file_id'];
 }
 
-$update_when_modified = true; // Tells script to update when this page was last updated
-require(LEPTON_PATH.'/modules/admin.php');
+$admin = new LEPTON_admin('Pages', 'pages_modify');
 
 // STEP 1:	Get post details
 $query_details = $database->query("SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE file_id = '$file_id' and page_id = '$page_id'");
@@ -76,7 +75,7 @@ if($dups==1){
 	}
 }
 // STEP 3:	Delete post
-$database->query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE file_id = '$file_id' LIMIT 1");
+$database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE file_id = '$file_id' LIMIT 1");
 
 // STEP 4:	Clean up ordering
 
@@ -91,10 +90,9 @@ if($group_id == 0){
 	
 } else {
 
-	// Include the ordering class
-	//require(LEPTON_PATH.'/framework/class.order.php'); // use LEPTON_order			
+			
 	// Initialize order object 
-	$order = new order(TABLE_PREFIX."mod_download_gallery_files", 'position', 'file_id', 'group_id');
+	$order = new LEPTON_order(TABLE_PREFIX."mod_download_gallery_files", 'position', 'file_id', 'group_id');
 	// reorder all groups in this group_id
 	$order->clean( intval( $group_id ) );   
 }

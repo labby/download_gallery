@@ -112,7 +112,7 @@ $field_info['modified_when'] = 'modified_when';
 $field_info['modified_by'] = 'modified_by';
 $field_info = serialize($field_info);
 
-$database->query("INSERT INTO ".TABLE_PREFIX."search (name,value,extra) VALUES ('module', 'download_gallery', '$field_info')");
+$database->simple_query("INSERT INTO ".TABLE_PREFIX."search (name,value,extra) VALUES ('module', 'download_gallery', '$field_info')");
 
 // Search query start
 $query_start_code = "SELECT [TP]pages.page_id
@@ -124,7 +124,7 @@ $query_start_code = "SELECT [TP]pages.page_id
 			FROM [TP]mod_download_gallery_files, [TP]mod_download_gallery_groups,[TP]pages 
 			WHERE 
 			";
-$database->query("INSERT INTO ".TABLE_PREFIX."search (name,value,extra) VALUES ('query_start', '$query_start_code', 'download_gallery')");
+$database->simple_query("INSERT INTO ".TABLE_PREFIX."search (name,value,extra) VALUES ('query_start', '$query_start_code', 'download_gallery')");
 
 // Search query body
 $query_body_code = " [TP]pages.page_id = [TP]mod_download_gallery_files.page_id AND [TP]mod_download_gallery_files.title [O] \'[W][STRING][W]\' AND [TP]pages.searching = \'1\' OR
@@ -133,16 +133,16 @@ $query_body_code = " [TP]pages.page_id = [TP]mod_download_gallery_files.page_id 
 			 [TP]pages.page_id = [TP]mod_download_gallery_files.page_id AND [TP]mod_download_gallery_files.filename [O] \'[W][STRING][W]\' AND [TP]pages.searching = \'1\'
 			 ";	
 
-$database->query("INSERT INTO ".TABLE_PREFIX."search (name,value,extra) VALUES ('query_body', '$query_body_code', 'download_gallery')");
+$database->simple_query("INSERT INTO ".TABLE_PREFIX."search (name,value,extra) VALUES ('query_body', '$query_body_code', 'download_gallery')");
 
 // Search query end
 $query_end_code = "";	
-$database->query("INSERT INTO ".TABLE_PREFIX."search (name,value,extra) VALUES ('query_end', '$query_end_code', 'download_gallery')");
+$database->simple_query("INSERT INTO ".TABLE_PREFIX."search (name,value,extra) VALUES ('query_end', '$query_end_code', 'download_gallery')");
 
 // Insert blank row (there needs to be at least on row for the search to work)
-$database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_files (section_id,page_id) VALUES ('0', '0')");
-$database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_settings (section_id,page_id) VALUES ('0', '0')");
-$database->query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_groups (section_id,page_id) VALUES ('0', '0')");
+$database->simple_query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_files (section_id,page_id) VALUES ('0', '0')");
+$database->simple_query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_settings (section_id,page_id) VALUES ('0', '0')");
+$database->simple_query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_groups (section_id,page_id) VALUES ('0', '0')");
 
 //Add folder for the files
 require_once(LEPTON_PATH.'/framework/summary.functions.php');

@@ -45,20 +45,16 @@ if(!isset($_GET['group_id']) OR !is_numeric($_GET['group_id'])) {
 	$group_id = (int) $_GET['group_id'];
 }
 
-// Include admin wrapper script
-$update_when_modified = true; // Tells script to update when this page was last updated
-require(LEPTON_PATH.'/modules/admin.php');
+$admin = new LEPTON_admin('Pages', 'pages_modify');
 
 //move all fiels in group to no group
-$database->query("UPDATE ".TABLE_PREFIX."mod_download_gallery_files SET group_id = '0',  active = '0' WHERE group_id = '$group_id' AND section_id = '$section_id'");
+$database->simple_query("UPDATE ".TABLE_PREFIX."mod_download_gallery_files SET group_id = '0',  active = '0' WHERE group_id = '$group_id' AND section_id = '$section_id'");
 
 // Delete row
-$database->query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_groups WHERE group_id = '$group_id' AND section_id = '$section_id'");
-
-// Include the ordering class
-//require(LEPTON_PATH.'/framework/class.order.php'); // use LEPTON_order			
+$database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_groups WHERE group_id = '$group_id' AND section_id = '$section_id'");
+		
 // Initialize order object 
-$order = new order(TABLE_PREFIX."mod_download_gallery_groups", 'position', 'group_id', 'section_id');
+$order = new LEPTON_order(TABLE_PREFIX."mod_download_gallery_groups", 'position', 'group_id', 'section_id');
 // reorder all groups in this section_id
 $order->clean( $section_id );   
 

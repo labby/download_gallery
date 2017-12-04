@@ -45,8 +45,7 @@ if(!isset($_GET['group_id']) OR !is_numeric($_GET['group_id'])) {
 	$group_id = $_GET['group_id'];
 }
 
-// Include admin wrapper script
-require(LEPTON_PATH.'/modules/admin.php');
+$admin = new LEPTON_admin('Pages', 'pages_modify');
 
 // Get header and footer
 $query_content = $database->query("SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_groups WHERE group_id = '$group_id' and page_id = '$page_id'");

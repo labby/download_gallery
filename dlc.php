@@ -101,8 +101,8 @@ if ($dl_allowed)
 {	
     // increment download counter:
 	$dlcount = $fetch_file['dlcount']+1;
-	$queryu="UPDATE `".TABLE_PREFIX."mod_download_gallery_files` SET `dlcount` = '$dlcount' WHERE `file_id` = '$file'";
-	$database->query($queryu);
+	$query_up="UPDATE `".TABLE_PREFIX."mod_download_gallery_files` SET `dlcount` = '$dlcount' WHERE `file_id` = '$file'";
+	$database->query($query_up);
 
 	// deliver the file:
 	$orgfile = $fetch_file['link'];

@@ -41,9 +41,8 @@ $file_names = array(
 '/modules/download_gallery/functions.php',
 '/framework/summary.functions.php'
 );
-LEPTON_handle::include_files ($file_names);
+LEPTON_handle::include_files($file_names);
 
-$update_when_modified = true; 					// Tells script to update when this page was last updated
 
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
@@ -102,7 +101,7 @@ if ((isset($_FILES['file']['tmp_name'])) AND ($_FILES['file']['tmp_name'] != '')
 	}
 
 	// update file information in the database
-	$database->query("UPDATE `".TABLE_PREFIX."mod_download_gallery_files` SET 
+	$database->simple_query("UPDATE `".TABLE_PREFIX."mod_download_gallery_files` SET 
 												`extension` = '$fileext', 
 												`filename` = '$filename' 
 												WHERE `file_id` = '$file_id' 
@@ -121,7 +120,7 @@ if ((isset($_POST['remote_link'])) AND ($_POST['remote_link'] != '') AND ($filen
 	$file_link = $filename;
 
 	// update file information in the database
-	$database->query("UPDATE `".TABLE_PREFIX."mod_download_gallery_files` SET 
+	$database->simple_query("UPDATE `".TABLE_PREFIX."mod_download_gallery_files` SET 
 							`extension` = '$fileext', 
 							`filename` = '$filename' 
 							WHERE `file_id` = '$file_id' 
@@ -163,7 +162,7 @@ if(trim($existingfile!='')) {
 		$file_link="";
 		$fileext="";
 	}
-	$database->query("UPDATE `".TABLE_PREFIX."mod_download_gallery_files` SET 
+	$database->simple_query("UPDATE `".TABLE_PREFIX."mod_download_gallery_files` SET 
 						`extension` = '$fileext', 
 						`filename` = '$filename', 
 						`link`='$file_link' 
@@ -172,7 +171,7 @@ if(trim($existingfile!='')) {
 }
 
 // Update row
-$database->query("UPDATE ".TABLE_PREFIX."mod_download_gallery_files SET 
+$database->simple_query("UPDATE ".TABLE_PREFIX."mod_download_gallery_files SET 
 							`title` = '$title', 
 							`link` = '$file_link', 
 							`group_id` = '$group', 
@@ -193,9 +192,7 @@ if($group==0){
 	reorder_id_null_group(TABLE_PREFIX."mod_download_gallery_files", $section_id);
 	
 } else {
-
-	// Include the ordering class
-	//require(LEPTON_PATH.'/framework/class.order.php'); // use LEPTON_order			
+		
 	// Initialize order object 
 	$order = new LEPTON_order(TABLE_PREFIX."mod_download_gallery_files", 'position', 'file_id', 'group_id');
 	// reorder all groups in this group_id

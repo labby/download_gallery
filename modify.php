@@ -49,8 +49,8 @@ $MODULE_PREFIX = TABLE_PREFIX."mod_download_gallery";
 
 
 //delete empty records
-$database->query(sprintf("DELETE FROM `%s`  WHERE `page_id` = '%d' and section_id = '%d' and title=''", $MODULE_PREFIX."_files", $page_id, $section_id ));
-$database->query(sprintf("DELETE FROM `%s`  WHERE page_id = '%d' and section_id = '%d' and title=''", $MODULE_PREFIX."_groups", $page_id, $section_id ));
+$database->simple_query(sprintf("DELETE FROM `%s`  WHERE `page_id` = '%d' and section_id = '%d' and title=''", $MODULE_PREFIX."_files", $page_id, $section_id ));
+$database->simple_query(sprintf("DELETE FROM `%s`  WHERE page_id = '%d' and section_id = '%d' and title=''", $MODULE_PREFIX."_groups", $page_id, $section_id ));
 
 
 // Get settings
