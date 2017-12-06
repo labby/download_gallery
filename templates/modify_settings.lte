@@ -1,0 +1,211 @@
+{#
+/**
+ *  @module			Download Gallery
+ *  @version		see info.php of this module
+ *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @copyright		2010-2018 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @license		GNU General Public License
+ *  @license terms	see info.php of this module
+ *  @platform		see info.php of this module
+ *
+ */
+ #}
+{% autoescape false %}
+<script type="text/javascript">
+//<![CDATA[
+function showpopup(URL, w, h) {
+	day = new Date();
+	id = day.getTime();
+	var winl = (screen.width - w) / 2;
+	var wint = (screen.height - h) / 2;
+	eval("page" + id + " = window.open(URL, '" + id + "', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width='+w+',height='+h+',left='+winl+',top='+wint);");
+}
+
+function process(element){
+	switch(element.value){
+		case "0":
+			document.getElementById('extorder').style.display = "none";
+			break;
+		case "1":
+			document.getElementById('extorder').style.display = "";
+			break;
+	}
+}
+//]]>
+</script>
+
+<div class="download_gallery" style="border:none;">{{ edit_module_css }}</div>
+
+<form name="modify" action="{{ action_url }}" method="post" style="margin: 0;">
+
+	<input type="hidden" name="section_id" value="{{ section_id }}" />
+	<input type="hidden" name="page_id" value="{{ page_id }}" />
+
+	<table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
+		<caption class="be_lepsem">{{ MOD_DG.GSETTINGS }}</caption>
+		<tr>
+			<th>{{ MOD_DG.FILES_PER_PAGE }}:</th>
+			<td valign="top"><input type="text" name="files_per_page" value="{{ dg_settings.files_per_page }}" style="width: 30px" /> 0 = {{ TEXT.UNLIMITED }}</td>
+		</tr>
+		<tr>
+			<th>{{ MOD_DG.FILE_ROUNDUP }}:</th>
+			<td valign="top">
+		        <input type="checkbox" value="1" name="file_size_round" {% if dg_settings.file_size_roundup == 1 %} checked="checked" {% endif %} />
+		    </td>
+		</tr>
+		<tr>
+			<th>{{ MOD_DG.SEARCHFILTER }}:</th>
+			<td valign="top">
+		        <input type="checkbox" value="1" name="search_filter" {% if dg_settings.search_filter == 1 %} checked="checked" {% endif %} />
+		    </td>
+		</tr>
+		<tr>
+			<th>{{ MOD_DG.FILE_DECIMALS }}:</th>
+			<td valign="top">
+				<select name="file_size_decimals" style="width: 50px">
+					<option value ="0" {% if dg_settings.file_size_decimals == '0' %} selected="selected"{% endif %}>0</option>					
+					<option value ="1" {% if dg_settings.file_size_decimals == '1' %} selected="selected"{% endif %}>1</option>
+					<option value ="2" {% if dg_settings.file_size_decimals == '2' %} selected="selected"{% endif %}>2</option>
+					<option value ="3" {% if dg_settings.file_size_decimals == '3' %} selected="selected"{% endif %}>3</option>
+					<option value ="4" {% if dg_settings.file_size_decimals == '4' %} selected="selected"{% endif %}>4</option>
+				</select>
+		    </td>
+		</tr>		
+
+{#		/*
+		['ordering']
+		0 - ascending position
+		1 - descending position
+		2 - ascending title
+		3 - descending title
+		orderby:
+		position=0
+		title=1
+		none=9
+
+		['extordering']
+		0 - extension ascending
+		1 - extension descending
+		9 - extension no order
+		*/
+#}
+		<tr>
+			<th>{{ MOD_DG.ORDERING }}:</th>
+			<td>
+				<select name="ordering" style="width: 200px">
+					<option value ="0" {% if dg_settings.ordering == '0' or dg_settings.ordering == '2' %} selected="selected"{% endif %}>{{ MOD_DG.ASCENDING }}</option>
+					<option value ="1" {% if dg_settings.ordering != '0' or dg_settings.ordering != '2' %} selected="selected"{% endif %}>{{ MOD_DG.DESCENDING }}</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>{{ MOD_DG.ORDERBY }}:</th>
+			<td>
+				<select name="orderby" style="width: 200px" onchange="process(this);">
+				<option value ="0" {% if dg_settings.ordering == '0' or dg_settings.ordering == '1' %} selected="selected"{% endif %}>{{ MOD_DG.POSITION }}</option>
+				<option value ="1" {% if dg_settings.ordering != '0' or dg_settings.ordering != '1' %} selected="selected"{% endif %}>{{ MOD_DG.TITLE }}</option>				
+				</select>
+			</td>
+		</tr>
+		<tr id="extorder" {% if dg_settings.ordering == '0' or dg_settings.ordering == '1' %}style="display:none"{% endif %}>
+			<th>{{ MOD_DG.EXTORDERING }}:</th>
+			<td>
+				<select name="extordering" style="width: 200px">
+				<option value ="9" {% if not (dg_settings.extordering in [0, 1, '']) %} selected="selected"{% endif %}>{{ MOD_DG.NOSORT }}</option>				
+				<option value ="0" {% if dg_settings.extordering == '0' or dg_settings.extordering == '' %} selected="selected"{% endif %}>{{ MOD_DG.ASCENDING }}</option>				
+				<option value ="1" {% if dg_settings.extordering == '1' %} selected="selected"{% endif %}>{{ MOD_DG.DESCENDING }}</option>				
+				</select> {{ MOD_DG.EXTINFO }}
+			</td>
+		</tr>
+	</table>
+	<hr />
+		<table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
+		<caption class="be_lepsem">{{ MOD_DG.FILE_TYPE_EXT }}</caption>
+			<thead>		
+				<tr>
+					<td><b>Type</b></td>
+					<td><b>Extensions</b></td>
+					<td><b>{{ TEXT.MODIFY }}?</b></td>
+				</tr>
+			</thead>
+			<tbody>
+			
+			{% for ext in dg_file_ext %}
+				<tr>
+					<td><nobr><img src="images/{{ ext.file_image|lower}}" alt="{{ ext.file_image|lower}}" /> <b>{{ ext.file_type}}</b></nobr></td>
+					<td>
+						{% if ext.extensions|length > 55 %} {{ ext.extensions|slice(1,55)~'...' }} 
+						{% else %}
+						{{ ext.extensions }}
+						{% endif %}
+					</td>					
+					<td width="20" style="padding-left: 5px;">
+						<a href="javascript:showpopup('{{ LEPTON_URL }}/modules/download_gallery/modify_extensions.php?page_id={{ page_id }}&section_id={{ section_id }}&fileext_id={{ ext.fileext_id }}',800,400)" title="{{ TEXT.MODIFY }}">
+							<img src="images/rename_16.png" border="0" alt="{{ TEXT.MODIFY }}" />
+						</a>
+					</td>
+				</tr>				
+			{% endfor %}			
+			</tbody>
+		</table>
+	<hr />
+	<table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%" style="margin-top: 5px;">
+		<caption class="be_lepsem">{{ MOD_DG.LSETTINGS }}</caption>		
+		<tr>
+			<th>{{ TEXT.HEADER}}:</th>
+			<td valign="top"><textarea cols="50" rows="5" name="header" style="width: 98%; height: 80px;">{{ dg_settings.header}}</textarea></td>
+		</tr>
+		<tr>
+			<th>{{ TEXT.FILE}} {{ TEXT.HEADER}}:</th>
+			<td class="newsection" valign="top"><textarea cols="50" rows="5" name="file_header" style="width: 98%; height: 60px;">{{ dg_settings.file_header}}</textarea></td>
+		</tr>
+		<tr>
+			<th>{{ MOD_DG.GPHEADER }}</th>
+			<td class="newsection" valign="top"><textarea cols="50" rows="5" name="gheader" style="width:98%; height: 60px;">{{ dg_settings.gheader}}</textarea></td>
+		</tr>	
+		<tr>
+			<th>{{ MOD_DG.GPLOOP }}</th>
+			<td valign="top"><textarea cols="50" rows="5" name="gloop" style="width:98%; height: 60px;">{{ dg_settings.gloop}}</textarea></td>
+		</tr>
+		<tr>
+			<th>{{ MOD_DG.GPFOOTER }}</th>
+			<td valign="top"><textarea cols="50" rows="5" name="gfooter" style="width:98%; height: 60px;">{{ dg_settings.gfooter}}</textarea></td>
+		</tr>
+		<tr>
+			<th>{{ TEXT.FILE}} {{ TEXT.LOOP}}:</th>
+			<td valign="top"><textarea cols="50" rows="5" name="files_loop" style="width: 98%; height: 60px;">{{ dg_settings.files_loop}}</textarea></td>
+		</tr>
+		<tr>
+			<th>{{ TEXT.FILE}} {{ TEXT.FOOTER}}:</th>
+			<td valign="top"><textarea cols="50" rows="5" name="file_footer" style="width: 98%; height: 60px;">{{ dg_settings.file_footer}}</textarea></td>
+		</tr>
+		<tr>
+			<th>{{ TEXT.FOOTER}}:</th>
+			<td valign="top"><textarea cols="50" rows="5" name="footer" style="width: 98%; height: 80px;">{{ dg_settings.footer}}</textarea></td>
+		</tr>
+		<tr class="row_separator">		
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<th>{{ MOD_DG.SEARCHLAYOUT }}</th>
+			<td class="newsection" valign="top"><textarea cols="50" rows="5" name="search_layout" style="width:98%; height: 60px;">{{ dg_settings.search_layout}}</textarea></td>
+		</tr>
+
+	</table>
+
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td align="left">
+				<input class="ui positive button" name="save" type="submit" value="{{ TEXT.SAVE}}" style="width: 100px; margin-top: 5px;" />
+			</td>
+			<td align="center">
+				<input class="ui negative button" name="reset_table" type="submit" value="{{ MOD_DG.RESET_TABLE }}" style="margin-top: 5px;" />
+			</td>
+			<td align="right">
+				<input type="button" class="cancel ui negative button" value="{{ TEXT.CANCEL}}" onclick="javascript:window.location='{{ ADMIN_URL }}/pages/modify.php?page_id={{ page_id }}';" style="width: 100px; margin-top: 5px;" />
+			</td>
+		</tr>
+	</table>
+</form>
+
+{% endautoescape %}

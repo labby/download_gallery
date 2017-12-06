@@ -45,54 +45,41 @@ if(!isset($_GET['group_id']) OR !is_numeric($_GET['group_id'])) {
 	$group_id = $_GET['group_id'];
 }
 
+// load language file 
+$MOD_DOWNLOAD_GALLERY = download_gallery::getInstance()->language;
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 // Get header and footer
 $query_content = $database->query("SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_groups WHERE group_id = '$group_id' and page_id = '$page_id'");
 $fetch_content = $query_content->fetchRow();
 
-?>
-
-<form name="modify" action="<?php echo LEPTON_URL; ?>/modules/download_gallery/save_group.php" method="post" style="margin: 0;">
-
-<input type="hidden" name="section_id" value="<?php echo $section_id; ?>" />
-<input type="hidden" name="page_id" value="<?php echo $page_id; ?>" />
-<input type="hidden" name="group_id" value="<?php echo $group_id; ?>" />
-
-<table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
-	<caption class="be_lepsem"><?php echo $TEXT['MODIFY'].'/'.$TEXT['ADD'].' '.$TEXT['GROUP']; ?></caption>	
-	<tr>
-		<th><?php echo $TEXT['ACTIVE']; ?>:</th>
-		<td>
-			<input type="radio" name="active" id="active_true" value="1" <?php if($fetch_content['active'] == 1) echo ' checked="checked"'; ?> />
-			<label for="active_true"><?php echo $TEXT['YES']; ?></label>			
-			<input type="radio" name="active" id="active_false" value="0" <?php if($fetch_content['active'] == 0) echo ' checked="checked"'; ?> />
-			<label for="active_false"><?php echo $TEXT['NO']; ?></label>
-		</td>
-	</tr>
-	<tr>
-		<th><?php echo $TEXT['GROUP']; ?>-<?php echo $TEXT['TITLE']; ?>:</th>
-		<td>
-			<input type="text" id="title" name="title" value="<?php echo stripslashes($fetch_content['title']); ?>" style="width: 98%;font-size:12pt; font-weight:bold;" maxlength="255" />
-		</td>
-	</tr>
-	
-	<tfoot>
-	<tr>
-		<td style="text-align:center;">
-			<input class="ui positive button" name="save" type="submit" value="<?php echo $TEXT['SAVE']; ?>" style="width: 100px; margin-top: 5px;" />
-		</td>
-		<td style="text-align:right;">
-			<input type="button" class="cancel ui negative button" value="<?php echo $TEXT['CANCEL']; ?>" onclick="javascript: window.location = '<?php echo ADMIN_URL; ?>/pages/modify.php?page_id=<?php echo $page_id; ?>';" style="width: 100px; margin-top: 5px;" />
-		</td>
-	</tr>
-	</tfoot>
-</table>
-</form>
-
-<?php
 if (empty($fetch_content['title']))
 	echo '<script type="text/javascript">document.getElementById("title").focus();</script>';
+
+$data = array(
+//	'print'=> (print_r($_SESSION["signup_error"])),
+	'MOD_DG' 	=> $MOD_DOWNLOAD_GALLERY,
+	'admin_url'	=>	ADMIN_URL,
+	'action_url'=>	LEPTON_URL."/modules/download_gallery/save_group.php",
+	'section_id'=>	$section_id,     
+	'page_id'	=>	$page_id, 
+	'group_id'	=> $group_id,
+	'active'	=> $fetch_content['active'],
+	'title'		=> stripslashes($fetch_content['title'])
+	);
+
+/**	
+ *	get the template-engine.
+ */
+$oTwig = lib_twig_box::getInstance();
+$oTwig->registerModule('download_gallery');
+	
+echo $oTwig->render( 
+	"@download_gallery/modify_group.lte",	//	template-filename
+	$data							//	template-data
+);
+
+
 
 // Print admin footer
 $admin->print_footer();

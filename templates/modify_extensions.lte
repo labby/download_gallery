@@ -1,0 +1,82 @@
+{#
+/**
+ *  @module			Download Gallery
+ *  @version		see info.php of this module
+ *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @copyright		2010-2018 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @license		GNU General Public License
+ *  @license terms	see info.php of this module
+ *  @platform		see info.php of this module
+ *
+ */
+ #}
+{% autoescape false %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ MOD_DG.MOD_TITLE }}</title>
+		<meta charset="utf-8">
+		<link href="{{ html_css }}" rel="stylesheet" type="text/css" />
+		<script language="JavaScript"  type="text/javascript">
+		function validateForm(theForm) {
+			
+		var checkOK		= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?$#+@, <>";
+		var checkStr	= theForm.file_ext.value;
+		var allValid	= true;
+		
+		for (i = 0;  i < checkStr.length;  i++) {
+			ch = checkStr.charAt(i);
+			for (j = 0;  j < checkOK.length;  j++)
+				if (ch == checkOK.charAt(j))
+				break;
+				if (j == checkOK.length) {
+					allValid = false;
+					break;
+				}
+			}
+		
+			if (!allValid) {
+				alert("Please enter only letter and numeric characters in the \"File Extensions\" field.\n\nThese extensions should be seperated with a comma.");
+				theForm.file_ext.focus();
+				return false;
+			}
+		}
+		</script>
+	</head>
+	
+	<body>
+		<div class="modify_section">
+			<h2>{{ MOD_DG.MOD_FILE_EXT }}</h2>
+			<p>{{ MOD_DG.MOD_TXT }}</p>
+			
+			<form name="modify_file_ext" method="post" action="{{ action_url }}" onsubmit="return validateForm(this);" >
+				<input type="hidden" name="section_id" value="{{ section_id }}" />
+				<input type="hidden" name="page_id" value="{{ page_id }}" />
+				<input type="hidden" name="fileext_id" value="{{ ext_details_id }}" />
+				<table cellpadding="2" cellspacing="0" width="100%">
+					<tr>
+						<td width="150">{{ MOD_DG.FILE_TYPE }}:</td>
+						<td><strong>{{ ext_details_type}}</strong></td>
+					</tr>
+					<tr>
+						<td>{{ MOD_DG.FILE_TYPE_EXT }}:</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+								<textarea name="file_ext" style="width: 96%; height: 100px;">{{ textarea_content }}</textarea>
+						</td>
+					</tr>
+				</table>
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tr>
+						<td align="center">
+							<input name="save" type="submit" value="{{ TEXT.SAVE }}" style="width: 120px; margin-top: 5px;" /> &nbsp;
+							<input type="button" class="cancel" value="{{ TEXT.CANCEL }}" onclick="window.close(); return false;" style="width: 120px; margin-top: 5px;" />
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>
+{% endautoescape %}

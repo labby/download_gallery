@@ -136,3 +136,13 @@ div.mce-panel button {
 	margin: 0px;
 	padding. 0px;
 }
+
+.modify_section {
+	margin-left	: 10px;
+	margin-top: 50px;
+}
+.modify_section h1 {
+	text-transform	: none;
+	text-align		: left;	
+	color			: white;
+}

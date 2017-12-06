@@ -10,7 +10,7 @@
  *  @platform		see info.php of this module
  *
  */
- 
+
 // include class.secure.php to protect this file and the whole CMS!
 if ( defined( 'LEPTON_PATH' ) )
 {
@@ -37,37 +37,4 @@ else
 }
 // end include class.secure.php
 
-
-// load language file 
-$MOD_DOWNLOAD_GALLERY = download_gallery::getInstance()->language;
-$admin = new LEPTON_admin('Pages', 'pages_modify');
-
-// Display the help page.
-$data = array(
-//	'print'=> (print_r($_SESSION["signup_error"])),
-	'MOD_DG' 	=> $MOD_DOWNLOAD_GALLERY,
-	'admin_url'	=>	ADMIN_URL,
-	'section_id'=>	$section_id,     
-	'page_id'	=>	$page_id
-	);
-
-/**	
- *	get the template-engine.
- */
-$oTwig = lib_twig_box::getInstance();
-$oTwig->registerModule('download_gallery');
-	
-echo $oTwig->render( 
-	"@download_gallery/help.lte",	//	template-filename
-	$data							//	template-data
-);
-
-
-
-// Print admin footer
-$admin->print_footer();
-
-
-
-$admin->print_footer();
 ?>

@@ -1,0 +1,50 @@
+{#
+/**
+ *  @module			Download Gallery
+ *  @version		see info.php of this module
+ *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @copyright		2010-2018 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @license		GNU General Public License
+ *  @license terms	see info.php of this module
+ *  @platform		see info.php of this module
+ *
+ */
+ #}
+{% autoescape false %}
+<form name="modify" action="{{ action_url }}" method="post" style="margin: 0;">
+
+<input type="hidden" name="section_id" value="{{ section_id }}" />
+<input type="hidden" name="page_id" value="{{ page_id }}" />
+<input type="hidden" name="group_id" value="{{ group_id }}" />
+
+<table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
+	<caption class="be_lepsem">{{ TEXT.MODIFY }}-{{ TEXT.ADD }} {{ TEXT.GROUP }}</caption>	
+	<tr>
+		<th>{{ TEXT.ACTIVE }}:</th>
+		<td>
+			<input type="radio" name="active" id="active_true" value="1" {% if active == 1 %} checked="checked" {% endif %} />
+			<label for="active_true">{{ TEXT.YES }}</label>			
+			<input type="radio" name="active" id="active_false" value="0" {% if active == 0 %} checked="checked" {% endif %} />
+			<label for="active_false">{{ TEXT.NO }}</label>
+		</td>
+	</tr>
+	<tr>
+		<th>{{ TEXT.GROUP }}-{{ TEXT.TITLE }}:</th>
+		<td>
+			<input type="text" id="title" name="title" value="{{ title }}" style="width: 98%;font-size:12pt; font-weight:bold;" maxlength="255" />
+		</td>
+	</tr>
+	
+	<tfoot>
+	<tr>
+		<td style="text-align:center;">
+			<input class="ui positive button" name="save" type="submit" value="{{ TEXT.SAVE }}" style="width: 100px; margin-top: 5px;" />
+		</td>
+		<td style="text-align:right;">
+			<input type="button" class="cancel ui negative button" value="{{ TEXT.CANCEL }}" onclick="javascript: window.location = '{{ admin_url }}/pages/modify.php?page_id={{ page_id }}';" style="width: 100px; margin-top: 5px;" />
+		</td>
+	</tr>
+	</tfoot>
+</table>
+</form>
+{% endautoescape %}
