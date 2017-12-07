@@ -11,8 +11,8 @@
  *
  */
 
-$module_name		= 'Download Gallery';
 $module_directory	= 'download_gallery';
+$module_name		= 'Download Gallery';
 $module_function	= 'page';
 $module_version		= '3.2.0';
 $module_platform	= '3.0';

@@ -1,0 +1,107 @@
+{#
+/**
+ *  @module			Download Gallery
+ *  @version		see info.php of this module
+ *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @copyright		2010-2018 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @license		GNU General Public License
+ *  @license terms	see info.php of this module
+ *  @platform		see info.php of this module
+ *
+ */
+ #}
+{% autoescape false %}
+<form name="modify" action="{{ action_url }}" method="post" enctype="multipart/form-data" style="margin: 0;">
+
+	<input type="hidden" name="section_id" value="{{ section_id }}" />
+	<input type="hidden" name="page_id" value="{{ page_id }}" />
+	<input type="hidden" name="file_id" value="{{ dg_file.file_id }}" />
+	<input type="hidden" name="link" value="{{ dg_file.link }}" />
+
+	<table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
+		<caption class="be_lepsem">{{ TEXT.MODIFY }} {{ TEXT.DELETE }} {{ TEXT.FILE }}</caption>
+		<tr>
+			<th>{{ TEXT.ACTIVE }}:</th>
+			<td valign="top">
+				<input type="radio" name="active" id="active_true" value="1" {% if dg_file.active == 1 %} checked="checked" {% endif %} />			
+				<label for="active_true">{{ TEXT.YES }}</label>
+				<input type="radio" name="active" id="active_false" value="0" {% if dg_file.active == 0 %} checked="checked" {% endif %} />				
+				<label for="active_false">{{ TEXT.NO }}</label>
+			</td>
+		</tr>
+		<tr>
+			<th>{{ TEXT.TITLE }}:</th>
+			<td valign="top">
+				<input type="text" id="title" name="title" value="{{ dg_file.title }}" style="width: 98%;font-size:12pt; font-weight:bold;" maxlength="255" />
+			</td>
+		</tr>
+
+    <!-- local file: -->
+		<tr>
+			<th>{{ MOD_DG.LOKALFILE }}:</th>
+			<td valign="top">
+				{{ file_handle }}
+			</td>
+		</tr>
+		
+		{% if dg_file.filename == '' %}
+			<tr>
+				<th>{{ MOD_DG.EXISTINGFILE }}:</th>
+				<td valign="top">
+					<select name="existingfile" style="width: 99%;">
+					<option value=''>&nbsp;</option>
+
+					{% for folder in folder_list  %}
+						<option value="{{ folder|replace ({LEPTON_PATH:LEPTON_URL}) }}">{{ folder|replace ({LEPTON_PATH:LEPTON_URL}) }}</option>
+					{% endfor  %}
+					</select>
+				</td>
+			</tr>
+		{% endif  %}
+    <!-- alternativ: Remote Link (no Upload) -->
+		<tr>
+	  		<th>{{ MOD_DG.REMOTE_LINK }}:</th>
+			<td><input type="text" name="remote_link" value="{{ remote_link }}" style="width: 98%;" maxlength="255" /></td>
+		</tr>
+
+		<tr>
+	  		<th>{{ TEXT.GROUP }}:</th>
+			<td>
+	  			<select name="group" style="width: 98%;">
+				<option value="0">{{ TEXT.NONE }}</option>
+				{% for group in dg_groups  %}				
+						<option value="{{ group.group_id }}" {% if group.group_id == preselected_group %} selected='selected' {% endif  %}>{{ group.title }}</option>
+				{% endfor  %}
+				</select>
+	  		</td>
+		</tr>		
+		{% if dg_file.title == '' %}
+		<tr>
+			<th>{{ MOD_DG.OVERWRITE }}:</th>
+			<td valign="top">
+				<input type="checkbox" name="overwrite" id="overwrite" value="yes" />
+			</td>
+		</tr>
+		{% endif  %}
+		<tr>
+			<td colspan="2"></td>
+		</tr>
+	
+		<tr>
+			<th>{{ TEXT.DESCRIPTION }}</th>
+			<td>{{ wysiwyg }}</td>
+		</tr>
+		
+		<tfoot>
+			<tr>
+				<td style="text-align:center;">
+				<input class="ui positive button" name="save" type="submit" value="{{ TEXT.SAVE }}" style="width: 100px; margin-top: 5px;" />
+				</td>
+				<td style="text-align:right;">
+	                <input class="ui negative button" type="button" class="cancel" value="{{ TEXT.CANCEL }}" onclick="javascript: window.location = '{{ ADMIN_URL }}/pages/modify.php?page_id={{page_id }}';" style="width: 100px; margin-top: 5px;" />
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</form>
+{% endautoescape %}
