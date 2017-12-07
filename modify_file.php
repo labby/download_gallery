@@ -67,7 +67,7 @@ $database->execute_query(
 // General File Information
 $fname = $dg_file['filename'];
 if($fname == '') {
-	$fname = 'dummy_file_name.ext';
+//	$fname = 'dummy_file_name.ext';
   $remotelink = '';
 } elseif ((strpos($fname, ':/') > 1)) {
 	$remotelink = $fname;
@@ -77,26 +77,35 @@ if($fname == '') {
 }
 
 $file_handle = '';
-if(file_exists(LEPTON_PATH.MEDIA_DIRECTORY.'/download_gallery/' .$fname )) 
+if(file_exists(LEPTON_PATH.MEDIA_DIRECTORY.'/download_gallery/' .$fname ) && ($fname != '')) 
 {
-	$file_handle .=  '<b>"'.$fname.'"</b>&nbsp;&nbsp;' ;
-	$file_handle .=  '<input type="checkbox" name="delete_file" id="delete_file" value="true" />"'.$TEXT['DELETE'].'" ' ;
+	$file_handle .=  '<b>'.$fname.'</b>&nbsp;&nbsp;' ;
+	$file_handle .=  '<input type="checkbox" name="delete_file" id="delete_file" value="true" />'.$TEXT['DELETE'].' ' ;
 }
-elseif (trim($remotelink !=""))  {
+elseif (trim($remotelink) !="")  {
 	$file_handle .=  '<input type="file" name="file" />' ;
 }
-elseif (trim ($fname !=""))  {
-	$file_handle .=  '<b><input type="hidden" name="existingfile"  value="'.$dg_file['link'].'">"'.$dg_file['link'].'"</b>' ;
-	$file_handle .=  '<input type="checkbox" name="delete_file2" id="delete_file2" value="true" />"'.$TEXT['DELETE'].'" ' ;
+elseif (trim ($fname) !="")  {
+	$file_handle .=  '<b><input type="hidden" name="existingfile"  value="'.$dg_file['link'].'">'.$dg_file['link'].'</b>' ;
+	$file_handle .=  '<input type="checkbox" name="delete_file2" id="delete_file2" value="true" />'.$TEXT['DELETE'].' ' ;
 }
 else {
 	$file_handle .=  '<input type="file" name="file" />' ;
 }
 
 // all directories of media_directory
-$folder_list=directory_list(LEPTON_PATH.MEDIA_DIRECTORY);
-array_push($folder_list,LEPTON_PATH.MEDIA_DIRECTORY);
-natsort($folder_list);
+$directories = directory_list(LEPTON_PATH.MEDIA_DIRECTORY);
+array_push($directories,LEPTON_PATH.MEDIA_DIRECTORY);
+foreach ($directories as $temp) {
+	$folder_list[]= file_list($temp);
+}
+$file_list = array();
+foreach ($folder_list as $temp) {
+	foreach ($temp as $file) {
+		$file_list[]= str_replace (LEPTON_PATH, LEPTON_URL,$file);
+	}
+}
+natsort($file_list);
 
 //get all groups
 $dg_groups = array();
@@ -106,7 +115,6 @@ $database->execute_query(
 	$dg_groups,
 	true
 );
-
 
 if (!defined('WYSIWYG_EDITOR') OR WYSIWYG_EDITOR=="none" OR !file_exists(LEPTON_PATH.'/modules/'.WYSIWYG_EDITOR.'/include.php')) {
 	function show_wysiwyg_editor($name,$id,$content,$width,$height) {
@@ -127,7 +135,9 @@ $data = array(
 	'page_id'	=>	$page_id, 
 	'file_name'	=> $fname,
 	'dg_file' 	=> $dg_file,
+	'dg_groups' 	=> $dg_groups,	
 	'file_handle' 	=> $file_handle,
+	'file_list' 	=> $file_list,	
 	'remote_link' 	=> $remotelink,
 	'preselected_group' => $preselected_group,	
 	'wysiwyg'		=>show_wysiwyg_editor("description","description",$dg_file['description'], "100%", "400",false)

@@ -51,8 +51,8 @@
 					<select name="existingfile" style="width: 99%;">
 					<option value=''>&nbsp;</option>
 
-					{% for folder in folder_list  %}
-						<option value="{{ folder|replace ({LEPTON_PATH:LEPTON_URL}) }}">{{ folder|replace ({LEPTON_PATH:LEPTON_URL}) }}</option>
+					{% for file in file_list  %}
+						<option value="{{ file }}">{{ file }}</option>
 					{% endfor  %}
 					</select>
 				</td>
