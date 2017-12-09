@@ -16,7 +16,8 @@ This module is for creating a download gallery pages.
 
 #### Notice
 
-This is a pure LEPTON-CMS version.
+You have to include jquery core into your frontend template (if not already done) to get the filter and pagination work.
+Please keep in mind that jquery core is part of lib_jquery.
 
 [1]: http://lepton-cms.org "LEPTON CMS"
 [2]: http://www.lepton-cms.com/lepador/modules/download-gallery-2series.php

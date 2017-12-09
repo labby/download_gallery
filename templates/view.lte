@@ -13,11 +13,11 @@
 {% autoescape false %}
 
 <div class='{{ addon }}'>
-<h2>Überschrift</h2>
+<h2 class="ui header page_title">{{ page_title }}</h2>
 {% if settings.search_filter == 1 %}
 <div class="input_filter_container"><label for="input-filter">Filter:</label> <input class="dg_search" type="search" id="input-filter" size="15" placeholder="{{ TEXT.SEARCH }}"></div>
 {% endif %}
-<table class="ui single line table dg_{{ section_id }}">
+<table class="ui single line table dg_table">
   <thead>
     <tr>
       <th>{{ MOD_DG.THTITLE }}</th>
@@ -28,7 +28,7 @@
   </thead>
   <tbody>
   {% for group in groups %}
-		<tr class='dg_group_title'><td class='group_header' colspan='4'>{{ group.title }}</td></tr>
+		<tr class='dg_group_title'><td class='group_header' colspan='4'><b>{{ group.title }}</b></td></tr>
 		{% for file in all_files %}
 			{% if file.group_id == group.group_id %}
 			<tr>
@@ -41,7 +41,11 @@
 		{% endfor %}
 		<tr class='spacer'><td> <br /></td></tr>
 	{% endfor %}		
-  </tbody>	
+  </tbody>
+  <tfoot>
+	<tr><td class='dg_page' colspan='4'>pages</td></tr>
+  </tfoot>
+
 </table>
 	{% if not (settings.files_per_page == 0) %} 
 	
@@ -50,5 +54,32 @@
 	{% endif %}
 	
 </div>
-
+<script>
+{# use simplePagination, see options on http://flaviusmatis.github.io/simplePagination.js/  #}
+$(function() {
+    $('.dg_page').pagination({
+        items: {{ items }},
+        itemsOnPage: {{ itemsOnPage }},
+        cssStyle: '{{ cssStyle }}'
+//		pages: 0,
+//		displayedPages: 5,
+//		edges: 2,
+//		currentPage: 0,
+//		useAnchors: true,
+//		hrefTextPrefix: '#page-',
+//		hrefTextSuffix: '',
+//		prevText: 'Prev',
+//		nextText: 'Next',
+//		ellipseText: '&hellip;',
+//		ellipsePageSet: true,
+//		listStyle: '',
+//		labelMap: [],
+//		selectOnClick: true,
+//		nextAtFront: false,
+//		invertPageOrder: false,
+//		useStartEdge : true,
+//		useEndEdge : true
+    });
+});
+</script>
 {% endautoescape %}

@@ -39,7 +39,7 @@ else
 
 LEPTON_handle::include_files('/modules/download_gallery/functions.php');
 $DGTEXT = download_gallery::getInstance()->language;
-$addon_directory = 'download_gallery';
+require_once 'info.php';
 
 // For the curiousity: How fast do we are?
 $time_start = microtime_float();
@@ -95,10 +95,16 @@ $data = array(
 	'MOD_DG' 	=> $DGTEXT,
 	'section_id'=> $section_id,	
 	'all_files'=> $all_files,
+	'page_title'=> $database->get_one("SELECT page_title from ".TABLE_PREFIX."pages where page_id = ".$page_id." "),
 	'dateformat'=> str_replace(' ','/', DEFAULT_DATE_FORMAT),
 	'groups'=> $dg_groups,
 	'settings'=> $dg_settings,	
-	'addon' 	=> $addon_directory
+	'addon' 	=> $module_directory,
+	
+	// data js pagination	
+        'items' => 10,
+        'itemsOnPage'=> 2,
+        'cssStyle'=> 'compact-theme'	
 	);
 
 /**	

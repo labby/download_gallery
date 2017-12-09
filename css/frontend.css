@@ -14,7 +14,11 @@
 */
 
 .download_gallery {
-background:transparent;
+width: 100%;
+}
+
+h2.page_title {
+background:#f9fafb;
 }
 
 .input_filter_container {
@@ -26,13 +30,25 @@ background:transparent;
 	border:1px solid #ccc;
 }
 
-.ui.table tr td {
+table.dg_table {
+	text-align: left;
+}
+
+.dg_table tr td {
     border-top: 0px solid rgba(34,36,38,.1);
+}
+
+table.dg_table th td {
+	text-align: left;
+	padding: 15px;
 }
 
 .dg_group_title {
 background:#f9fafb;
 }
+
+
+
 
 
 .mod_download_gallery_line_f, .mod_download_gallery_line_rightalign_f {
