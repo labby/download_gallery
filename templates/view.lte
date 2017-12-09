@@ -12,4 +12,43 @@
  #}
 {% autoescape false %}
 
+<div class='{{ addon }}'>
+<h2>Überschrift</h2>
+{% if settings.search_filter == 1 %}
+<div class="input_filter_container"><label for="input-filter">Filter:</label> <input class="dg_search" type="search" id="input-filter" size="15" placeholder="{{ TEXT.SEARCH }}"></div>
+{% endif %}
+<table class="ui single line table dg_{{ section_id }}">
+  <thead>
+    <tr>
+      <th>{{ MOD_DG.THTITLE }}</th>
+      <th>{{ MOD_DG.THCHANGED }}</th>
+      <th>{{ MOD_DG.THSIZE }}</th>
+      <th>{{ MOD_DG.THCOUNT }}</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for group in groups %}
+		<tr class='dg_group_title'><td class='group_header' colspan='4'>{{ group.title }}</td></tr>
+		{% for file in all_files %}
+			{% if file.group_id == group.group_id %}
+			<tr>
+			  <td>{{ file.file_ext }} {{ file.filename }}</td>
+			  <td>{{ file.modified_when|date(dateformat) }}</td>
+			  <td>{{ file.size//1024 }} KB</td>
+			  <td>{{ file.dlcount }}</td>
+			</tr>
+			{% endif %}
+		{% endfor %}
+		<tr class='spacer'><td> <br /></td></tr>
+	{% endfor %}		
+  </tbody>	
+</table>
+	{% if not (settings.files_per_page == 0) %} 
+	
+	{{ pn_button }}
+	
+	{% endif %}
+	
+</div>
+
 {% endautoescape %}

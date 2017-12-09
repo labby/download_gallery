@@ -44,7 +44,7 @@
  'GPHEADER'=> 'Group Header',
  'GPLOOP'=> 'Group Loop',
  'GPFOOTER'=> 'Group Footer',
- 'NOGROUP'=> '',
+ 'NOGROUP'=> 'No Group',
  'SEARCHFILTER'=> 'Search Filter',
  'SEARCHLAYOUT'=> 'Search',
  'NOMATCH'=> 'No Match Found',

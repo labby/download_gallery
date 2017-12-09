@@ -1,3 +1,14 @@
+/**
+ *  @module			Download Gallery
+ *  @version		see info.php of this module
+ *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @copyright		2010-2018 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
+ *  @license		GNU General Public License
+ *  @license terms	see info.php of this module
+ *  @platform		see info.php of this module
+ *
+ */
+
 // include_file("file-name", "filetype"); // JS/CSS
 function include_file(filename, filetype) {
 
