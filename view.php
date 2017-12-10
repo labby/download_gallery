@@ -39,7 +39,7 @@ else
 
 LEPTON_handle::include_files('/modules/download_gallery/functions.php');
 $DGTEXT = download_gallery::getInstance()->language;
-require_once 'info.php';
+require_once LEPTON_PATH.'/modules/download_gallery/info.php';
 
 // For the curiousity: How fast do we are?
 $time_start = microtime_float();
@@ -62,9 +62,69 @@ $database->execute_query(
 	true
 );
 
+// define image icons
+$image_icons = array('jpg','jpeg','png','gif');
+/**
+ * erpe
+		$url = 'https://cdn.pixabay.com/photo/2013/11/20/17/10/tree-213980_960_720.jpg';
+if (!$fp = fopen($url, 'r')) {
+    trigger_error("Unable to open URL ($url)", E_USER_ERROR);
+}
+$meta = stream_get_meta_data($fp);
+$length = array_key_exists ( 'Content-Length:' , $meta);
+fclose($fp);
+die(print_r($length));
+ */
+
+
+
+
 // get file extension for each file
-foreach ($all_files as &$icon) {
-	$icon['file_ext'] = '<img src="'.LEPTON_URL.'/modules/download_gallery/images/'.$icon['extension'].'.gif" />';
+foreach ($all_files as &$temp) {
+	
+	if($temp['link'] != $temp['filename'] )
+	{ //get filesize and icons of internal files
+		$temp['file_ext'] = '<img src="'.LEPTON_URL.'/modules/download_gallery/images/'.$temp['extension'].'.gif" />';
+		$temp['size'] = human_file_size(filesize(str_replace(LEPTON_URL,LEPTON_PATH,$temp['link'])),$dg_settings['file_size_decimals']);
+	} else 
+	{  //get filesize and icons of external files
+		$get_extern_icon = strtolower(substr( strrchr($temp['filename'],'.'),1));
+		if (in_array ($get_extern_icon,$image_icons)) {
+			$get_extern_icon = 'image';
+		}
+		$temp['file_ext'] = '<img src="'.LEPTON_URL.'/modules/download_gallery/images/'.$get_extern_icon.'.gif" />';
+		
+/**
+ *  Playground Aldus
+ *  0.1.0
+ *
+ */
+// $url = 'https://cdn.pixabay.com/photo/2013/11/20/17/10/tree-213980_960_720.jpg';
+
+if ( !$fp = fopen( $temp['link'] , 'r')) {
+    trigger_error("Unable to open URL ($url)", E_USER_ERROR);
+}
+
+$meta = stream_get_meta_data($fp);
+fclose($fp);
+
+// echo LEPTON_tools::display( $meta );
+
+$length = 0;
+foreach($meta['wrapper_data'] as $temp_line)
+{
+    if(0 === strpos( $temp_line, "Content-Length: " ))
+    {
+        $length = intval( str_replace("Content-Length: ", "", $temp_line ) ); // !here
+        
+        break;
+    }
+}
+// end aldus		
+
+        
+		$temp['size'] = human_file_size( $length , $dg_settings['file_size_decimals']);
+	}
 }
 
 
