@@ -32,7 +32,7 @@
 		{% for file in all_files %}
 			{% if file.group_id == group.group_id %}
 			<tr>
-			  <td>{{ file.file_ext }} <a href='{{ file.link }}' target='_blank'>{{ file.filename }}</a></td>
+			  <td>{{ file.file_ext }} <a href='{{ file.link }}' target='_blank'>{{ file.title }}</a></td>
 			  <td>{{ file.modified_when|date(dateformat) }}</td>
 			  <td>{{ file.size }}</td>
 			  <td>{{ file.dlcount }}</td>

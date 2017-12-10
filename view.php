@@ -81,11 +81,12 @@ die(print_r($length));
 
 // get file extension for each file
 foreach ($all_files as &$temp) {
-	
+		
 	if($temp['link'] != $temp['filename'] )
 	{ //get filesize and icons of internal files
 		$temp['file_ext'] = '<img src="'.LEPTON_URL.'/modules/download_gallery/images/'.$temp['extension'].'.gif" />';
 		$temp['size'] = human_file_size(filesize(str_replace(LEPTON_URL,LEPTON_PATH,$temp['link'])),$dg_settings['file_size_decimals']);
+		$temp['link'] = LEPTON_URL . '/modules/download_gallery/dlc.php?file=' .$temp['file_id'].'&amp;id='.$temp['modified_when'];
 	} else 
 	{  //get filesize and icons of external files
 		$get_extern_icon = strtolower(substr( strrchr($temp['filename'],'.'),1));
@@ -124,6 +125,7 @@ foreach($meta['wrapper_data'] as $temp_line)
 
         
 		$temp['size'] = human_file_size( $length , $dg_settings['file_size_decimals']);
+		$temp['link'] = LEPTON_URL . '/modules/download_gallery/dlc.php?file=' .$temp['file_id'].'&amp;id='.$temp['modified_when'];
 	}
 }
 
@@ -154,7 +156,7 @@ $dg_groups = array_merge(
 $data = array(
 	'MOD_DG' 	=> $DGTEXT,
 	'section_id'=> $section_id,	
-	'all_files'=> $all_files,
+	'all_files'	=> $all_files,
 	'page_title'=> $database->get_one("SELECT page_title from ".TABLE_PREFIX."pages where page_id = ".$page_id." "),
 	'dateformat'=> str_replace(' ','/', DEFAULT_DATE_FORMAT),
 	'groups'=> $dg_groups,
