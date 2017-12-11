@@ -152,47 +152,18 @@ function process(element){
 	<table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%" style="margin-top: 5px;">
 		<caption class="be_lepsem">{{ MOD_DG.LSETTINGS }}</caption>		
 		<tr>
-			<th>{{ TEXT.HEADER}}:</th>
-			<td valign="top"><textarea cols="50" rows="5" name="header" style="width: 98%; height: 80px;">{{ dg_settings.header}}</textarea></td>
+			<td><b>{{ TEXT.HEADER}}:</b></td>
+			<td valign="top"><input type="text" style="width: 98%;  name="header" value="{{ dg_settings.header }}" /></td>
 		</tr>
 		<tr>
-			<th>{{ TEXT.FILE}} {{ TEXT.HEADER}}:</th>
-			<td class="newsection" valign="top"><textarea cols="50" rows="5" name="file_header" style="width: 98%; height: 60px;">{{ dg_settings.file_header}}</textarea></td>
-		</tr>
-		<tr>
-			<th>{{ MOD_DG.GPHEADER }}</th>
-			<td class="newsection" valign="top"><textarea cols="50" rows="5" name="gheader" style="width:98%; height: 60px;">{{ dg_settings.gheader}}</textarea></td>
-		</tr>	
-		<tr>
-			<th>{{ MOD_DG.GPLOOP }}</th>
-			<td valign="top"><textarea cols="50" rows="5" name="gloop" style="width:98%; height: 60px;">{{ dg_settings.gloop}}</textarea></td>
-		</tr>
-		<tr>
-			<th>{{ MOD_DG.GPFOOTER }}</th>
-			<td valign="top"><textarea cols="50" rows="5" name="gfooter" style="width:98%; height: 60px;">{{ dg_settings.gfooter}}</textarea></td>
-		</tr>
-		<tr>
-			<th>{{ TEXT.FILE}} {{ TEXT.LOOP}}:</th>
-			<td valign="top"><textarea cols="50" rows="5" name="files_loop" style="width: 98%; height: 60px;">{{ dg_settings.files_loop}}</textarea></td>
-		</tr>
-		<tr>
-			<th>{{ TEXT.FILE}} {{ TEXT.FOOTER}}:</th>
-			<td valign="top"><textarea cols="50" rows="5" name="file_footer" style="width: 98%; height: 60px;">{{ dg_settings.file_footer}}</textarea></td>
-		</tr>
-		<tr>
-			<th>{{ TEXT.FOOTER}}:</th>
-			<td valign="top"><textarea cols="50" rows="5" name="footer" style="width: 98%; height: 80px;">{{ dg_settings.footer}}</textarea></td>
-		</tr>
-		<tr class="row_separator">		
-			<td colspan="2"></td>
-		</tr>
-		<tr>
-			<th>{{ MOD_DG.SEARCHLAYOUT }}</th>
-			<td class="newsection" valign="top"><textarea cols="50" rows="5" name="search_layout" style="width:98%; height: 60px;">{{ dg_settings.search_layout}}</textarea></td>
+			<td><b>{{ TEXT.FOOTER}}:</b></td>
+			<td valign="top" colspan="10"><input type="text" style="width: 98%;  name="footer" value="{{ dg_settings.footer }}" /></td>
 		</tr>
 
 	</table>
-
+	
+	<div class="column"><h1>Hier soll das Template editiert werden!</h1></div>
+	
 	<table cellpadding="0" cellspacing="0" border="0" width="100%">
 		<tr>
 			<td align="left">

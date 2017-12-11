@@ -32,71 +32,22 @@
 	<ul>
 		<li><code>Header</code> - This layout section will be shown as first on the output.
 		It can e.g. be used for opening a division (<code>&lt;div&gt;</code>).
-			<ul>
-				<li><code>[SEARCH]</code> - Display the Search Layout</li>
-			</ul>
 		</li>
-		<li><code>Footer</code> - This field will be shown at the end of the layout output of this module. For the 'Header' or the 'Footer' field the following codes can be used:
+		<li><code>Footer</code> - This field will be shown at the end of the layout output of this module.
+		</li>		
+		<li><code>FILES</code> - The following images for files are used:
 			<ul>
-				<li><code>[NEXT_PAGE_LINK]</code> - Link to show the next section of downloads (<i>based upon the 'files per page' setting'</i>)</li>
-				<li><code>[NEXT_LINK]</code> - Link to show the next download gallery file</li>
-				<li><code>[PREVIOUS_PAGE_LINK]</code> - Link to show the previous section of downloads (<i>based upon the 'files per page' setting'</i>)</li>
-				<li><code>[PREVIOUS_LINK]</code> - Link to show the previous download gallery file</li>
-				<li><code>[OUT_OF]</code> - Gives back a string what is currently being shown on the page.</li>
-				<li><code>[OF]</code> - Total number of files that are available for downloading on all the pages.</li>
-				<li><code>[DISPLAY_PREVIOUS_NEXT_LINKS]</code> - stylesheet option whether the option to display the previous/next section is enabled</li>
-				<li><code>[SEARCH]</code> - Display the Search Layout</li>
+				<li><img src="images/image.gif" alt="" title="Icon: Image" /> - Image file</li>
+				<li><img src="images/music.gif" alt="" title="Icon: Music" /> - Music file</li>
+				<li><img src="images/movie.gif" alt="" title="Icon: Movie" /> - Movie file</li>
+				<li><img src="images/text.gif" alt="" title="Icon: Text" /> - Text file</li>
+				<li><img src="images/pdf.gif" alt="" title="Icon: PDF" /> - PDF file</li>
+				<li><img src="images/document.gif" alt="" title="Icon: Document" /> - Document file</li>
+				<li><img src="images/spreadsheet.gif" alt="" title="Icon: Spreadsheet" /> - Spreadsheet file</li>
+				<li><img src="images/presentation.gif" alt="" title="Icon: Presentation" /> - Presentation file</li>
+				<li><img src="images/unknown.gif" alt="" title="Icon: Unknown" /> - Unknown file</li>
 			</ul>
-		</li>
-		<li><code>File header</code> - This field will be displayed at the beginning of the download file list.
-			<ul>
-				<li><code>[THTITLE]</code> - The title button of the list with sort function</li>
-				<li><code>[THCHANGED]</code> - The date button of the list with sort function</li>
-				<li><code>[THSIZE]</code> - The size button of the list with sort function</li>
-				<li><code>[THCOUNT]</code> - The download counter button of the list with sort function</li>
-			</ul>
-		</li>
-		<li><code>Files loop</code> - This section will be repeated each time a download is found. Within this field one can use the following codes:
-			<ul>
-				<li><code>[TITLE]</code> - The title of the download file.</li>
-				<li><code>[DESCRIPTION]</code> - The description for this download file.</li>
-				<li><code>[LINK]</code> - The link to the file so people can download it.</li>
-				<li><code>[EXT]</code> - The extension of the file that can be downloaded.</li>
-				<li><code>[FTIMAGE]</code> - This returns the path to an image based upon the extension. The following images are used:
-					<ul>
-						<li><img src="images/image.gif" alt="" title="Icon: Image" /> - Image file</li>
-						<li><img src="images/music.gif" alt="" title="Icon: Music" /> - Music file</li>
-						<li><img src="images/movie.gif" alt="" title="Icon: Movie" /> - Movie file</li>
-						<li><img src="images/text.gif" alt="" title="Icon: Text" /> - Text file</li>
-						<li><img src="images/pdf.gif" alt="" title="Icon: PDF" /> - PDF file</li>
-						<li><img src="images/document.gif" alt="" title="Icon: Document" /> - Document file</li>
-						<li><img src="images/spreadsheet.gif" alt="" title="Icon: Spreadsheet" /> - Spreadsheet file</li>
-						<li><img src="images/presentation.gif" alt="" title="Icon: Presentation" /> - Presentation file</li>
-						<li><img src="images/unknown.gif" alt="" title="Icon: Unknown" /> - Unknown file</li>
-					</ul>
-				</li>
-				<li><code>[SIZE]</code> - The size of the download file.</li>
-				<li><code>[DATE]</code> - The date on which the download file has been last modified.</li>
-				<li><code>[TIME]</code> - The time on which the download file has been last modified.</li>
-				<li><code>[DL]</code> - The number of times the file has been downloaded</li>
-				<li><code>[FID]</code> - will create an anchor called "A"+file_id (this will not work when the list goes over multiple pages, so use with care!)</li>
-			</ul>
-		</li>
-		<li><code>File Footer</code> - This section will be repeated at the end of the download file list.</li>
-		<li><code>Group Header</code> - This section will be repeated above the group title listing</li>
-		<li><code>Group Loop</code> - This section will be repeated at the end of the download file list.
-			<ul>
-				<li><code>[GROUPTITLE]</code> - The title of the group being displayed next</li>
-			</ul>
-		</li>
-		<li><code>Group Footer</code> - This section will be repeated after the group title.</li>
-		<li><code>Search</code> - This section will be used within the header and/or footer to display the search/filter box for this gallery.
-			<ul>
-				<li><code>[SEARCHBOX]</code> - Display the text box for the search.</li>
-				<li><code>[SEARCHSUBMIT]</code> - Display the submit button for the search</li>
-				<li><code>[SEARCHRESULT]</code> - Display the result summary for the search.</li>
-			</ul>
-		</li>
+		</li>	
 	</ul>
 	
 	<a name="changelog"></a><h3>Changelog</h3>

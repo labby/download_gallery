@@ -74,23 +74,26 @@ $database->execute_query(
 
 $icon_image= array();
 foreach ($all_icons as &$icon) {
-		$icon_image[$icon['extensions']] = $icon['file_image'];
+		// $icon_image[$icon['extensions']] = $icon['file_image'];
+		$icon_image[ $icon['file_image'] ] = explode(",", $icon['extensions'] );
 }
 
-
+// echo LEPTON_tools::display($icon_image);
 
 
 // get file extension for each file
 foreach ($all_files as &$temp) {
-	foreach ($all_icons as $file_key =>$file_icon) {  // get the matching file_icon
-		$file_image = ''; // initialize var
-		$temp_key = explode(',',$file_key);
-		if (in_array ($temp['extension'],$temp_key)) {
-			$file_image = $file_icon;
+
+    $file_image = ''; // initialize var
+	
+	foreach ($icon_image as $file_key =>$file_icon_type_list) {  // get the matching file_icon
+		if (in_array ($temp['extension'], $file_icon_type_list)) {
+			$file_image = $file_key;
 			break;
 		}
 	}	
-			die(print_r($file_image));
+    // die(print_r($file_image));
+	
 	if($temp['link'] != $temp['filename'] )
 	{ //get filesize and icons of internal files
 		
@@ -100,10 +103,15 @@ foreach ($all_files as &$temp) {
 	} else 
 	{  //get filesize and icons of external files
 		$get_extern_icon = strtolower(substr( strrchr($temp['filename'],'.'),1));
-		if (in_array ($get_extern_icon,$image_icons)) {
-			$get_extern_icon = 'image';
+		
+		foreach ($icon_image as $file_key =>$file_icon_type_list) { 
+		    if (in_array ($get_extern_icon, $file_icon_type_list)) {
+			    $get_extern_icon = $file_image;
+    			break;
+	    	}
 		}
-		$temp['file_ext'] = '<img src="'.LEPTON_URL.'/modules/download_gallery/images/'.$get_extern_icon.'.gif" />';
+		
+		$temp['file_ext'] = '<img src="'.LEPTON_URL.'/modules/download_gallery/images/'.$get_extern_icon.'" />';
 		
 /**
  *  Playground Aldus

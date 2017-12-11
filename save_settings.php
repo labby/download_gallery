@@ -89,24 +89,10 @@ if (isset($_POST['extordering']) AND is_numeric($_POST['extordering'])) {
 if (isset($_POST['save'])) {
     $header = addslashes(str_replace($friendly, $raw, $_POST['header']));
     $footer = addslashes(str_replace($friendly, $raw, $_POST['footer']));
-    $files_loop = addslashes(str_replace($friendly, $raw, $_POST['files_loop']));
-    $file_header = addslashes(str_replace($friendly, $raw, $_POST['file_header']));
-    $file_footer = addslashes(str_replace($friendly, $raw, $_POST['file_footer']));
-    $gheader = addslashes(str_replace($friendly, $raw, $_POST['gheader']));
-    $gloop   = addslashes(str_replace($friendly, $raw, $_POST['gloop']));
-    $gfooter = addslashes(str_replace($friendly, $raw, $_POST['gfooter']));
-    $search_layout = addslashes(str_replace($friendly, $raw, $_POST['search_layout']));
 } elseif (isset($_POST['reset_table'])){
     $header = '';
     $footer = '';
-    $file_header = '';
-    $files_loop = '';
-    $file_footer = '';
-    $gloop = '';
-    $search_layout = '';
-    $gheader = '';
-    $gfooter = '';
-    init_fields($header, $footer, $file_header, $files_loop, $file_footer, $gloop, $search_layout, $gheader, $gfooter);
+    init_fields($header, $footer);
 }
 
 // Update settings
@@ -133,20 +119,13 @@ if($ordering==1 and $orderby==1){$ordering=3;}
 
 $query="UPDATE ".TABLE_PREFIX."mod_download_gallery_settings SET
 	header = '$header',
-	files_loop = '$files_loop',
 	footer = '$footer',
 	files_per_page = '$files_per_page',
 	file_size_roundup = '$file_size_roundup',
 	file_size_decimals = '$file_size_decimals',
-	file_header = '$file_header',
-	file_footer = '$file_footer', 
 	ordering = '$ordering', 
-	extordering = '$extordering',
-	gheader = '$gheader',
-	gloop = '$gloop', 						   
-	gfooter = '$gfooter',	
-	search_filter = '$search_filter', 						   
-	search_layout = '$search_layout' 	
+	extordering = '$extordering',	
+	search_filter = '$search_filter'
 	WHERE section_id = '$section_id' and page_id = '$page_id'";
 $database->query($query);
 
