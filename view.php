@@ -62,7 +62,7 @@ $database->execute_query(
 	true
 );
 
-// define image icons
+// start define image icons
 $all_icons = array();
 $database->execute_query(
 	"SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_file_ext WHERE section_id = '$section_id' and page_id = '$page_id' ORDER BY file_image " ,
@@ -70,30 +70,27 @@ $database->execute_query(
 	$all_icons,
 	true
 );
-//die(print_r($all_icons));
 
+//get array of icons and filetypes
 $icon_image= array();
 foreach ($all_icons as &$icon) {
-		// $icon_image[$icon['extensions']] = $icon['file_image'];
 		$icon_image[ $icon['file_image'] ] = explode(",", $icon['extensions'] );
 }
-
-// echo LEPTON_tools::display($icon_image);
-
 
 // get file extension for each file
 foreach ($all_files as &$temp) {
 
-    $file_image = ''; // initialize var
-	
+    $file_image = ''; // initialize var	
 	foreach ($icon_image as $file_key =>$file_icon_type_list) {  // get the matching file_icon
 		if (in_array ($temp['extension'], $file_icon_type_list)) {
 			$file_image = $file_key;
 			break;
 		}
 	}	
-    // die(print_r($file_image));
-	
+
+/*
+* Loop through all files to get values for view.lte
+*/	
 	if($temp['link'] != $temp['filename'] )
 	{ //get filesize and icons of internal files
 		
@@ -113,41 +110,34 @@ foreach ($all_files as &$temp) {
 		
 		$temp['file_ext'] = '<img src="'.LEPTON_URL.'/modules/download_gallery/images/'.$get_extern_icon.'" />';
 		
-/**
- *  Playground Aldus
- *  0.1.0
- *
- */
-// $url = 'https://cdn.pixabay.com/photo/2013/11/20/17/10/tree-213980_960_720.jpg';
+		/**
+		 *  Start: get filesize of external files
+		 */
 
-if ( !$fp = fopen( $temp['link'] , 'r')) {
-    trigger_error("Unable to open URL ($url)", E_USER_ERROR);
-}
+		if ( !$fp = fopen( $temp['link'] , 'r')) {
+			trigger_error("Unable to open URL ($url)", E_USER_ERROR);
+		}
 
-$meta = stream_get_meta_data($fp);
-fclose($fp);
+		$meta = stream_get_meta_data($fp);
+		fclose($fp);
 
-// echo LEPTON_tools::display( $meta );
-
-$length = 0;
-foreach($meta['wrapper_data'] as $temp_line)
-{
-    if(0 === strpos( $temp_line, "Content-Length: " ))
-    {
-        $length = intval( str_replace("Content-Length: ", "", $temp_line ) ); // !here
-        
-        break;
-    }
-}
-// end aldus		
+		$length = 0;
+		foreach($meta['wrapper_data'] as $temp_line)
+		{
+			if(0 === strpos( $temp_line, "Content-Length: " ))
+			{
+				$length = intval( str_replace("Content-Length: ", "", $temp_line ) ); // !here
+				
+				break;
+			}
+		}
+		// end get filesize of external files
 
         
 		$temp['size'] = human_file_size( $length , $dg_settings['file_size_decimals']);
 		$temp['link'] = LEPTON_URL . '/modules/download_gallery/dlc.php?file=' .$temp['file_id'].'&amp;id='.$temp['modified_when'];
 	}
 }
-
-
 
 // Group list
 $dg_groups = array();

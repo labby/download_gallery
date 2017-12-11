@@ -13,7 +13,7 @@
 {% autoescape false %}
 
 <div class='{{ addon }}'>
-<h2 class="ui header page_title">{{ settings.header }}</h2>
+<h2 class="ui header dg_header">{{ settings.header }}</h2>
 {% if settings.search_filter == 1 %}
 <div class="input_filter_container"><label for="input-filter">Filter:</label> <input class="dg_search" type="search" id="input-filter" size="15" placeholder="{{ TEXT.SEARCH }}"></div>
 {% endif %}
@@ -42,17 +42,8 @@
 		<tr class='spacer'><td> <br /></td></tr>
 	{% endfor %}		
   </tbody>
-  <tfoot>
-	<tr><td class='dg_footer' colspan='4'>{{ settings.footer }}</td></tr>
-  </tfoot>
-
 </table>
-	{% if not (settings.files_per_page == 0) %} 
-	
-	{{ pn_button }}
-	
-	{% endif %}
-	
+<h4 class="ui header dg_footer">{{ settings.footer }}</h4>	
 </div>
 <script>
 {# use simplePagination, see options on http://flaviusmatis.github.io/simplePagination.js/  #}
