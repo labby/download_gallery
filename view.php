@@ -174,7 +174,7 @@ $data = array(
 	// data js pagination	
         'items' => 10,
         'itemsOnPage'=> 2,
-        'cssStyle'=> 'compact-theme'	
+        'cssStyle'=> 'compact-theme'
 	);
 
 /**	

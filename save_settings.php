@@ -46,6 +46,16 @@ $friendly = array('&lt;', '&gt;', '?php');
 $raw = array('<', '>', '');
 
 // STEP 1: Retrieve settings from POST vars
+if (isset($_POST['template_file']) AND is_string($_POST['template_file'])) {
+    $template_file = $_POST['template_file'];
+} else {
+    $template_file = '';
+}
+if (isset($_POST['template_data']) AND is_string($_POST['template_data'])) {
+    $template_data = $_POST['template_data'];
+} else {
+    $template_data = false;
+}
 if (isset($_POST['file_size_decimals']) AND is_numeric($_POST['file_size_decimals'])) {
     $file_size_decimals = $_POST['file_size_decimals'];
 } else {
@@ -92,7 +102,6 @@ if (isset($_POST['save'])) {
 } elseif (isset($_POST['reset_table'])){
     $header = '';
     $footer = '';
-    init_fields($header, $footer);
 }
 
 // Update settings
@@ -129,12 +138,19 @@ $query="UPDATE ".TABLE_PREFIX."mod_download_gallery_settings SET
 	WHERE section_id = '$section_id' and page_id = '$page_id'";
 $database->query($query);
 
+// save template file: view.lte
+if ($template_file != '' and $template_data != false) {
+	file_put_contents ($template_file,$template_data);
+}
+
 // Check if there is a db error, otherwise say successful
 if($database->is_error()) {
 	$admin->print_error($database->get_error(), ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 } else {
 	$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 }
+
+
 
 // Print admin footer
 $admin->print_footer();

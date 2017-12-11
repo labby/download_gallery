@@ -1,6 +1,6 @@
 {#
 /**
- *  @module			Download Gallery
+ *  @module		Download Gallery
  *  @version		see info.php of this module
  *  @authors		Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
  *  @copyright		2010-2018 Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe
@@ -52,24 +52,6 @@ $(function() {
         items: {{ items }},
         itemsOnPage: {{ itemsOnPage }},
         cssStyle: '{{ cssStyle }}'
-//		pages: 0,
-//		displayedPages: 5,
-//		edges: 2,
-//		currentPage: 0,
-//		useAnchors: true,
-//		hrefTextPrefix: '#page-',
-//		hrefTextSuffix: '',
-//		prevText: 'Prev',
-//		nextText: 'Next',
-//		ellipseText: '&hellip;',
-//		ellipsePageSet: true,
-//		listStyle: '',
-//		labelMap: [],
-//		selectOnClick: true,
-//		nextAtFront: false,
-//		invertPageOrder: false,
-//		useStartEdge : true,
-//		useEndEdge : true
     });
 });
 </script>

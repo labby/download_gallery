@@ -66,60 +66,6 @@ if(!function_exists('human_file_size')){
 	}
 }
 
-if(!function_exists('init_fields')){
-	/**
-	 *	Since we are using PDO we are not escape the vars before using "execute()" to avoid double escaped quotes.
-	 */
-	function init_fields(&$header, &$footer, &$file_header, &$files_loop, &$file_footer, &$gloop, &$search_layout, &$gheader, &$gfooter) {
-	   $header = '[SEARCH]';
-	   
-	   $footer = '<tr><td colspan="4">&nbsp;</td></tr>
-	   <tr>
-	   <td colspan="4" class="mod_download_gallery_th_f">
-	   <table cellpadding="0" cellspacing="0" border="0" width="98%" style="display: [DISPLAY_PREVIOUS_NEXT_LINKS]">
-	   <tr>
-	   <td width="35%" align="left">[PREVIOUS_PAGE_LINK]</td>
-	   <td width="30%" align="center">[OF]</td>
-	   <td width="35%" align="right">[NEXT_PAGE_LINK]</td>
-	   </tr>
-	   </table>
-	   </td>
-	   </tr>
-	   </table>';
-	   
-	   $file_header ='<table cellpadding="0" cellspacing="0" border="0">
-	   <tr>
-	   <td class="mod_download_gallery_th_f"> [THTITLE] </td>
-	   <td class="mod_download_gallery_th_f"> [THCHANGED] </td>
-	   <td class="mod_download_gallery_th_f"> [THSIZE] </td>
-	   <td class="mod_download_gallery_th_f"> [THCOUNT]  </td>
-	   </tr>';
-	   
-	   $files_loop ='<tr>
-	   <td class="mod_download_gallery_line_f"><img src="[FTIMAGE]" alt="" /> <a href="[LINK]" target="dlg"><b>[TITLE]</b></a></td>
-	   <td class="mod_download_gallery_line_rightalign_f"> [DATE]</td>
-	   <td class="mod_download_gallery_line_rightalign_f"> [SIZE]</td>
-	   <td class="mod_download_gallery_line_rightalign_f"> [DL] </td>
-	   </tr>
-	   <tr>
-	   <td class="mod_download_gallery_line_text_f" colspan="4">[DESCRIPTION]</td>
-	   </tr>';
-	   
-	   $file_footer = '';
-	   $gheader = '';
-	   $gfooter = '';
-	   
-	   $gloop = '<tr>
-	   <td colspan="4">&nbsp;</td>
-	   </tr>
-	   <tr>
-	   <td class="mod_download_gallery_dgheader_f" colspan="4">[GROUPTITLE]</td>
-	   </tr>';
-	   
-	   $search_layout = '[SEARCHBOX] [SEARCHSUBMIT] [SEARCHRESULT]';
-	   return true;
-	}
-}
 
 if(!function_exists('make_dl_dir')){
 	function make_dl_dir() {

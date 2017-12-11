@@ -63,6 +63,19 @@ $database->execute_query(
 	true
 );
 
+//get edit_area function and get content of template
+require_once LEPTON_PATH.'/modules/edit_area/register.php';
+
+$edit_area = registerEditArea('template_area', 'html');
+
+if(file_exists(LEPTON_PATH.'/templates/'.DEFAULT_TEMPLATE.'/frontend/download_gallery/view.lte')) {
+	$template_content = file_get_contents(LEPTON_PATH.'/templates/'.DEFAULT_TEMPLATE.'/frontend/download_gallery/view.lte');
+	$template_file = LEPTON_PATH.'/templates/'.DEFAULT_TEMPLATE.'/frontend/download_gallery/view.lte';
+} else {
+	$template_content = file_get_contents(LEPTON_PATH.'/modules/download_gallery/templates/view.lte');
+	$template_file = LEPTON_PATH.'/modules/download_gallery/templates/view.lte';
+}
+
 
 $data = array(
 	'MOD_DG' 	=> $DGTEXT,
@@ -70,7 +83,10 @@ $data = array(
 	'section_id'=>	$section_id,     
 	'page_id'	=>	$page_id, 
 	'dg_settings' 	=> $dg_settings,
-	'dg_file_ext' 	=> $dg_file_ext,	
+	'dg_file_ext' 	=> $dg_file_ext,
+	'edit_area' => $edit_area,		
+	'template_content' => $template_content,
+	'template_file' => $template_file,
 	'edit_module_css'	=> edit_module_css('download_gallery')
 	);
 
