@@ -63,28 +63,38 @@ $database->execute_query(
 );
 
 // define image icons
-$image_icons = array('jpg','jpeg','png','gif');
-/**
- * erpe
-		$url = 'https://cdn.pixabay.com/photo/2013/11/20/17/10/tree-213980_960_720.jpg';
-if (!$fp = fopen($url, 'r')) {
-    trigger_error("Unable to open URL ($url)", E_USER_ERROR);
+$all_icons = array();
+$database->execute_query(
+	"SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_file_ext WHERE section_id = '$section_id' and page_id = '$page_id' ORDER BY file_image " ,
+	true,
+	$all_icons,
+	true
+);
+//die(print_r($all_icons));
+
+$icon_image= array();
+foreach ($all_icons as &$icon) {
+		$icon_image[$icon['extensions']] = $icon['file_image'];
 }
-$meta = stream_get_meta_data($fp);
-$length = array_key_exists ( 'Content-Length:' , $meta);
-fclose($fp);
-die(print_r($length));
- */
 
 
 
 
 // get file extension for each file
 foreach ($all_files as &$temp) {
-		
+	foreach ($all_icons as $file_key =>$file_icon) {  // get the matching file_icon
+		$file_image = ''; // initialize var
+		$temp_key = explode(',',$file_key);
+		if (in_array ($temp['extension'],$temp_key)) {
+			$file_image = $file_icon;
+			break;
+		}
+	}	
+			die(print_r($file_image));
 	if($temp['link'] != $temp['filename'] )
 	{ //get filesize and icons of internal files
-		$temp['file_ext'] = '<img src="'.LEPTON_URL.'/modules/download_gallery/images/'.$temp['extension'].'.gif" />';
+		
+		$temp['file_ext'] = '<img src="'.LEPTON_URL.'/modules/download_gallery/images/'.$file_image.' " />';
 		$temp['size'] = human_file_size(filesize(str_replace(LEPTON_URL,LEPTON_PATH,$temp['link'])),$dg_settings['file_size_decimals']);
 		$temp['link'] = LEPTON_URL . '/modules/download_gallery/dlc.php?file=' .$temp['file_id'].'&amp;id='.$temp['modified_when'];
 	} else 

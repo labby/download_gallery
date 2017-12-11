@@ -37,69 +37,67 @@ else
 }
 // end include class.secure.php
 
-$mod_dl_gallery = 'CREATE TABLE `'.TABLE_PREFIX.'mod_download_gallery_files` ( '
-				 . '`file_id` INT NOT NULL AUTO_INCREMENT, '
-				 . '`section_id` INT NOT NULL DEFAULT \'0\', '
-				 . '`page_id` INT NOT NULL DEFAULT \'0\',	'
-				 . '`group_id` INT NOT NULL DEFAULT \'0\','
-				 . '`active` INT NOT NULL DEFAULT \'0\', '
-				 . '`position` INT NOT NULL DEFAULT \'0\', '
-				 . '`title` VARCHAR(255) NOT NULL DEFAULT \'\' , '
-				 . '`link` TEXT NOT NULL , '
-				 . '`filename` VARCHAR(250) NOT NULL DEFAULT \'\' , '
-				 . '`extension` VARCHAR(250) NOT NULL DEFAULT \'\' , '
-				 . '`description` TEXT NOT NULL , '
-				 . '`modified_when` INT NOT NULL DEFAULT \'0\', '
-				 . '`modified_by` INT NOT NULL DEFAULT \'0\', '
-				 . '`dlcount` INT NOT NULL DEFAULT \'0\', '
-				 . '`size` INT NOT NULL DEFAULT \'0\', '
-				 . 'PRIMARY KEY (file_id)'
-				 . ' )';
-$database->query($mod_dl_gallery);
+// create the tables
+$table_fields="
+	`file_id` INT NOT NULL NOT NULL auto_increment,
+	`section_id` INT NOT NULL DEFAULT '0',
+	`page_id` INT NOT NULL DEFAULT '0',
+	`group_id` INT NOT NULL DEFAULT '0',
+	`active` INT NOT NULL DEFAULT '0',
+	`position` INT NOT NULL DEFAULT '0',
+	`title` VARCHAR(255) NOT NULL DEFAULT '',
+	`link` TEXT NOT NULL ,
+	`filename` VARCHAR(255) NOT NULL DEFAULT '',
+	`extension` VARCHAR(255) NOT NULL DEFAULT '',
+	`description` TEXT NOT NULL,
+	`modified_when` INT NOT NULL DEFAULT '0',
+	`modified_by` INT NOT NULL DEFAULT '0',
+	`dlcount` INT NOT NULL DEFAULT '0',
+	`size` INT NOT NULL DEFAULT '0',
+	PRIMARY KEY (`file_id`)
+	";
+LEPTON_handle::install_table("mod_download_gallery_files", $table_fields);
 
-$mod_dl_gallery = 'CREATE TABLE `'.TABLE_PREFIX.'mod_download_gallery_settings` ( '
-				 . '`section_id` INT NOT NULL DEFAULT \'0\','
-				 . '`page_id` INT NOT NULL DEFAULT \'0\','
-				 . '`header` TEXT NOT NULL ,'
-				 . '`files_loop` TEXT NOT NULL ,'
-				 . '`footer` TEXT NOT NULL ,'
-				 . '`files_per_page` INT NOT NULL DEFAULT \'0\','
-				 . '`file_size_roundup` INT NOT NULL DEFAULT \'0\','
-				 . '`file_size_decimals` INT NOT NULL DEFAULT \'0\','
-				 . '`file_header` TEXT NOT NULL ,'
-				 . '`file_footer` TEXT NOT NULL ,'
-				 . '`ordering` TINYINT(3) NOT NULL DEFAULT \'0\','
-				 . '`extordering` TINYINT(3) NOT NULL DEFAULT \'0\','
-				 . '`gheader` TEXT NOT NULL ,'
-				 . '`gloop` TEXT NOT NULL ,'
-				 . '`gfooter` TEXT NOT NULL ,'
-				 . '`search_filter` TEXT NOT NULL ,'						 
-				 . '`search_layout` TEXT NOT NULL ,'
-				 . 'PRIMARY KEY (section_id)'
-				 . ' )';
-$database->query($mod_dl_gallery);
 
-$mod_dlg = 'CREATE TABLE `'.TABLE_PREFIX.'mod_download_gallery_groups` ( '
-				 . '`group_id` INT NOT NULL AUTO_INCREMENT,'
-				 . '`section_id` INT NOT NULL DEFAULT \'0\','
-				 . '`page_id` INT NOT NULL DEFAULT \'0\','
-				 . '`position` INT NOT NULL DEFAULT \'0\','
-				 . '`active` INT NOT NULL DEFAULT \'0\','
-				 . '`title` VARCHAR(255) NOT NULL DEFAULT \'\','
-				 . 'PRIMARY KEY (group_id)'
-				 . ' )';
-$database->query($mod_dlg);
+$table_fields="
+	`section_id` INT NOT NULL DEFAULT '0',
+	`page_id` INT NOT NULL DEFAULT '0',
+	`header` TEXT NOT NULL ,
+	`footer` TEXT NOT NULL ,
+	`search_filter` INT NOT NULL DEFAULT '1',
+	`files_per_page` INT NOT NULL DEFAULT '0',
+	`file_size_roundup` INT NOT NULL DEFAULT '1',
+	`file_size_decimals` INT NOT NULL DEFAULT '0',
+	`ordering` TINYINT(3) NOT NULL DEFAULT '0',
+	`extordering` TINYINT(3) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`section_id`)
+	";
+LEPTON_handle::install_table("mod_download_gallery_settings", $table_fields);
 
-$mod_dl_gallery = 'CREATE TABLE `' . TABLE_PREFIX . 'mod_download_gallery_file_ext` ( '
-				 . '`fileext_id` INT NOT NULL AUTO_INCREMENT, '
-				 . '`section_id` INT NOT NULL DEFAULT \'0\', '
-				 . '`page_id` INT NOT NULL DEFAULT \'0\', '
-				 . '`file_type` VARCHAR(250) NOT NULL DEFAULT \'\' , '
-				 . '`file_image` VARCHAR(250) NOT NULL DEFAULT \'\' , '
-				 . '`extensions` TEXT NOT NULL , '
-				 . 'PRIMARY KEY (fileext_id)'
-				 . ' )';
-$database->query($mod_dl_gallery);
+
+$table_fields="
+	`group_id` INT NOT NULL NOT NULL auto_increment,
+	`section_id` INT NOT NULL DEFAULT '0',
+	`page_id` INT NOT NULL DEFAULT '0',
+	`active` INT NOT NULL DEFAULT '0',
+	`position` INT NOT NULL DEFAULT '0',
+	`title` VARCHAR(255) NOT NULL DEFAULT '',
+	PRIMARY KEY (`group_id`)
+	";
+LEPTON_handle::install_table("mod_download_gallery_groups", $table_fields);
+
+
+$table_fields="
+	`fileext_id` INT NOT NULL NOT NULL auto_increment,
+	`section_id` INT NOT NULL DEFAULT '0',
+	`page_id` INT NOT NULL DEFAULT '0',
+	`file_type` VARCHAR(255) NOT NULL DEFAULT '',
+	`file_image` VARCHAR(255) NOT NULL DEFAULT '',
+	`extensions` TEXT NOT NULL,
+	PRIMARY KEY (`fileext_id`)
+	";
+LEPTON_handle::install_table("mod_download_gallery_file_ext", $table_fields);
+
 
 // Insert info into the search table
 // Module query info
@@ -110,6 +108,7 @@ $field_info['link'] = 'link';
 $field_info['description'] = 'description';
 $field_info['modified_when'] = 'modified_when';
 $field_info['modified_by'] = 'modified_by';
+
 $field_info = serialize($field_info);
 
 $database->simple_query("INSERT INTO ".TABLE_PREFIX."search (name,value,extra) VALUES ('module', 'download_gallery', '$field_info')");
@@ -138,11 +137,6 @@ $database->simple_query("INSERT INTO ".TABLE_PREFIX."search (name,value,extra) V
 // Search query end
 $query_end_code = "";	
 $database->simple_query("INSERT INTO ".TABLE_PREFIX."search (name,value,extra) VALUES ('query_end', '$query_end_code', 'download_gallery')");
-
-// Insert blank row (there needs to be at least on row for the search to work)
-$database->simple_query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_files (section_id,page_id) VALUES ('0', '0')");
-$database->simple_query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_settings (section_id,page_id) VALUES ('0', '0')");
-$database->simple_query("INSERT INTO ".TABLE_PREFIX."mod_download_gallery_groups (section_id,page_id) VALUES ('0', '0')");
 
 //Add folder for the files
 require_once(LEPTON_PATH.'/framework/summary.functions.php');

@@ -37,11 +37,16 @@ else
 // end include class.secure.php
 
 
-// delete obsolete file
-LEPTON_handle::delete_obsolete_files ('/modules/download_gallery/headers.inc.php');
-
-// delete obsolete columns
+// delete obsolete columns, no userupload
 $database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN use_captcha "); 
 $database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN userupload "); 
+// delete obsolete columns, new output via twig
+$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN files_loop "); 
+$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN file_header "); 
+$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN file_footer "); 
+$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN gheader "); 
+$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN gloop "); 
+$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN gfooter "); 
+$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN search_layout "); 
 
 ?>
