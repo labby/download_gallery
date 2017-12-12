@@ -12,24 +12,24 @@
  #}
 {% autoescape false %}
 
-<div class='{{ addon }}'>
-<h2 class="ui header dg_header">{{ settings.header }}</h2>
-{% if settings.search_filter == 1 %}
+<div class='{{ addon_name }}'>
+<h2 class="ui header dg_header">{{ addon.dg_settings.header }}</h2>
+{% if addon.dg_settings.search_filter == 1 %}
 <div class="input_filter_container"><label for="input-filter">Filter:</label> <input class="dg_search" type="search" id="input-filter" size="15" placeholder="{{ TEXT.SEARCH }}"></div>
 {% endif %}
 <table class="ui single line table dg_table" cellspacing="0" cellpadding="2">
   <thead>
     <tr>
-      <th>{{ MOD_DG.THTITLE }}</th>
-      <th>{{ MOD_DG.THCHANGED }}</th>
-      <th>{{ MOD_DG.THSIZE }}</th>
-      <th>{{ MOD_DG.THCOUNT }}</th>
+      <th>{{ addon.language.THTITLE }}</th>
+      <th>{{ addon.language.THCHANGED }}</th>
+      <th>{{ addon.language.THSIZE }}</th>
+      <th>{{ addon.language.THCOUNT }}</th>
     </tr>
   </thead>
   <tbody>
-  {% for group in groups %}
+  {% for group in addon.dg_groups %}
 		<tr class='dg_group_title'><td class='group_header' colspan='4'><b>{{ group.title }}</b></td></tr>
-		{% for file in all_files %}
+		{% for file in addon.dg_files %}
 			{% if file.group_id == group.group_id %}
 			<tr>
 			  <td>{{ file.file_ext }} <a href='{{ file.link }}' target='_blank'>{{ file.title }}</a></td>
@@ -43,8 +43,10 @@
 	{% endfor %}		
   </tbody>
 </table>
-<h4 class="ui header dg_footer">{{ settings.footer }}</h4>	
+<h4 class="ui header dg_footer">{{ addon.dg_settings.footer }}</h4>	
 </div>
+
+<div> {# div avoids displaying code in output of semantic templates  #}
 <script>
 {# use simplePagination, see options on http://flaviusmatis.github.io/simplePagination.js/  #}
 $(function() {
@@ -55,4 +57,5 @@ $(function() {
     });
 });
 </script>
+</div>
 {% endautoescape %}

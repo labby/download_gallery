@@ -39,7 +39,9 @@ else
 
 //get instance of own module class
 LEPTON_handle::include_files('/modules/download_gallery/functions.php');
-$DGTEXT = download_gallery::getInstance()->language;
+$oDG = download_gallery::getInstance();
+$oDG->init_section( $page_id, $section_id );
+
 require_once LEPTON_PATH.'/modules/download_gallery/info.php';
 
 $MODULE_URL 	= LEPTON_URL.'/modules/download_gallery';
@@ -54,7 +56,7 @@ $database->simple_query("DELETE FROM ".$MODULE_PREFIX."_groups WHERE section_id 
 
 // data for twig template engine	
 $data = array(
-	'MOD_DG'=> $DGTEXT,
+	'addon.language'=> $oDG->language,
 	'icons' => $DG_ICONS,
 	'addon'	=> $module_name,	
 

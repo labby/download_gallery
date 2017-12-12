@@ -39,35 +39,17 @@ else
 
 require_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
 
-// STEP 0:	initialize some variables
-$page_id = intval($page_id);
-$section_id = intval($section_id);
-
-$header = '';
-$footer = '';
-$file_header = '';
-$files_loop = '';
-$file_footer = '';
-$gloop = '';
-$search_layout = '';
-$gheader = '';
-$gfooter = '';
-
-//	see functions.php for details.
-init_fields($header, $footer, $file_header, $files_loop, $file_footer, $gloop, $search_layout, $gheader, $gfooter);
-
 $fields = array(
 	'section_id'	=> $section_id,
 	'page_id'		=> $page_id,
-	'header'		=> $header,
-	'files_loop'	=> $files_loop,
-	'footer'		=> $footer,
-	'file_header'	=> $file_header,
-	'file_footer'	=> $file_footer,
-	'gloop'			=> $gloop,
-	'search_layout'	=> $search_layout,
-	'gheader'		=> $gheader,
-	'gfooter'		=> $gfooter
+	'header'		=> '',
+	'footer'		=> '',
+	'files_per_page'	=> '10',
+	'file_size_roundup'	=> '1',
+	'file_size_decimals'=> '0',
+	'ordering'		=> '3',
+	'extordering'	=> '1',
+	'search_filter'	=> '1'	
 );
 
 $database->build_and_execute(

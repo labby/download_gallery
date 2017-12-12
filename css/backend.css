@@ -35,6 +35,14 @@ tr.even, tr.odd    { background-color: #a3baca !important }
 td.group_empty { font-weight: bold; background-color: #f4f2e9; text-align: center }
 tr.nogroup td       { background-color: #edf2f8 }
 
+/*
+--------------| Template Layout
+*/
+.column .view_template  { 
+	background-color: green!important; 
+	padding:20px;
+	width:98%;
+}
 
 
 /*

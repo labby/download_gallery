@@ -140,7 +140,31 @@ $database->simple_query("INSERT INTO ".TABLE_PREFIX."search (name,value,extra) V
 
 //Add folder for the files
 require_once(LEPTON_PATH.'/framework/summary.functions.php');
-include_once(LEPTON_PATH.'/modules/download_gallery/functions.php');
-make_dl_dir();
+
+// create media directory for this addon
+make_dir(LEPTON_PATH.MEDIA_DIRECTORY.'/download_gallery/');
+	
+// add .htaccess file to /media/download_gallery folder if not already exist
+if (!file_exists(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess') or (filesize(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess') < 90))
+	   {
+		// create a .htaccess file to prevent execution of PHP, HMTL files
+		$content = '
+		<Files .htaccess>
+			order allow,deny
+			deny from all
+		</Files>
+	
+		<Files ~ "\.(php|pl)$">  
+			ForceType text/plain
+		</Files>
+	
+		Options -Indexes -ExecCGI
+';
+	
+$handle = fopen(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess', 'w');
+fwrite($handle, $content);
+fclose($handle);
+change_mode(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess', 'file');
+};
 
 ?>

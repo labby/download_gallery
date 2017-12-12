@@ -37,31 +37,12 @@ else
 }
 // end include class.secure.php
 
-LEPTON_handle::include_files('/modules/download_gallery/functions.php');
 $oDG = download_gallery::getInstance();
+$oDG->init_section( $page_id, $section_id );
 require_once LEPTON_PATH.'/modules/download_gallery/info.php';
 
-// Get all settings
-$dg_settings = array();
-$database->execute_query(
-	"SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_settings WHERE section_id = '".$section_id."' and page_id = '".$page_id."' " ,
-	true,
-	$dg_settings,
-	false
-);
-
-// Get all files
-$all_files = array();
-$database->execute_query(
-	"SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE section_id = '".$section_id."' and page_id = '".$page_id."' ORDER BY group_id, position " ,
-	true,
-	$all_files,
-	true
-);
-
 // get file extension for each file
-foreach ($all_files as &$temp) {
-
+foreach ($oDG->dg_files as &$temp) {
 /*
 * Loop through all files to get values for view.lte
 */	
@@ -70,7 +51,7 @@ foreach ($all_files as &$temp) {
 		$file_image = $oDG->get_file_extension($temp['extension']);
 		$temp['file_ext'] = '<img src="'.LEPTON_URL.'/modules/download_gallery/images/'.$file_image.' " />';
 		
-		$temp['size'] = $oDG->get_file_size($temp['link'], $dg_settings['file_size_decimals']);
+		$temp['size'] = $oDG->get_file_size($temp['link'], $oDG->dg_settings['file_size_decimals']);
 		$temp['link'] = LEPTON_URL . '/modules/download_gallery/dlc.php?file=' .$temp['file_id'].'&amp;id='.$temp['modified_when'];
 	} else 
 	{  //get filesize and icons of external files
@@ -78,41 +59,16 @@ foreach ($all_files as &$temp) {
 		$file_image = $oDG->get_file_extension($get_extern_icon);
 		$temp['file_ext'] = '<img src="'.LEPTON_URL.'/modules/download_gallery/images/'.$file_image.'" />';   
 		
-		$temp['size'] = $oDG->get_external_file_size( $temp['link'], $dg_settings['file_size_decimals']);
+		$temp['size'] = $oDG->get_external_file_size( $temp['link'], $oDG->dg_settings['file_size_decimals']);
 		$temp['link'] = LEPTON_URL . '/modules/download_gallery/dlc.php?file=' .$temp['file_id'].'&amp;id='.$temp['modified_when'];
 	}
 }
 
-// Group list
-$dg_groups = array();
-$database->execute_query(
-	"SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_groups WHERE section_id = '".$section_id."' and page_id = '".$page_id."'" ,
-	true,
-	$dg_groups,
-	true
-);
-
-$dg_groups = array_merge(
-    array(
-		array (
-			'group_id' => 0,
-			'title'   => $oDG->language['NOGROUP'],
-			'position' => 0
-		)
-    ),
-    $dg_groups
-);
-
-
 // data for twig template engine	
 $data = array(
-	'MOD_DG' 	=> $oDG->language,
-	'all_files'	=> $all_files,
-	'page_title'=> $database->get_one("SELECT page_title from ".TABLE_PREFIX."pages where page_id = ".$page_id." "),
+	'addon' 	=> $oDG,
 	'dateformat'=> str_replace(' ','/', DEFAULT_DATE_FORMAT),
-	'groups'=> $dg_groups,
-	'settings'=> $dg_settings,	
-	'addon' 	=> $module_directory,
+	'addon_name' 	=> $module_name,
 	
 	// data js pagination	
         'items' => 10,

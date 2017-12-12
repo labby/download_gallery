@@ -37,65 +37,6 @@ else
 }
 // end include class.secure.php
 
-if(!function_exists('microtime_float')){
-	function microtime_float() {
-	   list($usec, $sec) = explode(" ", microtime());
-	   return ((float)$usec + (float)$sec);
-	}
-}
-
-
-/**
-	function: human_file_size
-	
-	make human readable filesize (bytes)
-	
-*/
-if(!function_exists('human_file_size')){
-	function human_file_size($bytes, $precision = 2)
-	{
-		$name = array('Bytes','KB','MB','GB','TB');
-		
-		if (!is_numeric($bytes) || $bytes < 0) 
-			return false;
-			
-		for ($level = 0; $bytes >= 1024; $level++) 
-			$bytes /= 1024;
-		
-		return round($bytes, $precision) . ' ' . $name[$level];
-	}
-}
-
-
-if(!function_exists('make_dl_dir')){
-	function make_dl_dir() {
-	   make_dir(LEPTON_PATH.MEDIA_DIRECTORY.'/download_gallery/');
-	
-	   // add .htaccess file to /media/download_gallery folder if not already exist
-	   if (!file_exists(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess')
-		  or (filesize(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess') < 90))
-	   {
-		  // create a .htaccess file to prevent execution of PHP, HMTL files
-		  $content = '
-	<Files .htaccess>
-		order allow,deny
-		deny from all
-	</Files>
-	
-	<Files ~ "\.(php|pl)$">  
-	ForceType text/plain
-	</Files>
-	
-	Options -Indexes -ExecCGI
-';
-	
-		  $handle = fopen(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess', 'w');
-		  fwrite($handle, $content);
-		  fclose($handle);
-		  change_mode(LEPTON_PATH . MEDIA_DIRECTORY . '/download_gallery/.htaccess', 'file');
-	   };
-	}
-}
 
 /**
 	function: dg_change_position	
