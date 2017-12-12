@@ -45,7 +45,7 @@ $position = $order->get_new($section_id);
 
 // Insert new row into database
 $fields = array(
-	'section_id'	=> $section_id,
+	'section_id'=> $section_id,
 	'page_id'	=> $page_id,
 	'position'	=> $position,
 	'active'	=> 1

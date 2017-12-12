@@ -48,10 +48,10 @@ if(!isset($_GET['group_id']) OR !is_numeric($_GET['group_id'])) {
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 //move all fiels in group to no group
-$database->simple_query("UPDATE ".TABLE_PREFIX."mod_download_gallery_files SET group_id = '0',  active = '0' WHERE group_id = '$group_id' AND section_id = '$section_id'");
+$database->simple_query("UPDATE ".TABLE_PREFIX."mod_download_gallery_files SET group_id = '0',  active = '0' WHERE group_id = '".$group_id."' AND section_id = '".$section_id."'");
 
 // Delete row
-$database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_groups WHERE group_id = '$group_id' AND section_id = '$section_id'");
+$database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_groups WHERE group_id = '".$group_id."' AND section_id = '".$section_id."'");
 		
 // Initialize order object 
 $order = new LEPTON_order(TABLE_PREFIX."mod_download_gallery_groups", 'position', 'group_id', 'section_id');

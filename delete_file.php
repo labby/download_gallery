@@ -49,7 +49,7 @@ if(!isset($_GET['file_id']) OR !is_numeric($_GET['file_id'])) {
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 // STEP 1:	Get post details
-$query_details = $database->query("SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE file_id = '$file_id' and page_id = '$page_id'");
+$query_details = $database->query("SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE file_id = '".$file_id."' and page_id = '".$page_id."' ");
 if($query_details->numRows() > 0) {
 	$get_details = $query_details->fetchRow();
 } else {
@@ -59,11 +59,11 @@ if($query_details->numRows() > 0) {
 // get the file information
 $fname = $get_details['filename'];
 $ext   = $get_details['extension'];
-$group_id = $database->get_one("SELECT `group_id` FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE file_id = '$file_id'");
+$group_id = $database->get_one("SELECT `group_id` FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE file_id = '".$file_id."'");
 
 
 //check for multiple evtries using the same file name
-$query_duplicates = $database->query("SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE filename = '$fname' and extension='$ext'");
+$query_duplicates = $database->query("SELECT * FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE filename = '".$fname."' and extension='".$ext."'");
 $dups=$query_duplicates->numRows();
 
 //only delete the file if there is 1 database entry (not used on multiple sections)
@@ -75,7 +75,7 @@ if($dups==1){
 	}
 }
 // STEP 3:	Delete post
-$database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE file_id = '$file_id' LIMIT 1");
+$database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_download_gallery_files WHERE file_id = '".$file_id."' LIMIT 1");
 
 // STEP 4:	Clean up ordering
 
