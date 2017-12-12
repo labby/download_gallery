@@ -17,7 +17,7 @@
 {% if settings.search_filter == 1 %}
 <div class="input_filter_container"><label for="input-filter">Filter:</label> <input class="dg_search" type="search" id="input-filter" size="15" placeholder="{{ TEXT.SEARCH }}"></div>
 {% endif %}
-<table class="ui single line table dg_table">
+<table class="ui single line table dg_table" cellspacing="0" cellpadding="2">
   <thead>
     <tr>
       <th>{{ MOD_DG.THTITLE }}</th>
