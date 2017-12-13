@@ -11,7 +11,7 @@
  */
  #}
 {% autoescape false %}
-<div class="download_gallery">
+<div class="dg">
 	<h2>{{ addon_name }}</h2>
 	<h3>{{ addon.dg_settings.header }}</h3>
 	<p style="text-align:right">	
@@ -32,10 +32,9 @@
 		<img src="{{ icons }}/add_group.png" alt="" />{{ TEXT.ADD }} {{ TEXT.GROUP }}
 	</button>
 	</p>
-	<table id="sortable" width="100%" cellspacing="0" cellpadding="2" border="0" class="ui striped table dg_table">
+	<table id="dg_drag" width="100%" cellspacing="0" cellpadding="2" border="0" class="ui striped table dg_table">
 		<thead>
 			<tr style="height: 25px;">
-				<th></th>
 				<th>Pos.</th>
 				<th>Extension</th>		
 				<th><span title="fileID">{{ TEXT.FILE }}-{{ TEXT.NAME }}</th>
@@ -52,18 +51,32 @@
 		{% for group in addon.dg_groups %}
 			<tr class='dg_group_title'>
 				<td class='group_header' colspan='8'><b>{{ group.title }}</b></td>
+				<td>
+					{% if group.active == 1 %}
+						<a href="{{ active_path }}?page_id={{ page_id }}&group_id={{ group.group_id }}&status=1"><img src="{{ icons }}/group_status_1.gif" alt="active" title="active" /></a>
+					{% elseif group.group_id == 0 %}
+						{# display no icon #}
+					{% else %}
+						<a href="{{ active_path }}?page_id={{ page_id }}&group_id={{ group.group_id }}&status=0"><img src="{{ icons }}/group_status_0.gif" alt="not active" title="not active" /></a>
+					{% endif %}
+				</td>
+				
 			</tr>
 			{% for file in addon.dg_files %}
 				{% if file.group_id == group.group_id %}
 				<tr>
-					<td></td>
 					<td>{{ file.position }}</td>
 					<td>{{ file.icon }} .{{ file.extension }}</td>
 					<td><a href='{{ file_path }}&file_id={{ file.file_id }}&group_id={{ file.group_id }}'>{{ file.title }}</a></td>
 					<td>{{ file.file_id }}</td>
 					<td>{{ file.size }}</td>
 					<td>{{ file.dlcount }}</td>
-					<td>{{ file.active }}</td>
+					<td>{% if file.active == 1 %}
+								<a href="{{ active_path }}?page_id={{ page_id }}&file_id={{ file.file_id }}&status=1"><img src="{{ icons }}/status_1_1.gif" alt="active" title="active" /></a>
+						{% else %}
+								<a href="{{ active_path }}?page_id={{ page_id }}&file_id={{ file.file_id }}&status=0"><img src="{{ icons }}/status_1_0.gif" alt="not active" title="not active" /></a>
+						{% endif %}
+					</td>
 				</tr>
 				{% endif %}
 			{% endfor %}
@@ -77,6 +90,7 @@
 			</tr>
 		</tfoot>
 	</table>
+	<div class='dg_page'></div>
 </div>
 
 <div> {# div avoids displaying code in output of semantic templates  #}

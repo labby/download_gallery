@@ -46,6 +46,7 @@ require_once LEPTON_PATH.'/modules/download_gallery/info.php';
 // data for twig template engine	
 $data = array(
 	'addon' 	=> $oDG,
+	'dg_link' 	=> LEPTON_URL.'/modules/download_gallery/dlc.php',	
 	'dateformat'=> str_replace(' ','/', DEFAULT_DATE_FORMAT),
 	'addon_name' 	=> $module_name,
 	

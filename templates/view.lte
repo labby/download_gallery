@@ -30,13 +30,17 @@
 	{% for group in addon.dg_groups %}
 		<tr class='dg_group_title'><td class='group_header' colspan='4'><b>{{ group.title }}</b></td></tr>
 		{% for file in addon.dg_files %}
-			{% if file.group_id == group.group_id %}
-			<tr>
-			  <td>{{ file.icon }} <a href='{{ file.link }}' target='_blank'> {{ file.title }}</a> [{{ file.extension }}]</td>
-			  <td>{{ file.modified_when|date(dateformat) }}</td>
-			  <td>{{ file.size }}</td>
-			  <td>{{ file.dlcount }}</td>
-			</tr>
+			{% if file.active == 0 %}
+				{# display no icon #}
+			{% else %}
+				{% if file.group_id == group.group_id %}
+				<tr>
+				  <td>{{ file.icon }} <a href='{{ dg_link }}?file={{ file.file_id }}&id={{ file.modified_when }}' target='_blank'> {{ file.title }}</a> [{{ file.extension }}]</td>
+				  <td>{{ file.modified_when|date(dateformat) }}</td>
+				  <td>{{ file.size }}</td>
+				  <td>{{ file.dlcount }}</td>
+				</tr>
+				{% endif %}
 			{% endif %}
 		{% endfor %}
 		<tr class='spacer'><td> <br /></td></tr>
@@ -44,6 +48,7 @@
   </tbody>
 </table>
 <h4 class="ui header dg_footer">{{ addon.dg_settings.footer }}</h4>	
+<div class='dg_page'></div>
 </div>
 
 <div> {# div avoids displaying code in output of semantic templates  #}

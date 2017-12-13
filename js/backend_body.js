@@ -9,28 +9,8 @@
  *
  */
 
-// include_file("file-name", "filetype"); // JS/CSS
-function include_file(filename, filetype) {
-
-	if(!filetype) 
-		var filetype = 'js'; //js default filetype
-	
-	var th = document.getElementsByTagName('head')[0];
-	var s = document.createElement((filetype == "js") ? 'script' : 'link');
-	
-	s.setAttribute('type',(filetype == "js") ? 'text/javascript' : 'text/css');
-	
-	if (filetype == "css") 
-		s.setAttribute('rel','stylesheet');
-		
-	s.setAttribute((filetype == "js") ? 'src' : 'href', filename);
-	th.appendChild(s);
-	
-}
-
-
-// use jquery ui sortable
-  $( function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-  } );
+ $("tbody").sortable({
+    items: "> tr:not(:first)",
+    appendTo: "parent",
+    helper: "clone"
+}).disableSelection();

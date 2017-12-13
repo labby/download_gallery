@@ -90,7 +90,8 @@ $data = array(
 	'page_id'	=> $page_id,
 	'section_id'	=> $section_id,	
 	'module_url'	=> $MODULE_URL,
-	'file_path'		=> $MODULE_URL."/modify_file.php?page_id=$page_id&section_id=$section_id",		
+	'file_path'		=> $MODULE_URL."/modify_file.php?page_id=$page_id&section_id=$section_id",
+	'active_path'	=> $MODULE_URL."/change_active_status.php",		
 	'count_files'	=> count($oDG->dg_files),
 	
 	// data js pagination	

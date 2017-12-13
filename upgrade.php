@@ -56,6 +56,8 @@ foreach ($columns as $to_delete) {
 
 // add new column icon in files table
 $database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_files` ADD COLUMN icon VARCHAR(255) AFTER position"); 
+// modify column size in files table
+$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_files` MODIFY size VARCHAR(32)"); 
 
 
 ?>

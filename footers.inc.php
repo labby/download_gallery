@@ -49,7 +49,11 @@ if ($show_search == 1 ) {
 
 $mod_footers['frontend']['js'][] =  "modules/download_gallery/js/jquery.simplePagination.js";
 
-$mod_footers['backend']['js'][] = "modules/download_gallery/js/jquery.simplePagination.js";
-$mod_footers['backend']['js'][] = "modules/lib_jquery/jquery-ui/jquery-ui.min.js";
-		 		 
-);
+$mod_footers['backend']['js'][] =  "modules/download_gallery/js/jquery.simplePagination.js";
+
+if (DEFAULT_THEME != 'lepsem') {
+//	$mod_footers['backend']['js'][] = "modules/lib_jquery/jquery-ui/jquery-ui.min.js";	
+}
+
+
+?>

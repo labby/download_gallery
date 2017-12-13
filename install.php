@@ -54,7 +54,7 @@ $table_fields="
 	`modified_when` INT NOT NULL DEFAULT '0',
 	`modified_by` INT NOT NULL DEFAULT '0',
 	`dlcount` INT NOT NULL DEFAULT '0',
-	`size` INT NOT NULL DEFAULT '0',
+	`size` VARCHAR(32) NOT NULL DEFAULT '0',
 	PRIMARY KEY (`file_id`)
 	";
 LEPTON_handle::install_table("mod_download_gallery_files", $table_fields);
