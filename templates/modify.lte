@@ -12,8 +12,8 @@
  #}
 {% autoescape false %}
 <div class="download_gallery">
-	<h2>{{ addon }}</h2>
-	<h3>{{ header }}</h3>
+	<h2>{{ addon_name }}</h2>
+	<h3>{{ addon.dg_settings.header }}</h3>
 	<p style="text-align:right">	
 		<a href="{{ module_url }}/help.php?page_id={{ page_id }}&section_id={{ section_id }}">
 		<img src="{{ icons }}/help.gif" alt="[?]" /> {{ MENU.HELP }}
@@ -32,7 +32,7 @@
 		<img src="{{ icons }}/add_group.png" alt="" />{{ TEXT.ADD }} {{ TEXT.GROUP }}
 	</button>
 	</p>
-	<table id="DownloadGalleryFiles" width="100%" cellspacing="0" cellpadding="2" border="0" class="ui striped table dg_table">
+	<table id="sortable" width="100%" cellspacing="0" cellpadding="2" border="0" class="ui striped table dg_table">
 		<thead>
 			<tr style="height: 25px;">
 				<th></th>
@@ -49,10 +49,31 @@
 		</thead>
 		<tbody>
 
+		{% for group in addon.dg_groups %}
+			<tr class='dg_group_title'>
+				<td class='group_header' colspan='8'><b>{{ group.title }}</b></td>
+			</tr>
+			{% for file in addon.dg_files %}
+				{% if file.group_id == group.group_id %}
+				<tr>
+					<td></td>
+					<td>{{ file.position }}</td>
+					<td>{{ file.icon }} .{{ file.extension }}</td>
+					<td><a href='{{ file_path }}&file_id={{ file.file_id }}&group_id={{ file.group_id }}'>{{ file.title }}</a></td>
+					<td>{{ file.file_id }}</td>
+					<td>{{ file.size }}</td>
+					<td>{{ file.dlcount }}</td>
+					<td>{{ file.active }}</td>
+				</tr>
+				{% endif %}
+			{% endfor %}
+			<tr class='spacer'><td> <br /></td></tr>
+		{% endfor %}		
+		
 		</tbody>	
 		<tfoot>
 			<tr style="height:30px;">
-				<td colspan="11"></small></td>		
+				<td colspan="11"><small>Number of groups: {{ addon.dg_groups|length }} | Number of files: {{ count_files }}</small></td>		
 			</tr>
 		</tfoot>
 	</table>

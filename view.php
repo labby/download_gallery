@@ -41,28 +41,7 @@ $oDG = download_gallery::getInstance();
 $oDG->init_section( $page_id, $section_id );
 require_once LEPTON_PATH.'/modules/download_gallery/info.php';
 
-// get file extension for each file
-foreach ($oDG->dg_files as &$temp) {
-/*
-* Loop through all files to get values for view.lte
-*/	
-	if($temp['link'] != $temp['filename'] )
-	{ //get filesize and icons of internal files
-		$file_image = $oDG->get_file_extension($temp['extension']);
-		$temp['file_ext'] = '<img src="'.LEPTON_URL.'/modules/download_gallery/images/'.$file_image.' " />';
-		
-		$temp['size'] = $oDG->get_file_size($temp['link'], $oDG->dg_settings['file_size_decimals']);
-		$temp['link'] = LEPTON_URL . '/modules/download_gallery/dlc.php?file=' .$temp['file_id'].'&amp;id='.$temp['modified_when'];
-	} else 
-	{  //get filesize and icons of external files
-		$get_extern_icon = strtolower(substr( strrchr($temp['filename'],'.'),1));
-		$file_image = $oDG->get_file_extension($get_extern_icon);
-		$temp['file_ext'] = '<img src="'.LEPTON_URL.'/modules/download_gallery/images/'.$file_image.'" />';   
-		
-		$temp['size'] = $oDG->get_external_file_size( $temp['link'], $oDG->dg_settings['file_size_decimals']);
-		$temp['link'] = LEPTON_URL . '/modules/download_gallery/dlc.php?file=' .$temp['file_id'].'&amp;id='.$temp['modified_when'];
-	}
-}
+
 
 // data for twig template engine	
 $data = array(

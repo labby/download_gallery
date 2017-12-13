@@ -37,16 +37,25 @@ else
 // end include class.secure.php
 
 
-// delete obsolete columns, no userupload
-$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN use_captcha "); 
-$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN userupload "); 
-// delete obsolete columns, new output via twig
-$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN files_loop "); 
-$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN file_header "); 
-$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN file_footer "); 
-$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN gheader "); 
-$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN gloop "); 
-$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN gfooter "); 
-$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN search_layout "); 
+// delete obsolete columns 
+$columns = array (
+'use_captcha',	//no userupload
+'userupload',
+'files_loop',	// new output via twig
+'file_header',
+'file_footer',
+'gheader', 
+'gloop', 
+'gfooter', 
+'search_layout' 
+);
+
+foreach ($columns as $to_delete) {
+	$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_settings` DROP COLUMN ".$to_delete." "); 
+}
+
+// add new column icon in files table
+$database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_files` ADD COLUMN icon VARCHAR(255) AFTER position"); 
+
 
 ?>

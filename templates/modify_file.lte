@@ -19,7 +19,7 @@
 	<input type="hidden" name="link" value="{{ dg_file.link }}" />
 
 	<table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
-		<caption class="be_lepsem">{{ TEXT.MODIFY }} {{ TEXT.DELETE }} {{ TEXT.FILE }}</caption>
+		<caption class="be_lepsem">{{ TEXT.MODIFY }}/{{ TEXT.DELETE }} {{ TEXT.FILE }}</caption>
 		<tr>
 			<th>{{ TEXT.ACTIVE }}:</th>
 			<td valign="top">
@@ -69,7 +69,7 @@
 			<td>
 	  			<select name="group" style="width: 98%;">
 				<option value="0">{{ TEXT.NONE }}</option>
-				{% for group in dg_groups  %}				
+				{% for group in dg_groups %}				
 						<option value="{{ group.group_id }}" {% if group.group_id == preselected_group %} selected='selected' {% endif  %}>{{ group.title }}</option>
 				{% endfor  %}
 				</select>

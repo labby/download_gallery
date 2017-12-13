@@ -37,6 +37,9 @@ else
 }
 // end include class.secure.php
 
+//get instance of own module class
+$oDG = download_gallery::getInstance();
+$oDG->init_section( $page_id, $section_id );
 $file_names = array(
 '/modules/download_gallery/functions.php',
 '/framework/summary.functions.php'
@@ -61,6 +64,7 @@ or  !isset($_POST['active']) OR !is_numeric($_POST['active'])) {
 $filename = '';
 $fname = '';
 $fileext = '';
+
 
 // Validate all fields
 if($admin->get_post('title') == '' AND $admin->get_post('url') == '') {

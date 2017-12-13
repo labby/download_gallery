@@ -27,12 +27,12 @@
     </tr>
   </thead>
   <tbody>
-  {% for group in addon.dg_groups %}
+	{% for group in addon.dg_groups %}
 		<tr class='dg_group_title'><td class='group_header' colspan='4'><b>{{ group.title }}</b></td></tr>
 		{% for file in addon.dg_files %}
 			{% if file.group_id == group.group_id %}
 			<tr>
-			  <td>{{ file.file_ext }} <a href='{{ file.link }}' target='_blank'>{{ file.title }}</a></td>
+			  <td>{{ file.icon }} <a href='{{ file.link }}' target='_blank'> {{ file.title }}</a> [{{ file.extension }}]</td>
 			  <td>{{ file.modified_when|date(dateformat) }}</td>
 			  <td>{{ file.size }}</td>
 			  <td>{{ file.dlcount }}</td>

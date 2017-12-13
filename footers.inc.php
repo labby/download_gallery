@@ -37,17 +37,19 @@ else
 }
 // end include class.secure.php
 
-//get instance of database
+
+$mod_footers = array();
+
 $database = LEPTON_database::getInstance();
 global $page_id;
 $show_search = $database->get_one("SELECT search_filter from ".TABLE_PREFIX."mod_download_gallery_settings where page_id = ".$page_id." ");
 if ($show_search == 1 ) {
-	$mod_footers = array(
-		'frontend' => array(
-			'js' => array(
-				 "modules/download_gallery/js/jquery.filtertable.min.js",
-				 "modules/download_gallery/js/jquery.simplePagination.js"	
-			)
-		)
-	);
+	$mod_footers['frontend']['js'][] =  "modules/download_gallery/js/jquery.filtertable.min.js";
 }
+
+$mod_footers['frontend']['js'][] =  "modules/download_gallery/js/jquery.simplePagination.js";
+
+$mod_footers['backend']['js'][] = "modules/download_gallery/js/jquery.simplePagination.js";
+$mod_footers['backend']['js'][] = "modules/lib_jquery/jquery-ui/jquery-ui.min.js";
+		 		 
+);

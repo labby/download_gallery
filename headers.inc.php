@@ -44,11 +44,18 @@ else
 						array(
 							'media'	=> 'screen',
 							'file'	=> 'modules/download_gallery/css/simplePagination.css'
-				)
+				),			
 			)
-		)
+		),
+		'backend' => array(
+				'css' => array(
+						array(
+							'media'	=> 'screen',
+							'file'	=> 'modules/lib_jquery/jquery-ui/jquery-ui.min.css'
+				)			
+			)
+		)		
 	);
 
-
-			
-			
+	
+?>			

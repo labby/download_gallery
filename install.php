@@ -45,6 +45,7 @@ $table_fields="
 	`group_id` INT NOT NULL DEFAULT '0',
 	`active` INT NOT NULL DEFAULT '0',
 	`position` INT NOT NULL DEFAULT '0',
+	`icon` VARCHAR(255) NOT NULL DEFAULT '',	
 	`title` VARCHAR(255) NOT NULL DEFAULT '',
 	`link` TEXT NOT NULL ,
 	`filename` VARCHAR(255) NOT NULL DEFAULT '',
