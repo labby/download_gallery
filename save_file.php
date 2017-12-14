@@ -37,6 +37,20 @@ else
 }
 // end include class.secure.php
 
+if (!isset($_POST['page_id']) OR !is_numeric($_POST['page_id'])) {
+	header("Location: ".ADMIN_URL."/pages/index.php");	
+} else 
+{
+	$page_id = $_POST['page_id'];
+}
+
+if (!isset($_POST['section_id']) OR !is_numeric($_POST['section_id'])) {
+		header("Location: ".ADMIN_URL."/pages/index.php");	
+} else 
+{
+	$section_id = $_POST['section_id'];
+}
+	
 //get instance of own module class
 $oDG = download_gallery::getInstance();
 $oDG->init_section( $page_id, $section_id );
@@ -59,6 +73,7 @@ or  !isset($_POST['active']) OR !is_numeric($_POST['active'])) {
 	$file_id = $id;
 	$active = $admin->get_post('active');
 }
+
 
 // STEP 0:	initialize some variables
 $filename = '';

@@ -37,20 +37,21 @@ else
 }
 // end include class.secure.php
 
+$MODULE_URL 	= LEPTON_URL.'/modules/download_gallery';
+$DG_ICONS 		= $MODULE_URL.'/images';
+$MODULE_PREFIX = TABLE_PREFIX."mod_download_gallery";
+//delete empty records
+$database->simple_query("DELETE FROM ".$MODULE_PREFIX."_files WHERE section_id ='".$section_id."' and page_id ='".$page_id."' and title='' ");
+$database->simple_query("DELETE FROM ".$MODULE_PREFIX."_groups WHERE section_id ='".$section_id."' and page_id ='".$page_id."' and title='' ");
+
 //get instance of own module class
 $oDG = download_gallery::getInstance();
 $oDG->init_section( $page_id, $section_id );
 LEPTON_handle::include_files('/modules/download_gallery/functions.php');
 require_once LEPTON_PATH.'/modules/download_gallery/info.php';
 
-$MODULE_URL 	= LEPTON_URL.'/modules/download_gallery';
-$DG_ICONS 		= $MODULE_URL.'/images';
-$MODULE_PREFIX = TABLE_PREFIX."mod_download_gallery";
 
 
-//delete empty records
-$database->simple_query("DELETE FROM ".$MODULE_PREFIX."_files WHERE section_id ='".$section_id."' and page_id ='".$page_id."' and title='' ");
-$database->simple_query("DELETE FROM ".$MODULE_PREFIX."_groups WHERE section_id ='".$section_id."' and page_id ='".$page_id."' and title='' ");
 
 // get file extension for each file
 foreach ($oDG->dg_files as &$temp) {
@@ -89,6 +90,7 @@ $data = array(
 	'addon_name'=> $module_name,
 	'page_id'	=> $page_id,
 	'section_id'=> $section_id,	
+	'leptoken'=> get_leptoken(),		
 	'module_url'=> $MODULE_URL,
 	'file_path'	=> $MODULE_URL."/modify_file.php?page_id=$page_id&section_id=$section_id",
 	'group_path'	=> $MODULE_URL."/modify_group.php?page_id=$page_id&section_id=$section_id",	

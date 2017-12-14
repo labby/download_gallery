@@ -64,9 +64,13 @@
 						<a href="{{ active_path }}?page_id={{ page_id }}&group_id={{ group.group_id }}&status=0"><img src="{{ icons }}/group_status_0.gif" alt="not active" title="not active" /></a>
 					{% endif %}
 				</td>
-				<td><a href="{{ delete_group }}&group_id={{ group.group_id }}"><img src="{{ icons }}/delete_16.png" alt="{{ TEXT.DELETE }}" title="{{ TEXT.DELETE }}" /></a></td>
-				<td><a href='{{ group_path }}&group_id={{ group.group_id }}'><img src="{{ icons }}/modify_16.png" alt="{{ TEXT.MODIFY }}" title="{{ TEXT.MODIFY }}" /></a></td>
-				<td><a href="{{ add_file }}&group_id={{ file.group_id }}"><img src="{{ icons }}/add_child.png" alt="{{ TEXT.ADD }}" title="{{ TEXT.ADD }}" /></a></td>			
+				{% if group.group_id == 0 %}
+					{# display no action  #}
+				{% else %}
+					<td><a href="javascript: confirm_link('{{ TEXT.ARE_YOU_SURE }}','{{ delete_group }}&group_id={{ group.group_id }}&leptoken={{ leptoken }}');"><img src="{{ icons }}/delete_16.png" alt="{{ TEXT.DELETE }}" title="{{ TEXT.DELETE }}" /></a></td>
+					<td><a href='{{ group_path }}&group_id={{ group.group_id }}'><img src="{{ icons }}/modify_16.png" alt="{{ TEXT.MODIFY }}" title="{{ TEXT.MODIFY }}" /></a></td>
+					<td><a href="{{ add_file }}&group_id={{ group.group_id }}"><img src="{{ icons }}/add_child.png" alt="{{ TEXT.ADD }}" title="{{ TEXT.ADD }}" /></a></td>
+				{% endif %}			
 			</tr>
 			{% for file in addon.dg_files %}
 				{% if file.group_id == group.group_id %}
@@ -83,7 +87,7 @@
 								<a href="{{ active_path }}?page_id={{ page_id }}&file_id={{ file.file_id }}&status=0"><img src="{{ icons }}/status_1_0.gif" alt="not active" title="not active" /></a>
 						{% endif %}
 					</td>
-					<td><a href="{{ delete_file }}&file_id={{ file.file_id }}"><img src="{{ icons }}/delete_16.png" alt="{{ TEXT.DELETE }}" title="{{ TEXT.DELETE }}" /></a></td>
+					<td><a href="javascript: confirm_link('{{ TEXT.ARE_YOU_SURE }}','{{ delete_file }}&file_id={{ file.file_id }}&leptoken={{ leptoken }}');"><img src="{{ icons }}/delete_16.png" alt="{{ TEXT.DELETE }}" title="{{ TEXT.DELETE }}" /></a></td>
 					<td><a href='{{ file_path }}&file_id={{ file.file_id }}&group_id={{ file.group_id }}'><img src="{{ icons }}/modify_16.png" alt="{{ TEXT.MODIFY }}" title="{{ TEXT.MODIFY }}" /></a></td>
 					<td></td>
 				</tr>

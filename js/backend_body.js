@@ -12,5 +12,9 @@
  $("tbody").sortable({
     items: "> tr:not(:first)",
     appendTo: "parent",
-    helper: "clone"
+    helper: "clone",
+	update: function(event, ui) {
+			var fileOrder = $(this).sortable('toArray').toString();
+			$.post('update-sort.php', {fileOrder:fileOrder});
+	}	
 }).disableSelection();
