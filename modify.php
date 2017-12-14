@@ -86,12 +86,16 @@ foreach ($oDG->dg_files as &$temp) {
 $data = array(
 	'addon' => $oDG,
 	'icons' => $DG_ICONS,
-	'addon_name'	=> $module_name,
+	'addon_name'=> $module_name,
 	'page_id'	=> $page_id,
-	'section_id'	=> $section_id,	
-	'module_url'	=> $MODULE_URL,
-	'file_path'		=> $MODULE_URL."/modify_file.php?page_id=$page_id&section_id=$section_id",
-	'active_path'	=> $MODULE_URL."/change_active_status.php",		
+	'section_id'=> $section_id,	
+	'module_url'=> $MODULE_URL,
+	'file_path'	=> $MODULE_URL."/modify_file.php?page_id=$page_id&section_id=$section_id",
+	'group_path'	=> $MODULE_URL."/modify_group.php?page_id=$page_id&section_id=$section_id",	
+	'active_path'	=> $MODULE_URL."/change_active_status.php",
+	'delete_file'	=> $MODULE_URL."/delete_file.php?page_id=$page_id&section_id=$section_id",
+	'add_file'	=> $MODULE_URL."/add_file.php?page_id=$page_id&section_id=$section_id",	
+	'delete_group'	=> $MODULE_URL."/delete_group.php?page_id=$page_id&section_id=$section_id",
 	'count_files'	=> count($oDG->dg_files),
 	
 	// data js pagination	

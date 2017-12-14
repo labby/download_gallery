@@ -11,9 +11,8 @@
  */
  #}
 {% autoescape false %}
-<div class="dg">
+<div class="download_gallery">
 	<h2>{{ addon_name }}</h2>
-	<h3>{{ addon.dg_settings.header }}</h3>
 	<p style="text-align:right">	
 		<a href="{{ module_url }}/help.php?page_id={{ page_id }}&section_id={{ section_id }}">
 		<img src="{{ icons }}/help.gif" alt="[?]" /> {{ MENU.HELP }}
@@ -41,8 +40,8 @@
 				<th>{{ TEXT.FILE }}-ID</th>
 				<th>{{ TEXT.FILE }}-{{ TEXT.SIZE }}</th>
 				<th align="right">Downloads</th>
-				<th align="center">{{ TEXT.ACTIVE }}?</th>
-				<th colspan="2"></th>
+				<th align="center">{{ TEXT.ACTIVE }}</th>
+				<th colspan="2">{{ TEXT.ACTIONS }}</th>
 				<th><div id="downloadGalleryResult"></div></th>
 			</tr>
 		</thead>
@@ -50,7 +49,12 @@
 
 		{% for group in addon.dg_groups %}
 			<tr class='dg_group_title'>
-				<td class='group_header' colspan='8'><b>{{ group.title }}</b></td>
+				<td class='group_header' colspan='6'>
+					{% if group.group_id == 0 %}
+						<img src="{{ icons }}/empty.gif" alt="{{ TEXT.GROUP }}" title="{{ TEXT.GROUP }}" /><b> {{ group.title }}</b>
+					{% else %}
+						<img src="{{ icons }}/group.png" alt="{{ TEXT.GROUP }}" title="{{ TEXT.GROUP }}" /><b> {{ group.title }}</b>
+					{% endif %}
 				<td>
 					{% if group.active == 1 %}
 						<a href="{{ active_path }}?page_id={{ page_id }}&group_id={{ group.group_id }}&status=1"><img src="{{ icons }}/group_status_1.gif" alt="active" title="active" /></a>
@@ -60,7 +64,9 @@
 						<a href="{{ active_path }}?page_id={{ page_id }}&group_id={{ group.group_id }}&status=0"><img src="{{ icons }}/group_status_0.gif" alt="not active" title="not active" /></a>
 					{% endif %}
 				</td>
-				
+				<td><a href="{{ delete_group }}&group_id={{ group.group_id }}"><img src="{{ icons }}/delete_16.png" alt="{{ TEXT.DELETE }}" title="{{ TEXT.DELETE }}" /></a></td>
+				<td><a href='{{ group_path }}&group_id={{ group.group_id }}'><img src="{{ icons }}/modify_16.png" alt="{{ TEXT.MODIFY }}" title="{{ TEXT.MODIFY }}" /></a></td>
+				<td><a href="{{ add_file }}&group_id={{ file.group_id }}"><img src="{{ icons }}/add_child.png" alt="{{ TEXT.ADD }}" title="{{ TEXT.ADD }}" /></a></td>			
 			</tr>
 			{% for file in addon.dg_files %}
 				{% if file.group_id == group.group_id %}
@@ -77,6 +83,9 @@
 								<a href="{{ active_path }}?page_id={{ page_id }}&file_id={{ file.file_id }}&status=0"><img src="{{ icons }}/status_1_0.gif" alt="not active" title="not active" /></a>
 						{% endif %}
 					</td>
+					<td><a href="{{ delete_file }}&file_id={{ file.file_id }}"><img src="{{ icons }}/delete_16.png" alt="{{ TEXT.DELETE }}" title="{{ TEXT.DELETE }}" /></a></td>
+					<td><a href='{{ file_path }}&file_id={{ file.file_id }}&group_id={{ file.group_id }}'><img src="{{ icons }}/modify_16.png" alt="{{ TEXT.MODIFY }}" title="{{ TEXT.MODIFY }}" /></a></td>
+					<td></td>
 				</tr>
 				{% endif %}
 			{% endfor %}

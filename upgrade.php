@@ -59,5 +59,14 @@ $database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_files
 // modify column size in files table
 $database->simple_query("ALTER TABLE `".TABLE_PREFIX."mod_download_gallery_files` MODIFY size VARCHAR(32)"); 
 
+// delete obsolete files
+$file_names = array(
+	'/modules/download_gallery/css/drag_n_drop.css',
+	'/modules/download_gallery/dluser_add.php',
+	'/modules/download_gallery/dluser_page.php',
+	'/modules/download_gallery/dluser_save.php'
+);
+LEPTON_handle::delete_obsolete_files ($file_names);
 
+LEPTON_handle::delete_obsolete_directories('/modules/download_gallery/htt');
 ?>
