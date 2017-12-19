@@ -24,10 +24,10 @@
 	</p>
 	<h3>{{ MENU.GROUPS }} & {{ TEXT.SETTINGS }}</h3>
 	<p>
-	<button class="ui button" onclick="javascript: window.location = '{{ module_url }}/add_file.php?page_id={{ page_id }}&section_id={{ section_id }}">
+	<button class="ui button" onclick="window.location = '{{ module_url }}/add_file.php?page_id={{ page_id }}&section_id={{ section_id }}'">
 		<img src="{{ icons }}/add_new.png" alt="" />{{ TEXT.ADD }} {{ TEXT.FILE }}
 	</button>
-	<button class="ui button" onclick="javascript: window.location = '{{ module_url }}/add_group.php?page_id={{ page_id }}&section_id={{ section_id }}">
+	<button class="ui button" onclick="window.location = '{{ module_url }}/add_group.php?page_id={{ page_id }}&section_id={{ section_id }}'">
 		<img src="{{ icons }}/add_group.png" alt="" />{{ TEXT.ADD }} {{ TEXT.GROUP }}
 	</button>
 	</p>
