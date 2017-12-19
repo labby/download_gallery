@@ -37,25 +37,26 @@ else
 }
 // end include class.secure.php
 
+$mod_headers = array(
+    'frontend' => array(
+        'css' => array(
+            array(
+                'media'	=> 'screen',
+                'file'	=> 'modules/download_gallery/css/simplePagination.css'
+            )		
+        )
+    ),
+    'backend' => array(
+        'css' => array(
+            array(
+                'media'	=> 'screen',
+                'file'	=> 'modules/download_gallery/css/simplePagination.css'
+            )			
+        )
+    )	
+);
 
-	$mod_headers = array(
-		'frontend' => array(
-				'css' => array(
-						array(
-							'media'	=> 'screen',
-							'file'	=> 'modules/download_gallery/css/simplePagination.css'
-				)			
-			)
-		),
-		'backend' => array(
-				'css' => array(
-						array(
-							'media'	=> 'screen',
-							'file'	=> 'modules/download_gallery/css/simplePagination.css'
-				)			
-			)
-		)	
-	);
-
-	
-?>			
+if(DEFAULT_THEME == "algos")
+{
+    $mod_headers['backend']['js'][]  = "/modules/lib_jquery/jquery-ui/jquery-ui.min.js";
+}
