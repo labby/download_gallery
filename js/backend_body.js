@@ -15,12 +15,14 @@
     helper: "clone",
 	update: function(event, ui) {
 			var fileOrder = $(this).sortable('toArray').toString();
-			var result = $.post( LEPTON_URL+'/modules/download_gallery/update_sort.php', {fileOrder:fileOrder}).success(function(data, statusText) {
-                dg_ajax_return( data, statusText );
+			var result = $.post( LEPTON_URL+'/modules/download_gallery/update_sort.php',
+			    {
+			        leptoken: LEPTOKEN,
+			        section_id: SECTION_ID,
+			        fileOrder:fileOrder
+			    }
+			).success(function(data, statusText) {
+                alert(data);
             });
 	}	
 }).disableSelection();
-
-function dg_ajax_return( data, statusText ) {
-    alert(data);
-}

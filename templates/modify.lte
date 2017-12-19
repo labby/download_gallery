@@ -48,7 +48,7 @@
 		<tbody>
 
 		{% for group in addon.dg_groups %}
-			<tr class='dg_group_title'>
+			<tr id="G {{group.group_id }}" class='dg_group_title'>
 				<td class='group_header' colspan='6'>
 					{% if group.group_id == 0 %}
 						<img src="{{ icons }}/empty.gif" alt="{{ TEXT.GROUP }}" title="{{ TEXT.GROUP }}" /><b> {{ group.title }}</b>
@@ -74,7 +74,7 @@
 			</tr>
 			{% for file in addon.dg_files %}
 				{% if file.group_id == group.group_id %}
-				<tr>
+				<tr id="F {{ file.file_id }}">
 					<td>{{ file.position }}</td>
 					<td>{{ file.icon }} .{{ file.extension }}</td>
 					<td><a href='{{ file_path }}&file_id={{ file.file_id }}&group_id={{ file.group_id }}'>{{ file.title }}</a></td>
@@ -93,7 +93,7 @@
 				</tr>
 				{% endif %}
 			{% endfor %}
-			<tr class='spacer'><td> <br /></td></tr>
+			<tr id="E {{loop.index0 }}" class='spacer'><td> <br /></td></tr>
 		{% endfor %}		
 		
 		</tbody>	
@@ -109,6 +109,8 @@
 <div> {# div avoids displaying code in output of semantic templates  #}
 <script>
 var LEPTON_URL = "{{ LEPTON_URL }}";
+var LEPTOKEN = "{{ leptoken }}";
+var SECTION_ID = "{{ section_id }}";
 {# use simplePagination, see options on http://flaviusmatis.github.io/simplePagination.js/  #}
 $(function() {
     $('.dg_page').pagination({
