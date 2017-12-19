@@ -39,4 +39,16 @@ else
 
 header('Content-Type: application/javascript');
 
-echo json_encode($_POST);
+if(!isset($_POST['fileOrder']))
+{
+    die( "E1: no fileOrder" );
+}
+
+if(!isset($_POST['section_id']))
+{
+    die( "E2: no section" );
+}
+
+$aTempList = explode(",", $_POST['fileOrder']);
+
+echo json_encode($_POST['fileOrder']);
