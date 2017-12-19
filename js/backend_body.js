@@ -15,6 +15,12 @@
     helper: "clone",
 	update: function(event, ui) {
 			var fileOrder = $(this).sortable('toArray').toString();
-			$.post('update-sort.php', {fileOrder:fileOrder});
+			var result = $.post( LEPTON_URL+'/modules/download_gallery/update_sort.php', {fileOrder:fileOrder}).success(function(data, statusText) {
+                dg_ajax_return( data, statusText );
+            });
 	}	
 }).disableSelection();
+
+function dg_ajax_return( data, statusText ) {
+    alert(data);
+}

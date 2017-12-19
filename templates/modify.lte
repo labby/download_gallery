@@ -108,6 +108,7 @@
 
 <div> {# div avoids displaying code in output of semantic templates  #}
 <script>
+var LEPTON_URL = "{{ LEPTON_URL }}";
 {# use simplePagination, see options on http://flaviusmatis.github.io/simplePagination.js/  #}
 $(function() {
     $('.dg_page').pagination({

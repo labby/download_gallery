@@ -36,7 +36,8 @@ $files_to_register = array(
 	$basename.'save_extsettings.php',
 	$basename.'save_file.php',
 	$basename.'save_group.php',
-	$basename.'save_settings.php'
+	$basename.'save_settings.php',
+	$basename.'update_sort.php'
 );
 
 $lepton_filemanager->register( $files_to_register );
