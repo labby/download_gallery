@@ -48,7 +48,7 @@
 		<tbody>
 
 		{% for group in addon.dg_groups %}
-			<tr id="G {{group.group_id }}" class='dg_group_title'>
+			<tr id="G {{ group.group_id }}" class='dg_group_title'>
 				<td class='group_header' colspan='6'>
 					{% if group.group_id == 0 %}
 						<img src="{{ icons }}/empty.gif" alt="{{ TEXT.GROUP }}" title="{{ TEXT.GROUP }}" /><b> {{ group.title }}</b>
