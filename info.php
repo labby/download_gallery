@@ -41,8 +41,8 @@ else
 $module_directory	= 'download_gallery';
 $module_name		= 'Download Gallery';
 $module_function	= 'page';
-$module_version		= '3.2.0';
-$module_platform	= '3.0';
+$module_version		= '3.3.0';
+$module_platform	= '4.0';
 $module_status		= 'stable';
 $module_author		= 'Hudge, Woudloper, M. Gallas, R. Smith, C. Sommer, F. Heyne, Aldus, erpe';
 $module_license		= 'GNU General Public License';
